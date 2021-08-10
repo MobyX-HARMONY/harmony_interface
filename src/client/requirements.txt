@@ -1,0 +1,14 @@
+pymongo==3.10.1
+Flask-Bcrypt==0.7.1
+kafka-python==2.0.2
+confluent-kafka==1.6.1
+python-schema-registry-client==1.8.1
+protobuf==3.15.7
+requests==2.7.0
+uuid==1.30
+matplotlib==3.2.2
+numpy==1.19.1
+pandas==1.0.5
+scipy==1.5.0
+pyshp==2.1.0
+shapely==1.7.0

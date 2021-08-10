@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message proto_experiment {
+  optional string id = 1;
+  optional string name = 2;
+  optional string description = 3;
+}
