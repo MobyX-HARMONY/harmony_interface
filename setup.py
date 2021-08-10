@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="HARMONY_Interface",
+    name="harmony-interface",
     version="0.0.1",
     author="Ilias, Shakur",
     author_email='shakur.sarder@tum.de',
