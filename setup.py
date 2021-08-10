@@ -21,4 +21,4 @@ setuptools.setup(
 )
 
 # https://github.com/ShakurTUM/Temp-Interface.git
-# pip3 install git+https://github.com/ShakurTUM/Temp-Interface.git
+# pip3 install git+https://github.com/ShakurTUM/harmony_interface.git
