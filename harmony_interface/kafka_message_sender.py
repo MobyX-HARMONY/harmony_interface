@@ -22,7 +22,7 @@ from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 
 schema_registry_client = SchemaRegistryClient({'url': 'http://schema-registry:8081'})
-protobuf_serializer = ProtobufSerializer(start_tfs_pb2.StartTFSModel, schema_registry_client)
+# protobuf_serializer = ProtobufSerializer(start_tfs_pb2.StartTFSModel, schema_registry_client)
 
 # producer_conf = {'bootstrap.servers':  'kafka:29092',
 #                  'key.serializer': StringSerializer('utf_8'),
