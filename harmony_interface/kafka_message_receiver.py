@@ -1,17 +1,5 @@
 import logging
 from abc import abstractmethod
-
-"""
-try:
-    from protos.common import progress_pb2,stop_pb2
-    from protos.tfs import start_tfs_pb2
-except ImportError:
-    import sys
-    sys.path.append(sys.path[0] + '/..')
-    from protos.common import progress_pb2,stop_pb2
-    from protos.tfs import start_tfs_pb2
-"""
-
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
@@ -21,8 +9,8 @@ from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
 from confluent_kafka.serialization import StringDeserializer
 from google.protobuf.json_format import MessageToJson
 
-class KafkaMessageReceiver:
 
+class KafkaMessageReceiver:
     def __init__(self):
         logger = logging.getLogger()
         logger.setLevel(logging.WARNING)
@@ -35,7 +23,6 @@ class KafkaMessageReceiver:
         self.check_for_start_messages()
 
     def check_for_any_messages(self, protobuf_deserializer):
-
         string_deserializer = StringDeserializer('utf_8')
         consumer_conf = {
             'session.timeout.ms': 6000,
@@ -53,7 +40,7 @@ class KafkaMessageReceiver:
             try:
                 consumer = DeserializingConsumer(consumer_conf)
                 consumer.subscribe([self.topic])
-                self.logger.warning('%s -> Consumer created !',self.topic)
+                self.logger.warning('%s -> Consumer created !', self.topic)
                 flag = 2
             except Exception as ex:
                 self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', self.topic, str(ex))
@@ -68,13 +55,13 @@ class KafkaMessageReceiver:
                     self.logger.warning("Consumer error: {}".format(msg.error()))
                     continue
                 else:
-                    proto_exp = msg.value()
-                    self.logger.warning("Received Proto: %s", proto_exp)
+                    # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
+                    self.logger.warning("Received Proto: %s", json_obj)
                     self.start_message_received(json_obj)
 
             except Exception as ex:
-                self.logger.warning('ops No topic found : %s', str(ex))
+                self.logger.warning('No topic found : %s', str(ex))
         consumer.close()
 
     def check_for_stop_messages(self):
@@ -86,10 +73,11 @@ class KafkaMessageReceiver:
         self.check_for_any_messages(protobuf_deserializer)
 
     def check_for_start_messages(self):
+        self.logger.warning('check_for_start_messages')
         if self.topic == "tfs":
             protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
         if self.topic == "ofs":
-            pass # TODO
+            pass
         self.check_for_any_messages(protobuf_deserializer)
 
     @abstractmethod
