@@ -65,7 +65,9 @@ class KafkaMessageSender:
         # easy, just use the progress proto from the common folder
         self.logger.warning('progress : %s', percentage)
         message = progress_pb2.UpdateServerWithProgress(experiment_id=experiment_id, percentage=percentage)
-        self.__send_anything(message)
+        progress_serializer = ProtobufSerializer(progress_pb2.UpdateServerWithProgress, schema_registry_client)
+        progress_conf = self.__get_producer_config(progress_serializer)
+        self.__send_anything(message, progress_conf)
 
     def send_stop(self, experiment_id):
         # easy, just use the stop proto from the common folder
