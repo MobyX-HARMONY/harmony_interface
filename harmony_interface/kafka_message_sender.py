@@ -24,17 +24,21 @@ from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 schema_registry_client = SchemaRegistryClient({'url': 'http://schema-registry:8081'})
 protobuf_serializer = ProtobufSerializer(start_tfs_pb2.StartTFSModel, schema_registry_client)
 
-producer_conf = {'bootstrap.servers':  'kafka:29092',
-                 'key.serializer': StringSerializer('utf_8'),
-                 'value.serializer': protobuf_serializer}
+# producer_conf = {'bootstrap.servers':  'kafka:29092',
+#                  'key.serializer': StringSerializer('utf_8'),
+#                  'value.serializer': protobuf_serializer}
 
 class KafkaMessageSender:
-
     def __init__(self, model_id):
         logger = logging.getLogger()
         logger.setLevel(logging.WARNING)
         self.logger = logger
         self.topic = model_id
+
+    def __get_producer_config(self, proto_serializer):
+        return {'bootstrap.servers':  'kafka:29092',
+                'key.serializer': StringSerializer('utf_8'),
+                'value.serializer': proto_serializer}
 
     def __delivery_report(self, err, msg):
         if err is not None:
@@ -42,7 +46,7 @@ class KafkaMessageSender:
         else:
             self.logger.warning('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
-    def __send_anything(self, message):
+    def __send_anything(self, message, producer_conf):
         kp = None
         try:
             kp = SerializingProducer(producer_conf)
@@ -72,8 +76,10 @@ class KafkaMessageSender:
     def send_start_TFS(self, experiment_id):
         # eventually, we should pass more parameters via this function
         self.logger.warning('start TFS')
+        start_tfs_serializer = ProtobufSerializer(start_tfs_pb2.StartTFSModel, schema_registry_client)
+        start_tfs_conf = self.__get_producer_config(start_tfs_serializer)
         message = start_tfs_pb2.StartTFSModel(experiment_id=experiment_id)
-        self.__send_anything(message)
+        self.__send_anything(message, start_tfs_conf)
 
     def send_start_OFS(self):
         # similar to the TFS case, but using a different proto file
