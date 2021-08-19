@@ -46,10 +46,10 @@ class KafkaMessageSender:
         else:
             self.logger.warning('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
-    def __send_anything(self, message, producer_conf):
+    def __send_anything(self, message, conf):
         kp = None
         try:
-            kp = SerializingProducer(producer_conf)
+            kp = SerializingProducer(conf)
         except Exception as ex:
             self.logger.warning('Exception while connecting Kafka with Producer : %s', str(ex))
         try:
@@ -58,13 +58,14 @@ class KafkaMessageSender:
             kp.poll(0)
         except Exception as ex:
             self.logger.warning('Exception in publishing message %s', str(ex))
-        time.sleep(1)
+        time.sleep(3)
         kp.flush()
 
     def send_progress(self, experiment_id, percentage):
+        time.sleep(1)
         # easy, just use the progress proto from the common folder
         self.logger.warning('progress : %s', percentage)
-        message = progress_pb2.UpdateServerWithProgress(experiment_id=experiment_id, percentage=percentage)
+        message = progress_pb2.UpdateServerWithProgress(experiment_id=experiment_id, percentage=int(percentage))
         progress_serializer = ProtobufSerializer(progress_pb2.UpdateServerWithProgress, schema_registry_client)
         progress_conf = self.__get_producer_config(progress_serializer)
         self.__send_anything(message, progress_conf)
