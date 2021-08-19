@@ -19,7 +19,7 @@ from .protos.tfs import start_tfs_pb2
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
 from confluent_kafka.serialization import StringDeserializer
-
+from google.protobuf.json_format import MessageToJson
 
 class KafkaMessageReceiver:
 
@@ -69,7 +69,9 @@ class KafkaMessageReceiver:
                     continue
                 else:
                     proto_exp = msg.value()
-                    self.start_message_received(proto_exp)
+                    self.logger.warning("Received Proto: %s", proto_exp)
+                    json_obj = MessageToJson(msg.value())
+                    self.start_message_received(json_obj)
 
             except Exception as ex:
                 self.logger.warning('ops No topic found : %s', str(ex))

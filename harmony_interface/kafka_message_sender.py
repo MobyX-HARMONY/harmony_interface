@@ -49,11 +49,12 @@ class KafkaMessageSender:
         except Exception as ex:
             self.logger.warning('Exception while connecting Kafka with Producer : %s', str(ex))
         try:
+            self.logger.warning('Message sends: %s', message)
             kp.produce(topic=self.topic, value=message, key=str(uuid4()), on_delivery=self.__delivery_report)
             kp.poll(0)
         except Exception as ex:
             self.logger.warning('Exception in publishing message %s', str(ex))
-        time.sleep(3)
+        time.sleep(1)
         kp.flush()
 
     def send_progress(self, experiment_id, percentage):
