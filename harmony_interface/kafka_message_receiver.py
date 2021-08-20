@@ -42,10 +42,10 @@ class KafkaMessageReceiver:
             try:
                 consumer = DeserializingConsumer(consumer_conf)
                 consumer.subscribe([kafka_topic])
-                self.logger.warning('%s -> Consumer created !', self.topic)
+                self.logger.warning('%s -> Consumer created !', kafka_topic)
                 flag = 2
             except Exception as ex:
-                self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', self.topic, str(ex))
+                self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', kafka_topic, str(ex))
 
         while True:
             # SIGINT can't be handled when polling, limit timeout to 1 second.
