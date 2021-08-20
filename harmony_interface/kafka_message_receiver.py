@@ -20,7 +20,9 @@ class KafkaMessageReceiver:
         self.topic = model_id
         self.check_for_stop_messages()
         self.check_for_start_messages()
-        self.check_for_progress_messages()
+
+    def initialize_progress(self, topic_name):
+        self.check_for_progress_messages(topic_name)
 
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
@@ -74,9 +76,9 @@ class KafkaMessageReceiver:
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
         self.check_for_any_messages((self.topic + '_stop'), protobuf_deserializer)
 
-    def check_for_progress_messages(self):
+    def check_for_progress_messages(self, topic_name):
         protobuf_deserializer = ProtobufDeserializer(progress_pb2.UpdateServerWithProgress)
-        self.check_for_any_messages((self.topic + '_output'), protobuf_deserializer)
+        self.check_for_any_messages(topic_name, protobuf_deserializer)
 
     def check_for_start_messages(self):
         self.logger.warning('check_for_start_messages')
