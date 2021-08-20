@@ -44,7 +44,7 @@ class KafkaMessageSender:
         except Exception as ex:
             self.logger.warning('Exception while connecting Kafka with Producer : %s', str(ex))
         try:
-            self.logger.warning('PRODUCER MSGS: %s', message)
+            self.logger.warning('PRODUCER MSGS: %s with topic : %s', message, kafka_topic)
             kp.produce(topic=kafka_topic, value=message, key=str(uuid4()), on_delivery=self.__delivery_report)
             kp.poll(0)
         except Exception as ex:
@@ -60,7 +60,7 @@ class KafkaMessageSender:
         progress_message = progress_pb2.UpdateServerWithProgress(experiment_id=exp_id, percentage=int(percent))
 
         self.logger.warning('PS: %s', progress_message)
-        self.__send_anything(self.topic + '_output', progress_message, progress_conf)
+        self.__send_anything((self.topic + '_output'), progress_message, progress_conf)
 
     def send_stop(self, experiment_id):
         # easy, just use the stop proto from the common folder
