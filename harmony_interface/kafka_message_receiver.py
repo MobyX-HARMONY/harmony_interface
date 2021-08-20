@@ -42,7 +42,7 @@ class KafkaMessageReceiver:
             try:
                 consumer = DeserializingConsumer(consumer_conf)
                 consumer.subscribe([kafka_topic])
-                self.logger.warning('%s -> Consumer created !', kafka_topic)
+                self.logger.warning('Consumer created with topic %s', kafka_topic)
                 flag = 2
             except Exception as ex:
                 self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', kafka_topic, str(ex))
@@ -61,12 +61,10 @@ class KafkaMessageReceiver:
                     # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
                     self.logger.warning("Received Proto: %s", json_obj)
-                    if (msg.topic() == self.topic):
+                    if (msg.topic() == 'tfs'):
                         self.start_message_received(json_obj)
-                    elif (msg.topic() == (self.topic + '_output')):
+                    elif (msg.topic() == ('tfs_output')):
                         self.progress_message_received(json_obj)
-                    elif (msg.topic() == (self.topic + '_stop')):
-                        pass
 
             except Exception as ex:
                 self.logger.warning('No topic found : %s', str(ex))
