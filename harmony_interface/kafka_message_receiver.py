@@ -22,7 +22,7 @@ class KafkaMessageReceiver:
         self.check_for_progress_messages()
         self.check_for_start_messages()
 
-    def check_for_any_messages(self, protobuf_deserializer):
+    def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
         consumer_conf = {
             'session.timeout.ms': 6000,
@@ -59,7 +59,12 @@ class KafkaMessageReceiver:
                     # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
                     self.logger.warning("Received Proto: %s", json_obj)
-                    self.start_message_received(json_obj)
+                    if (msg.topic() == self.topic):
+                        self.start_message_received(json_obj)
+                    elif (msg.topic() == (self.topic + '_output')):
+                        self.progress_message_received(json_obj)
+                    elif (msg.topic() == (self.topic + '_stop')):
+                        pass
 
             except Exception as ex:
                 self.logger.warning('No topic found : %s', str(ex))
@@ -67,28 +72,29 @@ class KafkaMessageReceiver:
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
-        self.check_for_any_messages(protobuf_deserializer)
+        self.check_for_any_messages((self.topic + '_stop'), protobuf_deserializer)
 
     def check_for_progress_messages(self):
         protobuf_deserializer = ProtobufDeserializer(progress_pb2.UpdateServerWithProgress)
-        self.check_for_any_messages(protobuf_deserializer)
+        self.check_for_any_messages((self.topic + '_output'), protobuf_deserializer)
 
     def check_for_start_messages(self):
         self.logger.warning('check_for_start_messages')
+        protobuf_deserializer = None
         if self.topic == "tfs":
             protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
         if self.topic == "ofs":
             pass
-        self.check_for_any_messages(protobuf_deserializer)
+        self.check_for_any_messages(self.topic, protobuf_deserializer)
 
     @abstractmethod
     def stop_message_received(self):
         pass
 
     @abstractmethod
-    def progress_message_received(self):
+    def progress_message_received(self, msg):
         pass
 
     @abstractmethod
-    def start_message_received(self):
+    def start_message_received(self, msg):
         pass
