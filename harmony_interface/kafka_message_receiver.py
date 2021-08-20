@@ -55,7 +55,7 @@ class KafkaMessageReceiver:
                     self.logger.warning("Consumer error: {}".format(msg.error()))
                     continue
                 else:
-                    self.logger.warning("list_topics: %s  %s", msg.topic(), msg.key())
+                    self.logger.warning("topic: %s", msg.topic())
                     # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
                     self.logger.warning("Received Proto: %s", json_obj)
@@ -92,9 +92,9 @@ class KafkaMessageReceiver:
         pass
 
     @abstractmethod
-    def progress_message_received(self, msg):
+    def progress_message_received(self):
         pass
 
     @abstractmethod
-    def start_message_received(self, msg):
+    def start_message_received(self):
         pass

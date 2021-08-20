@@ -55,8 +55,6 @@ class KafkaMessageSender:
     def send_progress(self, exp_id, percent):
         # time.sleep(1)
         # easy, just use the progress proto from the common folder
-        self.logger.warning('progress : %s', percent)
-
         progress_serializer = ProtobufSerializer(progress_pb2.UpdateServerWithProgress, schema_registry_client)
         progress_conf = self.__get_producer_config(progress_serializer)
         progress_message = progress_pb2.UpdateServerWithProgress(experiment_id=exp_id, percentage=int(percent))
@@ -80,7 +78,7 @@ class KafkaMessageSender:
 
     def send_start_OFS(self):
         # similar to the TFS case, but using a different proto file
-        None
+        pass
 
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
