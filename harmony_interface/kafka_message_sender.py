@@ -50,15 +50,17 @@ class KafkaMessageSender:
         except Exception as ex:
             self.logger.warning('Exception in publishing message %s', str(ex))
         kp.flush()
-        time.sleep(3)
+        # time.sleep(3)
 
-    def send_progress(self, experiment_id, percentage):
-        time.sleep(1)
+    def send_progress(self, exp_id, percent):
+        # time.sleep(1)
         # easy, just use the progress proto from the common folder
-        self.logger.warning('progress : %s', percentage)
-        progress_message = progress_pb2.UpdateServerWithProgress(experiment_id=experiment_id, percentage=int(percentage))
+        self.logger.warning('progress : %s', percent)
+
         progress_serializer = ProtobufSerializer(progress_pb2.UpdateServerWithProgress, schema_registry_client)
         progress_conf = self.__get_producer_config(progress_serializer)
+        progress_message = progress_pb2.UpdateServerWithProgress(experiment_id=exp_id, percentage=str(percent))
+
         self.logger.warning('progress_message: %s', progress_message)
         self.__send_anything(self.topic + '_output', progress_message, progress_conf)
 
