@@ -33,9 +33,9 @@ class KafkaMessageSender:
 
     def __delivery_report(self, err, msg):
         if err is not None:
-            self.logger.warning('Message delivery failed: {}'.format(err))
+            self.logger.warning('Sender message delivery failed: {}'.format(err))
         else:
-            self.logger.warning('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
+            self.logger.warning('Sender message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
     def __send_anything(self, kafka_topic, message, conf):
         kp = None
@@ -59,6 +59,7 @@ class KafkaMessageSender:
         progress_message = progress_pb2.UpdateServerWithProgress(experiment_id=experiment_id, percentage=int(percentage))
         progress_serializer = ProtobufSerializer(progress_pb2.UpdateServerWithProgress, schema_registry_client)
         progress_conf = self.__get_producer_config(progress_serializer)
+        self.logger.warning('progress_message: %s', progress_message)
         self.__send_anything(self.topic + '_output', progress_message, progress_conf)
 
     def send_stop(self, experiment_id):
