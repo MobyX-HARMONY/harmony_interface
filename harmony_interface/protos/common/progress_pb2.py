@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='progress.proto',
   package='harmonyServer',
   syntax='proto2',
-  serialized_pb=_b('\n\x0eprogress.proto\x12\rharmonyServer\"E\n\x18UpdateServerWithProgress\x12\x15\n\rexperiment_id\x18\x01 \x02(\t\x12\x12\n\npercentage\x18\x02 \x02(\t')
+  serialized_pb=_b('\n\x0eprogress.proto\x12\rharmonyServer\"E\n\x18UpdateServerWithProgress\x12\x15\n\rexperiment_id\x18\x01 \x02(\t\x12\x12\n\npercentage\x18\x02 \x02(\x05')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -42,8 +42,8 @@ _UPDATESERVERWITHPROGRESS = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='percentage', full_name='harmonyServer.UpdateServerWithProgress.percentage', index=1,
-      number=2, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),

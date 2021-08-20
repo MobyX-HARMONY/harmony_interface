@@ -4,5 +4,5 @@ package harmonyServer;
 
 message UpdateServerWithProgress {
   required string experiment_id = 1;
-  required string percentage = 2;
+  required int32 percentage = 2;
 }
