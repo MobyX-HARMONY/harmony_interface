@@ -19,8 +19,8 @@ class KafkaMessageReceiver:
     def initialize_receiver(self, model_id):
         self.topic = model_id
         self.check_for_stop_messages()
-        self.check_for_progress_messages()
         self.check_for_start_messages()
+        self.check_for_progress_messages()
 
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
@@ -39,7 +39,7 @@ class KafkaMessageReceiver:
         while flag == 1:
             try:
                 consumer = DeserializingConsumer(consumer_conf)
-                consumer.subscribe([self.topic])
+                consumer.subscribe([kafka_topic])
                 self.logger.warning('%s -> Consumer created !', self.topic)
                 flag = 2
             except Exception as ex:
