@@ -1,16 +1,6 @@
 import logging
 import time
 
-"""
-try:
-    from protos.common import progress_pb2, stop_pb2
-    from protos.tfs import start_tfs_pb2
-except ImportError:
-    import sys
-    sys.path.append(sys.path[0] + '/.')
-    from protos.common import progress_pb2, stop_pb2
-    from protos.tfs import start_tfs_pb2
-"""
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
@@ -22,7 +12,7 @@ from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 
 schema_registry_client = SchemaRegistryClient({'url': 'http://schema-registry:8081'})
-schema_registry_client.set_compatibility("Harmony", "None")
+# schema_registry_client.set_compatibility("Harmony", "None")
 # protobuf_serializer = ProtobufSerializer(start_tfs_pb2.StartTFSModel, schema_registry_client)
 
 # producer_conf = {'bootstrap.servers':  'kafka:29092',
@@ -59,17 +49,17 @@ class KafkaMessageSender:
             kp.poll(0)
         except Exception as ex:
             self.logger.warning('Exception in publishing message %s', str(ex))
-        time.sleep(3)
         kp.flush()
+        time.sleep(3)
 
     def send_progress(self, experiment_id, percentage):
         time.sleep(1)
         # easy, just use the progress proto from the common folder
         self.logger.warning('progress : %s', percentage)
-        message = progress_pb2.UpdateServerWithProgress(experiment_id=experiment_id, percentage=int(percentage))
+        progress_message = progress_pb2.UpdateServerWithProgress(experiment_id=experiment_id, percentage=int(percentage))
         progress_serializer = ProtobufSerializer(progress_pb2.UpdateServerWithProgress, schema_registry_client)
         progress_conf = self.__get_producer_config(progress_serializer)
-        self.__send_anything(message, progress_conf)
+        self.__send_anything(progress_message, progress_conf)
 
     def send_stop(self, experiment_id):
         # easy, just use the stop proto from the common folder
