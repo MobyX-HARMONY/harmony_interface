@@ -1,4 +1,5 @@
 import logging
+import time
 from abc import abstractmethod
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
@@ -18,8 +19,10 @@ class KafkaMessageReceiver:
 
     def initialize_receiver(self, model_id):
         self.topic = model_id
-        self.check_for_stop_messages()
         self.check_for_start_messages()
+        time.sleep(1)
+        self.check_for_stop_messages()
+        time.sleep(1)
 
     def initialize_progress(self, topic_name):
         self.check_for_progress_messages(topic_name)
