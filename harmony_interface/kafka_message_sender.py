@@ -1,5 +1,5 @@
 import logging
-from config import Config
+from .config import Config
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
