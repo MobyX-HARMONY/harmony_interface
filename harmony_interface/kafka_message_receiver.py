@@ -30,7 +30,7 @@ class KafkaMessageReceiver:
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
         consumer_conf = {
-            'session.timeout.ms': config.KAFKA_SESSION_TIME_OUT,
+            'session.timeout.ms': 6000,
             'max.poll.interval.ms': config.KAFKA_MAX_POLL,
             'bootstrap.servers': config.KAFKA_BOOTSTRAP_SERVERS,
             'key.deserializer': string_deserializer,
