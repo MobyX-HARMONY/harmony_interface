@@ -4,7 +4,7 @@ from abc import abstractmethod
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
-
+import config
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
 from confluent_kafka.serialization import StringDeserializer
@@ -30,14 +30,14 @@ class KafkaMessageReceiver:
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
         consumer_conf = {
-            'session.timeout.ms': 6000,
-            'max.poll.interval.ms': 6000,
-            'bootstrap.servers': 'kafka:29092',
+            'session.timeout.ms': config.KAFKA_SESSION_TIME_OUT,
+            'max.poll.interval.ms': config.KAFKA_MAX_POLL,
+            'bootstrap.servers': config.KAFKA_BOOTSTRAP_SERVERS,
             'key.deserializer': string_deserializer,
             'value.deserializer': protobuf_deserializer,
-            'group.id': '200',
-            'auto.offset.reset': "earliest",
-            "enable.auto.commit": True,
+            'group.id': config.KAFKA_GROUP_ID,
+            'auto.offset.reset': config.KAFKA_OFFSET_RESET,
+            "enable.auto.commit": config.KAFKA_AUTO_COMMIT_ENABLE,
         }
         consumer = None
         flag = 1
@@ -64,9 +64,9 @@ class KafkaMessageReceiver:
                     # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
                     self.logger.warning("Received Proto: %s", json_obj)
-                    if (msg.topic() == 'tfs'):
+                    if msg.topic() is 'tfs':
                         self.start_message_received(json_obj)
-                    if (msg.topic() == ('tfs_output')):
+                    if msg.topic() is 'tfs_output':
                         self.progress_message_received(json_obj)
 
             except Exception as ex:
@@ -103,3 +103,10 @@ class KafkaMessageReceiver:
     def start_message_received(self):
         pass
     """
+    @abstractmethod
+    def start_message_received(self):
+        pass
+
+    @abstractmethod
+    def progress_message_received(self):
+        pass
