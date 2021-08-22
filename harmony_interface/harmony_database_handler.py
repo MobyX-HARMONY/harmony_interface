@@ -1,6 +1,8 @@
 from pymongo import MongoClient
-import config
+from .config import Config
 import logging
+
+config = Config()
 
 class HarmonyDatabaseHandler:
 

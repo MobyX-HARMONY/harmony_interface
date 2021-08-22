@@ -1,5 +1,5 @@
 import logging
-import config
+from .config import Config
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
@@ -10,7 +10,7 @@ from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 
 schema_registry_client = SchemaRegistryClient({'url': 'http://schema-registry:8081'})
-
+config = Config()
 
 class KafkaMessageSender:
     def __init__(self, model_id):

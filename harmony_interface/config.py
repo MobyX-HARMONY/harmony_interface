@@ -1,11 +1,12 @@
-KAFKA_BOOTSTRAP_SERVERS = 'kafka:29092'
-KAFKA_RECEIVER_BOOTSTRAP_SERVERS = ''
 
-MONGO_DB_URL = 'mongodb://mongodb:27017/'
-MONGO_DB_NAME = 'MobyXDB'
+class Config:
+    def __init__(self):
+        self.KAFKA_BOOTSTRAP_SERVERS = 'kafka:29092'
+        self.MONGO_DB_URL = 'mongodb://mongodb:27017/'
+        self.MONGO_DB_NAME = 'MobyXDB'
 
-KAFKA_SESSION_TIME_OUT = 6000
-KAFKA_MAX_POLL = 6000
-KAFKA_GROUP_ID = '200'
-KAFKA_OFFSET_RESET = 'earliest'
-KAFKA_AUTO_COMMIT_ENABLE = True
+        self.KAFKA_SESSION_TIME_OUT = 6000
+        self.KAFKA_MAX_POLL = 6000
+        self.KAFKA_GROUP_ID = '200'
+        self.KAFKA_OFFSET_RESET = 'earliest'
+        self.KAFKA_AUTO_COMMIT_ENABLE = True
