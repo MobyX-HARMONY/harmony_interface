@@ -105,9 +105,9 @@ class KafkaMessageReceiver:
     """
 
     @abstractmethod
-    def start_message_received(self, json_obj):
+    def start_message_received(self):
         pass
 
     @abstractmethod
-    def progress_message_received(self, json_obj):
+    def progress_message_received(self):
         pass
