@@ -4,7 +4,7 @@ from abc import abstractmethod
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
-import config
+from .config import config
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
 from confluent_kafka.serialization import StringDeserializer
