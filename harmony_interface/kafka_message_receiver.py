@@ -67,7 +67,7 @@ class KafkaMessageReceiver:
                     if (msg.topic() == 'tfs'):
                         self.start_message_received(json_obj)
                     elif (msg.topic() == ('tfs_output')):
-                        self.progress_message_received(json_obj)
+                        self.progress_message_received(self, json_obj)
 
             except Exception as ex:
                 self.logger.warning('No topic found : %s', str(ex))
@@ -95,7 +95,7 @@ class KafkaMessageReceiver:
         pass
 
     @abstractmethod
-    def progress_message_received(self):
+    def progress_message_received(self, json_obj):
         pass
 
     @abstractmethod
