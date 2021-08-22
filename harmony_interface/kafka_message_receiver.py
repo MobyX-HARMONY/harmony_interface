@@ -66,8 +66,8 @@ class KafkaMessageReceiver:
                     self.logger.warning("Received Proto: %s", json_obj)
                     if (msg.topic() == 'tfs'):
                         self.start_message_received(json_obj)
-                    elif (msg.topic() == ('tfs_output')):
-                        self.progress_message_received(self, json_obj)
+                    if (msg.topic() == ('tfs_output')):
+                        self.progress_message_received(json_obj)
 
             except Exception as ex:
                 self.logger.warning('No topic found : %s', str(ex))
@@ -90,14 +90,24 @@ class KafkaMessageReceiver:
             pass
         self.check_for_any_messages(self.topic, protobuf_deserializer)
 
+    """
     @abstractmethod
     def stop_message_received(self):
         pass
 
     @abstractmethod
-    def progress_message_received(self, json_obj):
+    def progress_message_received(self):
         pass
 
     @abstractmethod
     def start_message_received(self):
+        pass
+    """
+
+    @abstractmethod
+    def start_message_received(self, json_obj):
+        pass
+
+    @abstractmethod
+    def progress_message_received(self, json_obj):
         pass
