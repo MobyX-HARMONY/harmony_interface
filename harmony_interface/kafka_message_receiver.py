@@ -66,12 +66,13 @@ class KafkaMessageReceiver:
                     if msg.topic() == 'tfs':
                         self.start_message_received(json_obj)
                     if msg.topic() == 'tfs_output':
-                        self.progress_message_received(json_obj)
+                        self.progress_message_received(self, json_obj)
 
             except Exception as ex:
                 self.logger.warning('Exception occured ! : %s', str(ex))
         consumer.close()
 
+# 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
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
         self.check_for_any_messages((self.topic + '_stop'), protobuf_deserializer)
@@ -88,6 +89,7 @@ class KafkaMessageReceiver:
         if self.topic == "ofs":
             pass
         self.check_for_any_messages(self.topic, protobuf_deserializer)
+
 
     @abstractmethod
     def start_message_received(self):
