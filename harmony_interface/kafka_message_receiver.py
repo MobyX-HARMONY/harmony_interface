@@ -39,15 +39,15 @@ class KafkaMessageReceiver:
             "enable.auto.commit": config.KAFKA_AUTO_COMMIT_ENABLE,
         }
         consumer = None
-        flag = 1
-        while flag == 1:
-            try:
-                consumer = DeserializingConsumer(consumer_conf)
-                consumer.subscribe([kafka_topic])
-                self.logger.warning('Consumer created with topic %s', kafka_topic)
-                flag = 2
-            except Exception as ex:
-                self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', kafka_topic, str(ex))
+        # flag = 1
+        # while flag == 1:
+        try:
+            consumer = DeserializingConsumer(consumer_conf)
+            consumer.subscribe([kafka_topic])
+            self.logger.warning('Consumer created with topic %s', kafka_topic)
+            flag = 2
+        except Exception as ex:
+            self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', kafka_topic, str(ex))
 
         while True:
             # SIGINT can't be handled when polling, limit timeout to 1 second.
