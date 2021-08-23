@@ -66,7 +66,7 @@ class KafkaMessageReceiver:
                     if msg.topic() == 'tfs':
                         self.start_message_received(json_obj)
                     if msg.topic() == 'tfs_output':
-                        self.progress_message_received(self, json_obj)
+                        self.progress_message_received(json_obj)
 
             except Exception as ex:
                 self.logger.warning('Exception occured ! : %s', str(ex))
