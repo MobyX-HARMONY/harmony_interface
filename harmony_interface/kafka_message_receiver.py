@@ -21,9 +21,7 @@ class KafkaMessageReceiver:
     def initialize_receiver(self, model_id):
         self.topic = model_id
         self.check_for_start_messages()
-        time.sleep(1)
         self.check_for_stop_messages()
-        time.sleep(1)
 
     def initialize_progress(self, topic_name):
         self.check_for_progress_messages(topic_name)
