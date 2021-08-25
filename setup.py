@@ -11,7 +11,7 @@ setuptools.setup(
     description="A function that returns 'world'",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/ShakurTUM/Temp-Interface.git',
+    url='https://github.com/MobyX-HARMONY/harmony_interface.git',
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -19,6 +19,3 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ]
 )
-
-# https://github.com/ShakurTUM/Temp-Interface.git
-# pip3 install git+https://github.com/ShakurTUM/harmony_interface.git
