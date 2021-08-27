@@ -4,6 +4,8 @@ from abc import abstractmethod
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
+from .protos.ops import start_ops_pb2
+
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
 from confluent_kafka.serialization import StringDeserializer
@@ -85,7 +87,9 @@ class KafkaMessageReceiver:
         protobuf_deserializer = None
         if self.topic == "tfs":
             protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
-        if self.topic == "ofs":
+        elif self.topic == "ops":
+            protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOPSModel)
+        elif self.topic == "ofs":
             pass
         self.check_for_any_messages(self.topic, protobuf_deserializer)
 
@@ -94,8 +98,8 @@ class KafkaMessageReceiver:
     def start_message_received(self):
         pass
 
-    @staticmethod
-    def progress_message_received(self, json_obj):
+    @abstractmethod
+    def progress_message_received(self):
         pass
 
     @abstractmethod
