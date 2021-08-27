@@ -3,6 +3,8 @@ from .config import Config
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
+from .protos.ops import start_ops_pb2
+
 from uuid import uuid4
 from confluent_kafka import SerializingProducer
 from confluent_kafka.serialization import StringSerializer
@@ -68,6 +70,13 @@ class KafkaMessageSender:
 
     def send_start_ofs(self):
         pass
+
+    def start_ops(self, experiment_id):
+        self.logger.warning('START OPS')
+        start_ops_serializer = ProtobufSerializer(start_ops_pb2.StartOPSModel, schema_registry_client)
+        start_ops_conf = self.__get_producer_config(start_ops_serializer)
+        message = start_ops_pb2.StartOPSModel(experiment_id=experiment_id)
+        self.__send_anything(self.topic, message, start_ops_conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
     def send_progress(self, experiment_id, percentage):
