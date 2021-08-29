@@ -105,7 +105,7 @@ class KafkaMessageReceiver:
     def start_message_received(self):
         pass
 
-    @abstractmethod
+    @staticmethod
     def progress_message_received(self, json_obj):
         pass
 
