@@ -62,13 +62,13 @@ class KafkaMessageReceiver:
                     self.logger.warning("Consumer error: {}".format(msg.error()))
                     continue
                 else:
-                    self.logger.warning("topic: %s", msg.topic())
+                    self.logger.warning("topic: %s %s", self.topic, msg.topic())
                     # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
                     self.logger.warning("Received Proto: %s", json_obj)
-                    if msg.topic() == 'tfs' or 'ops' or 'onm':
+                    if msg.topic() == 'tfs' or msg.topic() == 'ops' or msg.topic() == 'onm':
                         self.start_message_received(json_obj)
-                    if msg.topic() == self.topic + '_output':
+                    elif msg.topic() == self.topic + '_output':
                         self.progress_message_received(json_obj)
 
             except Exception as ex:
