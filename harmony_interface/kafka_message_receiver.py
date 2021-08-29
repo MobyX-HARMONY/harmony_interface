@@ -27,7 +27,8 @@ class KafkaMessageReceiver:
         self.check_for_stop_messages()
 
     def initialize_progress(self, topic_name):
-        self.check_for_progress_messages(topic_name)
+        self.topic = topic_name
+        self.check_for_progress_messages(topic_name + '_output')
 
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
@@ -39,7 +40,7 @@ class KafkaMessageReceiver:
             'value.deserializer': protobuf_deserializer,
             'group.id': config.KAFKA_GROUP_ID,
             'auto.offset.reset': config.KAFKA_OFFSET_RESET,
-            "enable.auto.commit": config.KAFKA_AUTO_COMMIT_ENABLE,
+            "enable.auto.commit": config.KAFKA_AUTO_COMMIT_ENABLE
         }
         consumer = None
         # flag = 1
@@ -62,7 +63,7 @@ class KafkaMessageReceiver:
                     self.logger.warning("Consumer error: {}".format(msg.error()))
                     continue
                 else:
-                    self.logger.warning("topic: %s %s", self.topic, msg.topic())
+                    self.logger.warning("topic: %s", msg.topic())
                     # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
                     self.logger.warning("Received Proto: %s", json_obj)
