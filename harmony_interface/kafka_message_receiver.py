@@ -5,6 +5,7 @@ from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
+from .protos.onm import start_onm_pb2
 
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
@@ -47,7 +48,7 @@ class KafkaMessageReceiver:
             consumer = DeserializingConsumer(consumer_conf)
             consumer.subscribe([kafka_topic])
             self.logger.warning('Consumer created with topic %s', kafka_topic)
-            flag = 2
+            # flag = 2
         except Exception as ex:
             self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', kafka_topic, str(ex))
 
@@ -65,9 +66,9 @@ class KafkaMessageReceiver:
                     # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
                     self.logger.warning("Received Proto: %s", json_obj)
-                    if msg.topic() == 'tfs' or 'ops':
+                    if msg.topic() == 'tfs' or 'ops' or 'onm':
                         self.start_message_received(json_obj)
-                    if msg.topic() == 'tfs_output':
+                    if msg.topic() == self.topic + '_output':
                         self.progress_message_received(json_obj)
 
             except Exception as ex:
@@ -89,6 +90,8 @@ class KafkaMessageReceiver:
             protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
         elif self.topic == "ops":
             protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOPSModel)
+        elif self.topic == "onm":
+            protobuf_deserializer = ProtobufDeserializer(start_onm_pb2.StartONMModel)
         elif self.topic == "ofs":
             pass
         self.check_for_any_messages(self.topic, protobuf_deserializer)
