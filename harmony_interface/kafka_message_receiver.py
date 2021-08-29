@@ -66,7 +66,11 @@ class KafkaMessageReceiver:
                     # proto_exp = msg.value()
                     json_obj = MessageToJson(msg.value())
                     self.logger.warning("Received Proto: %s", json_obj)
-                    if (msg.topic() == 'tfs' or msg.topic() == 'ops' or msg.topic() == 'onm'):
+                    if msg.topic() == 'tfs':
+                        self.start_message_received(json_obj)
+                    elif msg.topic() == 'ops':
+                        self.start_message_received(json_obj)
+                    elif msg.topic() == 'onm':
                         self.start_message_received(json_obj)
                     elif (msg.topic() == (self.topic + '_output')):
                         self.progress_message_received(json_obj)
