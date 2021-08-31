@@ -5,6 +5,7 @@ from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
+from .protos.trt import start_trt_pb2
 
 from uuid import uuid4
 from confluent_kafka import SerializingProducer
@@ -85,6 +86,13 @@ class KafkaMessageSender:
         start_onm_conf = self.__get_producer_config(start_onm_serializer)
         message = start_onm_pb2.StartONMModel(experiment_id=experiment_id)
         self.__send_anything(self.topic, message, start_onm_conf)
+
+    def start_trt(self, experiment_id):
+        self.logger.warning('START TRT')
+        start_trt_serializer = ProtobufSerializer(start_trt_pb2.StartTRTModel, schema_registry_client)
+        start_trt_conf = self.__get_producer_config(start_trt_serializer)
+        message = start_trt_pb2.StartTRTModel(experiment_id=experiment_id)
+        self.__send_anything(self.topic, message, start_trt_conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
     def send_progress(self, experiment_id, percentage):

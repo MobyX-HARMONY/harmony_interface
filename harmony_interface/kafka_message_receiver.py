@@ -6,6 +6,7 @@ from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
+from .protos.trt import start_trt_pb2
 
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
@@ -73,6 +74,8 @@ class KafkaMessageReceiver:
                         self.start_message_received(json_obj)
                     elif msg.topic() == 'onm':
                         self.start_message_received(json_obj)
+                    elif msg.topic() == 'trt':
+                        self.start_message_received(json_obj)
                     elif (msg.topic() == (self.topic + '_output')):
                         self.progress_message_received(json_obj)
 
@@ -97,6 +100,8 @@ class KafkaMessageReceiver:
             protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOPSModel)
         elif self.topic == "onm":
             protobuf_deserializer = ProtobufDeserializer(start_onm_pb2.StartONMModel)
+        elif self.topic == "trt":
+            protobuf_deserializer = ProtobufDeserializer(start_trt_pb2.StartTRTModel)
         elif self.topic == "ofs":
             pass
         self.check_for_any_messages(self.topic, protobuf_deserializer)
