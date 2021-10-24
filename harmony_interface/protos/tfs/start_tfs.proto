@@ -4,19 +4,20 @@ package harmonyServer;
 
 message StartTFSModel {
   required string experiment_id = 1;
-  required int32 YEARFACTOR = 2;
-  required int32 NUTSLEVEL_INPUT = 3;
-  required int32 PARCELS_MAXLOAD = 4;
-  required int32 PARCELS_DROPTIME = 5;
-  required float PARCELS_PER_HH = 6;
-  required float PARCELS_PER_EMPL = 7;
-  required float PARCELS_SUCCESS_B2C = 8;
-  required float PARCELS_SUCCESS_B2B = 9;
-  required float PARCELS_GROWTHFREIGHT = 10;
-  required float CRW_PARCELSHARE = 11;
-  required int32 N_MULTIROUTE = 12;
-  required bool CROWDSHIPPING = 13;
-  required string IMPEDANCE_SPEED_FREIGHT = 14;
-  required string IMPEDANCE_SPEED_VAN = 15;
-  required string ALL_DATA = 16;
+  required string LABEL = 2;
+  required int32 YEARFACTOR = 3;
+  required int32 NUTSLEVEL_INPUT = 4;
+  required int32 PARCELS_MAXLOAD = 5;
+  required int32 PARCELS_DROPTIME = 6;
+  required float PARCELS_PER_HH = 7;
+  required float PARCELS_PER_EMPL = 8;
+  required float PARCELS_SUCCESS_B2C = 9;
+  required float PARCELS_SUCCESS_B2B = 10;
+  required float PARCELS_GROWTHFREIGHT = 11;
+  required float CRW_PARCELSHARE = 12;
+  required int32 N_MULTIROUTE = 13;
+  required bool CROWDSHIPPING = 14;
+  required string IMPEDANCE_SPEED_FREIGHT = 15;
+  required string IMPEDANCE_SPEED_VAN = 16;
+  required string ALL_DATA = 17;
 }
