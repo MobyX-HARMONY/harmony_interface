@@ -16,7 +16,7 @@ message StartTFSModel {
   required float PARCELS_GROWTHFREIGHT = 11;
   required float CRW_PARCELSHARE = 12;
   required int32 N_MULTIROUTE = 13;
-  required bool CROWDSHIPPING = 14;
+  required string CROWDSHIPPING = 14;
   required string IMPEDANCE_SPEED_FREIGHT = 15;
   required string IMPEDANCE_SPEED_VAN = 16;
   required string ALL_DATA = 17;

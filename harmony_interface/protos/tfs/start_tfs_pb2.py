@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='harmonyServer',
   syntax='proto2',
   serialized_options=None,
-  serialized_pb=b'\n\x0fstart_tfs.proto\x12\rharmonyServer\"\xb6\x03\n\rStartTFSModel\x12\x15\n\rexperiment_id\x18\x01 \x02(\t\x12\r\n\x05LABEL\x18\x02 \x02(\t\x12\x12\n\nYEARFACTOR\x18\x03 \x02(\x05\x12\x17\n\x0fNUTSLEVEL_INPUT\x18\x04 \x02(\x05\x12\x17\n\x0fPARCELS_MAXLOAD\x18\x05 \x02(\x05\x12\x18\n\x10PARCELS_DROPTIME\x18\x06 \x02(\x05\x12\x16\n\x0ePARCELS_PER_HH\x18\x07 \x02(\x02\x12\x18\n\x10PARCELS_PER_EMPL\x18\x08 \x02(\x02\x12\x1b\n\x13PARCELS_SUCCESS_B2C\x18\t \x02(\x02\x12\x1b\n\x13PARCELS_SUCCESS_B2B\x18\n \x02(\x02\x12\x1d\n\x15PARCELS_GROWTHFREIGHT\x18\x0b \x02(\x02\x12\x17\n\x0f\x43RW_PARCELSHARE\x18\x0c \x02(\x02\x12\x14\n\x0cN_MULTIROUTE\x18\r \x02(\x05\x12\x15\n\rCROWDSHIPPING\x18\x0e \x02(\x08\x12\x1f\n\x17IMPEDANCE_SPEED_FREIGHT\x18\x0f \x02(\t\x12\x1b\n\x13IMPEDANCE_SPEED_VAN\x18\x10 \x02(\t\x12\x10\n\x08\x41LL_DATA\x18\x11 \x02(\t'
+  serialized_pb=b'\n\x0fstart_tfs.proto\x12\rharmonyServer\"\xb6\x03\n\rStartTFSModel\x12\x15\n\rexperiment_id\x18\x01 \x02(\t\x12\r\n\x05LABEL\x18\x02 \x02(\t\x12\x12\n\nYEARFACTOR\x18\x03 \x02(\x05\x12\x17\n\x0fNUTSLEVEL_INPUT\x18\x04 \x02(\x05\x12\x17\n\x0fPARCELS_MAXLOAD\x18\x05 \x02(\x05\x12\x18\n\x10PARCELS_DROPTIME\x18\x06 \x02(\x05\x12\x16\n\x0ePARCELS_PER_HH\x18\x07 \x02(\x02\x12\x18\n\x10PARCELS_PER_EMPL\x18\x08 \x02(\x02\x12\x1b\n\x13PARCELS_SUCCESS_B2C\x18\t \x02(\x02\x12\x1b\n\x13PARCELS_SUCCESS_B2B\x18\n \x02(\x02\x12\x1d\n\x15PARCELS_GROWTHFREIGHT\x18\x0b \x02(\x02\x12\x17\n\x0f\x43RW_PARCELSHARE\x18\x0c \x02(\x02\x12\x14\n\x0cN_MULTIROUTE\x18\r \x02(\x05\x12\x15\n\rCROWDSHIPPING\x18\x0e \x02(\t\x12\x1f\n\x17IMPEDANCE_SPEED_FREIGHT\x18\x0f \x02(\t\x12\x1b\n\x13IMPEDANCE_SPEED_VAN\x18\x10 \x02(\t\x12\x10\n\x08\x41LL_DATA\x18\x11 \x02(\t'
 )
 
 
@@ -124,8 +124,8 @@ _STARTTFSMODEL = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='CROWDSHIPPING', full_name='harmonyServer.StartTFSModel.CROWDSHIPPING', index=13,
-      number=14, type=8, cpp_type=7, label=2,
-      has_default_value=False, default_value=False,
+      number=14, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
