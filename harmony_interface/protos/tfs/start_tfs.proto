@@ -4,6 +4,9 @@ package harmonyServer;
 
 message StartTFSModel {
   required string experiment_id = 1;
+}
+
+/*
   required string LABEL = 2;
   required int32 YEARFACTOR = 3;
   required int32 NUTSLEVEL_INPUT = 4;
@@ -20,4 +23,4 @@ message StartTFSModel {
   required string IMPEDANCE_SPEED_FREIGHT = 15;
   required string IMPEDANCE_SPEED_VAN = 16;
   required string ALL_DATA = 17;
-}
+*/
