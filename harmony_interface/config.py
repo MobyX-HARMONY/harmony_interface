@@ -2,8 +2,8 @@
 class Config:
     def __init__(self):
         self.KAFKA_BOOTSTRAP_SERVERS = 'kafka:29092'
-        self.MONGO_DB_URL = 'mongodb://mongodb:27017/'
-        self.MONGO_DB_NAME = 'MobyXDB'
+        self.MONGO_DB_URL = "mongodb://tsdwAdmin:d8adm1n@mongodb:27017/tsdwdb_v1_6"
+        self.MONGO_DB_NAME = 'tsdwdb_v1_6'
 
         self.KAFKA_SESSION_TIME_OUT = 6000
         self.KAFKA_MAX_POLL = 6000
