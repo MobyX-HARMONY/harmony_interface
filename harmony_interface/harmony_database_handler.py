@@ -14,13 +14,12 @@ class HarmonyDatabaseHandler:
         self.db = self.client[config.MONGO_DB_NAME]
 
     def save_collectionList_to_db(self, collectionName, collectionData):
-        self.logger.warning("tableName: %s\nData: %s", collectionName, collectionData)
+        self.logger.warning("tableName: %s\nData: %s", collectionName, collectionData[0])
         collection = self.db[collectionName]
         try:
             collection.insert_many(collectionData)
         except Exception as ex:
             self.logger.warning('Exception occured: %s', ex)
-        self.logger.warning("table Name: %s", collectionName)
 
     def save_collection_to_db(self, collectionName, collectionData):
         self.logger.warning("tableName: %s", collectionName)
