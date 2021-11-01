@@ -1,11 +1,11 @@
 from pymongo import MongoClient
 from .config import Config
 import logging
+from bson.objectid import ObjectId
 
 config = Config()
 
 class HarmonyDatabaseHandler:
-
     def __init__(self):
         logger = logging.getLogger()
         logger.setLevel(logging.WARNING)
@@ -13,18 +13,34 @@ class HarmonyDatabaseHandler:
         self.client = MongoClient(config.MONGO_DB_URL)
         self.db = self.client[config.MONGO_DB_NAME]
 
-    def save_collectionList_to_db(self, collectionName, collectionData):
-        self.logger.warning("tableName: %s\nData: %s", collectionName, collectionData[0])
-        collection = self.db[collectionName]
+    def save_collectionList_to_db(self, collection_name, collection_data):
+        self.logger.warning("tableName: %s\nData: %s", collection_name, collection_data[0])
+        collection = self.db[collection_name]
         try:
-            collection.insert_many(collectionData)
+            collection.insert_many(collection_data)
         except Exception as ex:
             self.logger.warning('Exception occured: %s', ex)
 
-    def save_collection_to_db(self, collectionName, collectionData):
-        self.logger.warning("tableName: %s", collectionName)
-        collection = self.db[collectionName]
+    def save_collection_to_db(self, collection_name, collection_data):
+        self.logger.warning("tableName: %s", collection_name)
+        collection = self.db[collection_name]
         try:
-            collection.insert_one(collectionData)
+            collection.insert_one(collection_data)
         except Exception as ex:
             self.logger.warning('Exception Occured: %s', ex)
+
+    def find_one_by_parameter(self, param, value, collection_name):
+        self.logger.warning('find_one_by_parameter: %s %s %s', param, value, collection_name)
+        return self.db[collection_name].find_one({param: value})
+
+    def update_database(self, id, element, collection_name):
+        self.logger.warning('update : %s %s %s', id, collection_name, element)
+        filt = {'_id': ObjectId(id)}
+        set_obj = {"$set": element}
+        return self.db[collection_name].update_one(filt,set_obj)
+
+    def save_experiment_results(self, collection_name, exp_id, results):
+        self.logger.warning("tableName: %s", collection_name)
+        current_exp = (self.find_one_by_parameter('id', exp_id, collection_name))
+        current_exp['results'] = results
+        self.update_database('id', exp_id, collection_name)
