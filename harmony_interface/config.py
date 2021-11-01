@@ -6,7 +6,7 @@ class Config:
         self.MONGO_DB_NAME = 'tsdwdb_v1_6'
 
         self.KAFKA_SESSION_TIME_OUT = 6000
-        self.KAFKA_MAX_POLL = 6000
+        self.KAFKA_MAX_POLL = 16000
         self.KAFKA_GROUP_ID = '200'
         self.KAFKA_OFFSET_RESET = 'earliest'
         self.KAFKA_AUTO_COMMIT_ENABLE = True

@@ -29,6 +29,12 @@ class HarmonyDatabaseHandler:
         except Exception as ex:
             self.logger.warning('Exception Occured: %s', ex)
 
+    def save_experiment_results(self, collection_name, exp_id, results):
+        current_exp = (self.find_one_by_parameter('id', exp_id, collection_name))
+        current_exp['results'] = results
+        self.logger.warning("results: %s", results)
+        self.update_database(current_exp['id'], current_exp,  collection_name)
+
     def find_one_by_parameter(self, param, value, collection_name):
         self.logger.warning('find_one_by_parameter: %s %s %s', param, value, collection_name)
         return self.db[collection_name].find_one({param: value})
@@ -38,9 +44,3 @@ class HarmonyDatabaseHandler:
         filt = {'_id': ObjectId(id)}
         set_obj = {"$set": element}
         return self.db[collection_name].update_one(filt,set_obj)
-
-    def save_experiment_results(self, collection_name, exp_id, results):
-        self.logger.warning("tableName: %s", collection_name)
-        current_exp = (self.find_one_by_parameter('id', exp_id, collection_name))
-        current_exp['results'] = results
-        self.update_database('id', exp_id, collection_name)
