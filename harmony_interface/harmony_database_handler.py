@@ -29,6 +29,9 @@ class HarmonyDatabaseHandler:
         except Exception as ex:
             self.logger.warning('Exception Occured: %s', ex)
 
+    def update_experiment_with_results(self, exp_id, file_key, file_path):
+        self.save_experiment_results('experiment', exp_id, {file_key: file_path})
+
     def save_experiment_results(self, collection_name, exp_id, results):
         current_exp = (self.find_one_by_parameter('id', exp_id, collection_name))
         current_exp['results'] = results
@@ -44,3 +47,4 @@ class HarmonyDatabaseHandler:
         filt = {'_id': ObjectId(id)}
         set_obj = {"$set": element}
         return self.db[collection_name].update_one(filt,set_obj)
+
