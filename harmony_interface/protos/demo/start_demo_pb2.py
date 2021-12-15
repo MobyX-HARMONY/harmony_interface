@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='harmonyServer',
   syntax='proto2',
   serialized_options=None,
-  serialized_pb=b'\n\x10start_demo.proto\x12\rharmonyServer\"\x86\x01\n\x12StartDemoComponent\x12\x15\n\rexperiment_id\x18\x01 \x02(\t\x12\r\n\x05TITLE\x18\x02 \x02(\t\x12\x12\n\nMULTIPLIER\x18\x03 \x02(\x05\x12\r\n\x05\x43OUNT\x18\x04 \x02(\t\x12\x12\n\nFIRST_FILE\x18\x05 \x02(\t\x12\x13\n\x0bSECOND_FILE\x18\x06 \x02(\t'
+  serialized_pb=b'\n\x10start_demo.proto\x12\rharmonyServer\"\x84\x01\n\x12StartDemoComponent\x12\x13\n\x0bSCENARIO_ID\x18\x01 \x02(\t\x12\r\n\x05TITLE\x18\x02 \x02(\t\x12\x12\n\nMULTIPLIER\x18\x03 \x02(\x05\x12\r\n\x05\x43OUNT\x18\x04 \x02(\t\x12\x12\n\nFIRST_FILE\x18\x05 \x02(\t\x12\x13\n\x0bSECOND_FILE\x18\x06 \x02(\t'
 )
 
 
@@ -32,7 +32,7 @@ _STARTDEMOCOMPONENT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='experiment_id', full_name='harmonyServer.StartDemoComponent.experiment_id', index=0,
+      name='SCENARIO_ID', full_name='harmonyServer.StartDemoComponent.SCENARIO_ID', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -86,7 +86,7 @@ _STARTDEMOCOMPONENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=36,
-  serialized_end=170,
+  serialized_end=168,
 )
 
 DESCRIPTOR.message_types_by_name['StartDemoComponent'] = _STARTDEMOCOMPONENT
