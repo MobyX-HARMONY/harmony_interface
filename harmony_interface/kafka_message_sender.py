@@ -2,6 +2,7 @@ import logging
 from .config import Config
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
+from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
@@ -61,6 +62,14 @@ class KafkaMessageSender:
         self.logger.warning('MESSAGE: STOP ')
         message = stop_pb2.StopModel(experiment_id=experiment_id)
         self.__send_anything(message)
+
+    def send_start_demo(self, params):
+        # eventually, we should pass more parameters via this function
+        self.logger.warning('START DEMO')
+        serializer = ProtobufSerializer(start_demo_pb2.StartDemoComponent, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_demo_pb2.StartDemoComponent(params)
+        self.__send_anything(self.topic, message, conf)
 
     def send_start_tfs(self, experiment_id):
         # eventually, we should pass more parameters via this function
