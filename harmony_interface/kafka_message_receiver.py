@@ -1,6 +1,8 @@
 import logging
 import time
 from abc import abstractmethod
+
+from harmony_interface.protos.demo import start_demo_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.tfs import start_tfs_pb2
@@ -77,7 +79,6 @@ class KafkaMessageReceiver:
 
             except Exception as ex:
                 self.logger.warning('Exception occured in receiveer : %s', str(ex))
-        consumer.close()
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
@@ -98,8 +99,9 @@ class KafkaMessageReceiver:
             protobuf_deserializer = ProtobufDeserializer(start_onm_pb2.StartONMModel)
         elif self.topic == "trt":
             protobuf_deserializer = ProtobufDeserializer(start_trt_pb2.StartTRTModel)
-        elif self.topic == "ofs":
-            pass
+        elif self.topic == "demo":
+            protobuf_deserializer = ProtobufDeserializer(start_demo_pb2.StartDemoComponent)
+        
         self.check_for_any_messages(self.topic, protobuf_deserializer)
 
 
