@@ -74,6 +74,8 @@ class KafkaMessageReceiver:
                         self.start_message_received(json_obj)
                     elif msg.topic() == 'trt':
                         self.start_message_received(json_obj)
+                    elif msg.topic() == 'demo':
+                        self.start_message_received(json_obj)
                     elif (msg.topic() == (self.topic + '_output')):
                         self.progress_message_received(json_obj)
 
