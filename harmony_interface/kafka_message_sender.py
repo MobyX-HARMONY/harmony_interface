@@ -1,5 +1,6 @@
 import logging
 from .config import Config
+from .protos.common import output_produced_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.demo import start_demo_pb2
@@ -49,13 +50,25 @@ class KafkaMessageSender:
             self.logger.warning('Exception in publishing message %s', str(ex))
         kp.flush()
 
+    def send_output_produced(self, scenario_id, key, value):
+        serializer = ProtobufSerializer(output_produced_pb2.UpdateServerWithOutputMetaData, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = progress_pb2.UpdateServerWithOutputMetaData(
+            SCENARIO_ID=scenario_id,
+            KEY=key,
+            VALUE=value
+        )
+
+        self.logger.warning('OUTPUT PRODUCED: %s', message)
+        self.__send_anything((self.topic + '_outputs'), message, conf)
+
     def send_progress(self, exp_id, percent):
         progress_serializer = ProtobufSerializer(progress_pb2.UpdateServerWithProgress, schema_registry_client)
         progress_conf = self.__get_producer_config(progress_serializer)
         progress_message = progress_pb2.UpdateServerWithProgress(experiment_id=exp_id, percentage=int(percent))
 
         self.logger.warning('PROGRESS: %s', progress_message)
-        self.__send_anything((self.topic + '_output'), progress_message, progress_conf)
+        self.__send_anything((self.topic + '_progress'), progress_message, progress_conf)
 
     def send_stop(self, experiment_id):
         # easy, just use the stop proto from the common folder
@@ -64,7 +77,6 @@ class KafkaMessageSender:
         self.__send_anything(message)
 
     def send_start_demo(self, params):
-        # eventually, we should pass more parameters via this function
         self.logger.warning('START DEMO')
         serializer = ProtobufSerializer(start_demo_pb2.StartDemoComponent, schema_registry_client)
         conf = self.__get_producer_config(serializer)

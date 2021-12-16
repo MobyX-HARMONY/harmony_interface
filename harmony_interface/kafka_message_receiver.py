@@ -2,9 +2,10 @@ import logging
 import time
 from abc import abstractmethod
 
-from harmony_interface.protos.demo import start_demo_pb2
+from .protos.common import output_produced_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
+from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
@@ -29,9 +30,10 @@ class KafkaMessageReceiver:
         self.check_for_start_messages()
         self.check_for_stop_messages()
 
-    def initialize_progress(self, topic_name):
+    def initialize_server(self, topic_name):
         self.topic = topic_name
-        self.check_for_progress_messages(topic_name + '_output')
+        self.check_for_output_produced_messages(topic_name + '_outputs')
+        self.check_for_progress_messages(topic_name + '_progress')
 
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
@@ -76,15 +78,21 @@ class KafkaMessageReceiver:
                         self.start_message_received(json_obj)
                     elif msg.topic() == 'demo':
                         self.start_message_received(json_obj)
-                    elif (msg.topic() == (self.topic + '_output')):
+                    elif (msg.topic() == (self.topic + '_outputs')):
+                        self.output_produced_message_received(json_obj)
+                    elif (msg.topic() == (self.topic + '_progress')):
                         self.progress_message_received(json_obj)
 
             except Exception as ex:
-                self.logger.warning('Exception occured in receiveer : %s', str(ex))
+                self.logger.warning('Exception occured in receiver : %s', str(ex))
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
         self.check_for_any_messages((self.topic + '_stop'), protobuf_deserializer)
+
+    def check_for_output_produced_messages(self, topic_name):
+        protobuf_deserializer = ProtobufDeserializer(output_produced_pb2.UpdateServerWithOutputMetaData)
+        self.check_for_any_messages(topic_name, protobuf_deserializer)
 
     def check_for_progress_messages(self, topic_name):
         protobuf_deserializer = ProtobufDeserializer(progress_pb2.UpdateServerWithProgress)
@@ -109,6 +117,10 @@ class KafkaMessageReceiver:
 
     @abstractmethod
     def start_message_received(self):
+        pass
+
+    @staticmethod
+    def output_produced_message_received(self, json_obj):
         pass
 
     @staticmethod
