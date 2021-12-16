@@ -34,7 +34,7 @@ class KafkaMessageReceiver:
         self.topic = topic_name
         self.check_for_output_produced_messages(topic_name + '_outputs')
         
-    def initialize_progres(self, topic_name):
+    def initialize_progress(self, topic_name):
         self.topic = topic_name
         self.check_for_progress_messages(topic_name + '_progress')
         
