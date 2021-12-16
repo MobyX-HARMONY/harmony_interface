@@ -28,13 +28,14 @@ class KafkaMessageReceiver:
     def initialize_receiver(self, model_id):
         self.topic = model_id
         self.check_for_start_messages()
-        self.check_for_stop_messages()
+        # self.check_for_stop_messages()
 
-    def initialize_server(self, topic_name):
+    def initialize_outputs(self, topic_name):
         self.topic = topic_name
         self.check_for_output_produced_messages(topic_name + '_outputs')
         
     def initialize_progres(self, topic_name):
+        self.topic = topic_name
         self.check_for_progress_messages(topic_name + '_progress')
         
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
@@ -49,12 +50,11 @@ class KafkaMessageReceiver:
             'auto.offset.reset': config.KAFKA_OFFSET_RESET,
             "enable.auto.commit": config.KAFKA_AUTO_COMMIT_ENABLE
         }
-
         consumer = None
         try:
             consumer = DeserializingConsumer(consumer_conf)
             consumer.subscribe([kafka_topic])
-            self.logger.warning('Consumer created with topic %s', kafka_topic)
+            self.logger.warning('Received: Consumer created with topic %s', kafka_topic)
         except Exception as ex:
             self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', kafka_topic, str(ex))
 
@@ -67,9 +67,8 @@ class KafkaMessageReceiver:
                     self.logger.warning("Consumer error: {}".format(msg.error()))
                     continue
                 else:
-                    self.logger.warning("topic: %s", msg.topic())
                     json_obj = MessageToJson(msg.value())
-                    self.logger.warning("Received Proto: %s", json_obj)
+                    self.logger.warning("Topic and received Proto: %s %s",msg.topic(), json_obj)
                     if msg.topic() == 'tfs':
                         self.start_message_received(json_obj)
                     elif msg.topic() == 'ops':
