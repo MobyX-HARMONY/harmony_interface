@@ -53,7 +53,7 @@ class KafkaMessageSender:
     def send_output_produced(self, scenario_id, key, value):
         serializer = ProtobufSerializer(output_produced_pb2.UpdateServerWithOutputMetaData, schema_registry_client)
         conf = self.__get_producer_config(serializer)
-        message = progress_pb2.UpdateServerWithOutputMetaData(
+        message = output_produced_pb2.UpdateServerWithOutputMetaData(
             SCENARIO_ID=scenario_id,
             KEY=key,
             VALUE=value
