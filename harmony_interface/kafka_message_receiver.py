@@ -33,8 +33,10 @@ class KafkaMessageReceiver:
     def initialize_server(self, topic_name):
         self.topic = topic_name
         self.check_for_output_produced_messages(topic_name + '_outputs')
+        
+    def initialize_progres(self, topic_name):
         self.check_for_progress_messages(topic_name + '_progress')
-
+        
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
         consumer_conf = {
