@@ -3,13 +3,13 @@ syntax = "proto2";
 package harmonyServer;
 
 message StartDemoComponent {
-  required string SCENARIO_ID = 1;
+  required string scenarioID = 1;
 
-  required string TITLE = 2;
-  required int32 MULTIPLIER = 3;
-  required string COUNT = 4;
-  required string FIRST_FILE = 5;
-  required string SECOND_FILE = 6;
+  required string title = 2;
+  required int32 multiplier = 3;
+  required string count = 4;
+  required string firstFile = 5;
+  required string secondFile = 6;
 
-  required string OUTPUT_FOLDER_PATH = 7;
+  required string outputFolderPath = 7;
 }

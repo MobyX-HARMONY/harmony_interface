@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='harmonyServer',
   syntax='proto2',
   serialized_options=None,
-  serialized_pb=b'\n\x10start_demo.proto\x12\rharmonyServer\"\xa0\x01\n\x12StartDemoComponent\x12\x13\n\x0bSCENARIO_ID\x18\x01 \x02(\t\x12\r\n\x05TITLE\x18\x02 \x02(\t\x12\x12\n\nMULTIPLIER\x18\x03 \x02(\x05\x12\r\n\x05\x43OUNT\x18\x04 \x02(\t\x12\x12\n\nFIRST_FILE\x18\x05 \x02(\t\x12\x13\n\x0bSECOND_FILE\x18\x06 \x02(\t\x12\x1a\n\x12OUTPUT_FOLDER_PATH\x18\x07 \x02(\t'
+  serialized_pb=b'\n\x10start_demo.proto\x12\rharmonyServer\"\x9b\x01\n\x12StartDemoComponent\x12\x12\n\nscenarioID\x18\x01 \x02(\t\x12\r\n\x05title\x18\x02 \x02(\t\x12\x12\n\nmultiplier\x18\x03 \x02(\x05\x12\r\n\x05\x63ount\x18\x04 \x02(\t\x12\x11\n\tfirstFile\x18\x05 \x02(\t\x12\x12\n\nsecondFile\x18\x06 \x02(\t\x12\x18\n\x10outputFolderPath\x18\x07 \x02(\t'
 )
 
 
@@ -32,49 +32,49 @@ _STARTDEMOCOMPONENT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='SCENARIO_ID', full_name='harmonyServer.StartDemoComponent.SCENARIO_ID', index=0,
+      name='scenarioID', full_name='harmonyServer.StartDemoComponent.scenarioID', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='TITLE', full_name='harmonyServer.StartDemoComponent.TITLE', index=1,
+      name='title', full_name='harmonyServer.StartDemoComponent.title', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='MULTIPLIER', full_name='harmonyServer.StartDemoComponent.MULTIPLIER', index=2,
+      name='multiplier', full_name='harmonyServer.StartDemoComponent.multiplier', index=2,
       number=3, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='COUNT', full_name='harmonyServer.StartDemoComponent.COUNT', index=3,
+      name='count', full_name='harmonyServer.StartDemoComponent.count', index=3,
       number=4, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='FIRST_FILE', full_name='harmonyServer.StartDemoComponent.FIRST_FILE', index=4,
+      name='firstFile', full_name='harmonyServer.StartDemoComponent.firstFile', index=4,
       number=5, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='SECOND_FILE', full_name='harmonyServer.StartDemoComponent.SECOND_FILE', index=5,
+      name='secondFile', full_name='harmonyServer.StartDemoComponent.secondFile', index=5,
       number=6, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='OUTPUT_FOLDER_PATH', full_name='harmonyServer.StartDemoComponent.OUTPUT_FOLDER_PATH', index=6,
+      name='outputFolderPath', full_name='harmonyServer.StartDemoComponent.outputFolderPath', index=6,
       number=7, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -93,7 +93,7 @@ _STARTDEMOCOMPONENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=36,
-  serialized_end=196,
+  serialized_end=191,
 )
 
 DESCRIPTOR.message_types_by_name['StartDemoComponent'] = _STARTDEMOCOMPONENT
