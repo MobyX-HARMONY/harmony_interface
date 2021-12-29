@@ -3,7 +3,7 @@ syntax = "proto2";
 package harmonyServer;
 
 message StartDemoComponent {
-  required string scenarioID = 1;
+  required string scenarioId = 1;
 
   required string title = 2;
   required int32 multiplier = 3;
