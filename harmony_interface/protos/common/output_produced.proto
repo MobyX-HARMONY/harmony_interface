@@ -2,8 +2,14 @@ syntax = "proto2";
 
 package harmonyServer;
 
+// message UpdateServerWithOutputMetaData {
+//   required string SCENARIO_ID = 1;
+//   required string KEY = 2;
+//   required string VALUE = 3;
+// }
+
 message UpdateServerWithOutputMetaData {
-  required string SCENARIO_ID = 1;
-  required string KEY = 2;
-  required string VALUE = 3;
+  required string scenarioId = 1;
+  required string key = 2;
+  required string value = 3;
 }
