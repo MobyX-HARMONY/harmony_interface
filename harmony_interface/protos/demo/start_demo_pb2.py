@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='harmonyServer',
   syntax='proto2',
   serialized_options=None,
-  serialized_pb=b'\n\x10start_demo.proto\x12\rharmonyServer\"\xdf\x01\n\x12StartDemoComponent\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x38\n\x06inputs\x18\x02 \x02(\x0b\x32(.harmonyServer.StartDemoComponent.Inputs\x12\x18\n\x10outputFolderPath\x18\x07 \x02(\t\x1a\x61\n\x06Inputs\x12\r\n\x05title\x18\x01 \x02(\t\x12\x12\n\nmultiplier\x18\x02 \x02(\x05\x12\r\n\x05\x63ount\x18\x03 \x02(\t\x12\x11\n\tfirstFile\x18\x04 \x02(\t\x12\x12\n\nsecondFile\x18\x05 \x02(\t'
+  serialized_pb=b'\n\x10start_demo.proto\x12\rharmonyServer\"\xa0\x02\n\x12StartDemoComponent\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x38\n\x06inputs\x18\x02 \x02(\x0b\x32(.harmonyServer.StartDemoComponent.Inputs\x12:\n\x07outputs\x18\x03 \x02(\x0b\x32).harmonyServer.StartDemoComponent.Outputs\x1a\x61\n\x06Inputs\x12\r\n\x05title\x18\x01 \x02(\t\x12\x12\n\nmultiplier\x18\x02 \x02(\x05\x12\r\n\x05\x63ount\x18\x03 \x02(\t\x12\x11\n\tfirstFile\x18\x04 \x02(\t\x12\x12\n\nsecondFile\x18\x05 \x02(\t\x1a\x1d\n\x07Outputs\x12\x12\n\noutputFile\x18\x01 \x02(\t'
 )
 
 
@@ -78,8 +78,38 @@ _STARTDEMOCOMPONENT_INPUTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=162,
-  serialized_end=259,
+  serialized_start=196,
+  serialized_end=293,
+)
+
+_STARTDEMOCOMPONENT_OUTPUTS = _descriptor.Descriptor(
+  name='Outputs',
+  full_name='harmonyServer.StartDemoComponent.Outputs',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='outputFile', full_name='harmonyServer.StartDemoComponent.Outputs.outputFile', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=295,
+  serialized_end=324,
 )
 
 _STARTDEMOCOMPONENT = _descriptor.Descriptor(
@@ -104,16 +134,16 @@ _STARTDEMOCOMPONENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='outputFolderPath', full_name='harmonyServer.StartDemoComponent.outputFolderPath', index=2,
-      number=7, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='outputs', full_name='harmonyServer.StartDemoComponent.outputs', index=2,
+      number=3, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[_STARTDEMOCOMPONENT_INPUTS, ],
+  nested_types=[_STARTDEMOCOMPONENT_INPUTS, _STARTDEMOCOMPONENT_OUTPUTS, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -123,11 +153,13 @@ _STARTDEMOCOMPONENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=36,
-  serialized_end=259,
+  serialized_end=324,
 )
 
 _STARTDEMOCOMPONENT_INPUTS.containing_type = _STARTDEMOCOMPONENT
+_STARTDEMOCOMPONENT_OUTPUTS.containing_type = _STARTDEMOCOMPONENT
 _STARTDEMOCOMPONENT.fields_by_name['inputs'].message_type = _STARTDEMOCOMPONENT_INPUTS
+_STARTDEMOCOMPONENT.fields_by_name['outputs'].message_type = _STARTDEMOCOMPONENT_OUTPUTS
 DESCRIPTOR.message_types_by_name['StartDemoComponent'] = _STARTDEMOCOMPONENT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -139,12 +171,20 @@ StartDemoComponent = _reflection.GeneratedProtocolMessageType('StartDemoComponen
     # @@protoc_insertion_point(class_scope:harmonyServer.StartDemoComponent.Inputs)
     })
   ,
+
+  'Outputs' : _reflection.GeneratedProtocolMessageType('Outputs', (_message.Message,), {
+    'DESCRIPTOR' : _STARTDEMOCOMPONENT_OUTPUTS,
+    '__module__' : 'start_demo_pb2'
+    # @@protoc_insertion_point(class_scope:harmonyServer.StartDemoComponent.Outputs)
+    })
+  ,
   'DESCRIPTOR' : _STARTDEMOCOMPONENT,
   '__module__' : 'start_demo_pb2'
   # @@protoc_insertion_point(class_scope:harmonyServer.StartDemoComponent)
   })
 _sym_db.RegisterMessage(StartDemoComponent)
 _sym_db.RegisterMessage(StartDemoComponent.Inputs)
+_sym_db.RegisterMessage(StartDemoComponent.Outputs)
 
 
 # @@protoc_insertion_point(module_scope)
