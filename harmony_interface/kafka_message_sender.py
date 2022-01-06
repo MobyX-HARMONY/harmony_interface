@@ -78,9 +78,17 @@ class KafkaMessageSender:
 
     def send_start_demo(self, params):
         self.logger.warning('START DEMO')
+
+        # serializer = ProtobufSerializer(start_demo_pb2.StartDemoComponent.inputs, schema_registry_client)
+        # conf = self.__get_producer_config(serializer)
+        inputs = start_demo_pb2.StartDemoComponent.inputs(**params["inputs"])
+
+        scenarioId = params["scenarioId"]
+        outputFolderPath = params["outputFolderPath"]
         serializer = ProtobufSerializer(start_demo_pb2.StartDemoComponent, schema_registry_client)
         conf = self.__get_producer_config(serializer)
-        message = start_demo_pb2.StartDemoComponent(**params)
+        message = start_demo_pb2.StartDemoComponent(scenarioId=scenarioId,inputs=inputs,outputFolderPath=outputFolderPath)
+
         self.__send_anything(self.topic, message, conf)
 
     def send_start_tfs(self, experiment_id):
