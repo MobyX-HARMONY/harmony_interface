@@ -5,11 +5,13 @@ package harmonyServer;
 message StartDemoComponent {
   required string scenarioId = 1;
 
-  required string title = 2;
-  required int32 multiplier = 3;
-  required string count = 4;
-  required string firstFile = 5;
-  required string secondFile = 6;
+  message inputs {
+    required string title = 1;
+    required int32 multiplier = 2;
+    required string count = 3;
+    required string firstFile = 4;
+    required string secondFile = 5;
+  }
 
   required string outputFolderPath = 7;
 }
