@@ -79,7 +79,7 @@ class KafkaMessageSender:
     def send_start_demo(self, params):
         self.logger.warning('START DEMO')
 
-        inputs = start_demo_pb2.StartDemoComponent.Input(**params["inputs"])
+        inputs = start_demo_pb2.StartDemoComponent.Inputs(**params["inputs"])
 
         scenarioId = params["scenarioId"]
         outputFolderPath = params["outputFolderPath"]
