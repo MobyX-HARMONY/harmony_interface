@@ -79,7 +79,8 @@ class KafkaMessageSender:
 
     def send_start_demo2(self, params):
         self.logger.warning('START DEMO2')
-
+        self.logger.warning('params["inputs"]')
+        self.logger.warning(params["inputs"])
         inputs = start_demo2_pb2.StartDemo2Component.Inputs(**params["inputs"])
         outputs = start_demo2_pb2.StartDemo2Component.Outputs(**params["outputs"])
 
