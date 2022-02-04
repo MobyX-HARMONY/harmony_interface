@@ -3,6 +3,7 @@ from .config import Config
 from .protos.common import output_produced_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
+from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
@@ -75,6 +76,19 @@ class KafkaMessageSender:
         self.logger.warning('MESSAGE: STOP ')
         message = stop_pb2.StopModel(experiment_id=experiment_id)
         self.__send_anything(message)
+
+    def send_start_demo2(self, params):
+        self.logger.warning('START DEMO2')
+
+        inputs = start_demo2_pb2.StartDemo2Component.Inputs(**params["inputs"])
+        outputs = start_demo2_pb2.StartDemo2Component.Outputs(**params["outputs"])
+
+        scenarioId = params["scenarioId"]
+        serializer = ProtobufSerializer(start_demo2_pb2.StartDemo2Component, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_demo2_pb2.StartDemo2Component(scenarioId=scenarioId,inputs=inputs,outputs=outputs)
+
+        self.__send_anything(self.topic, message, conf)
 
     def send_start_demo(self, params):
         self.logger.warning('START DEMO')
