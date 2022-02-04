@@ -5,6 +5,7 @@ from abc import abstractmethod
 from .protos.common import output_produced_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
+from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
@@ -112,6 +113,8 @@ class KafkaMessageReceiver:
             protobuf_deserializer = ProtobufDeserializer(start_trt_pb2.StartTRTModel)
         elif self.topic == "demo":
             protobuf_deserializer = ProtobufDeserializer(start_demo_pb2.StartDemoComponent)
+        elif self.topic == "demo2":
+            protobuf_deserializer = ProtobufDeserializer(start_demo2_pb2.StartDemo2Component)
         
         self.check_for_any_messages(self.topic, protobuf_deserializer)
 
