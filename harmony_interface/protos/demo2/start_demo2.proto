@@ -8,13 +8,13 @@ message StartDemo2Component {
   required Outputs outputs = 3;
 
   message Inputs {
-    required string string_input = 1;
-    required int32 numeric_input = 2;
-    required string demo2_file1 = 3;
-    required string demo2_file2 = 4;
+    required string stringInput = 1;
+    required int32 numericInput = 2;
+    required string demo2File1 = 3;
+    required string demo2File2 = 4;
   }
 
   message Outputs {
-    required string demo2_output1 = 1;
+    required string demo2Output1 = 1;
   }
 }
