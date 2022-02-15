@@ -20,6 +20,7 @@ from .config import Config
 
 config = Config()
 
+
 class KafkaMessageReceiver:
     def __init__(self):
         # logger = logging.getLogger()
@@ -35,11 +36,11 @@ class KafkaMessageReceiver:
     def initialize_outputs(self, topic_name):
         self.topic = topic_name
         self.check_for_output_produced_messages(topic_name + '_outputs')
-        
+
     def initialize_progress(self, topic_name):
         self.topic = topic_name
         self.check_for_progress_messages(topic_name + '_progress')
-        
+
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
         consumer_conf = {
@@ -56,9 +57,11 @@ class KafkaMessageReceiver:
         try:
             consumer = DeserializingConsumer(consumer_conf)
             consumer.subscribe([kafka_topic])
-            self.logger.warning('Received: Consumer created with topic %s', kafka_topic)
+            self.logger.warning(
+                'Received: Consumer created with topic %s', kafka_topic)
         except Exception as ex:
-            self.logger.warning('Exception while connecting Kafka with Consumer: %s %s', kafka_topic, str(ex))
+            self.logger.warning(
+                'Exception while connecting Kafka with Consumer: %s %s', kafka_topic, str(ex))
 
         while True:
             try:
@@ -66,11 +69,13 @@ class KafkaMessageReceiver:
                 if msg is None:
                     continue
                 elif msg.error():
-                    self.logger.warning("Consumer error: {}".format(msg.error()))
+                    self.logger.warning(
+                        "Consumer error: {}".format(msg.error()))
                     continue
                 else:
                     json_obj = MessageToJson(msg.value())
-                    self.logger.warning("Topic and received Proto: %s %s",msg.topic(), json_obj)
+                    self.logger.warning(
+                        "Topic and received Proto: %s %s", msg.topic(), json_obj)
                     if msg.topic() == 'tfs':
                         self.start_message_received(json_obj)
                     elif msg.topic() == 'ops':
@@ -89,38 +94,47 @@ class KafkaMessageReceiver:
                         self.progress_message_received(json_obj)
 
             except Exception as ex:
-                self.logger.warning('Exception occured in receiver : %s', str(ex))
+                self.logger.warning(
+                    'Exception occured in receiver : %s', str(ex))
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
-        self.check_for_any_messages((self.topic + '_stop'), protobuf_deserializer)
+        self.check_for_any_messages(
+            (self.topic + '_stop'), protobuf_deserializer)
 
     def check_for_output_produced_messages(self, topic_name):
-        protobuf_deserializer = ProtobufDeserializer(output_produced_pb2.UpdateServerWithOutputMetaData)
+        protobuf_deserializer = ProtobufDeserializer(
+            output_produced_pb2.UpdateServerWithOutputMetaData)
         self.check_for_any_messages(topic_name, protobuf_deserializer)
 
     def check_for_progress_messages(self, topic_name):
-        protobuf_deserializer = ProtobufDeserializer(progress_pb2.UpdateServerWithProgress)
+        protobuf_deserializer = ProtobufDeserializer(
+            progress_pb2.UpdateServerWithProgress)
         self.check_for_any_messages(topic_name, protobuf_deserializer)
 
     def check_for_start_messages(self):
         self.logger.warning('check_for_start_messages')
         protobuf_deserializer = None
         if self.topic == "tfs":
-            protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
+            protobuf_deserializer = ProtobufDeserializer(
+                start_tfs_pb2.StartTFSModel)
         elif self.topic == "ops":
-            protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOPSModel)
+            protobuf_deserializer = ProtobufDeserializer(
+                start_ops_pb2.StartOPSModel)
         elif self.topic == "onm":
-            protobuf_deserializer = ProtobufDeserializer(start_onm_pb2.StartONMModel)
+            protobuf_deserializer = ProtobufDeserializer(
+                start_onm_pb2.StartONMModel)
         elif self.topic == "trt":
-            protobuf_deserializer = ProtobufDeserializer(start_trt_pb2.StartTRTModel)
+            protobuf_deserializer = ProtobufDeserializer(
+                start_trt_pb2.StartTRTModel)
         elif self.topic == "demo":
-            protobuf_deserializer = ProtobufDeserializer(start_demo_pb2.StartDemoComponent)
+            protobuf_deserializer = ProtobufDeserializer(
+                start_demo_pb2.StartDemoComponent)
         elif self.topic == "demo2":
-            protobuf_deserializer = ProtobufDeserializer(start_demo2_pb2.StartDemo2Component)
-        
-        self.check_for_any_messages(self.topic, protobuf_deserializer)
+            protobuf_deserializer = ProtobufDeserializer(
+                start_demo2_pb2.StartDemo2Component)
 
+        self.check_for_any_messages(self.topic, protobuf_deserializer)
 
     @abstractmethod
     def start_message_received(self):
