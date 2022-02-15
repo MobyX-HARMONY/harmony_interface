@@ -25,6 +25,7 @@ class KafkaMessageReceiver:
         # logger = logging.getLogger()
         # logger.setLevel(logging.WARNING)
         self.logger = logging.getLogger()
+        self.logger.warning('KafkaMessageReceiver initialized !')
 
     def initialize_receiver(self, model_id):
         self.topic = model_id
@@ -57,7 +58,7 @@ class KafkaMessageReceiver:
             consumer.subscribe([kafka_topic])
             self.logger.warning('Received: Consumer created with topic %s', kafka_topic)
         except Exception as ex:
-            self.logger.warning('%s : Exception while connecting Kafka with Consumer : %s', kafka_topic, str(ex))
+            self.logger.warning('Exception while connecting Kafka with Consumer: %s %s', kafka_topic, str(ex))
 
         while True:
             try:
