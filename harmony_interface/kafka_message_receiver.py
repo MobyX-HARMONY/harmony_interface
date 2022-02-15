@@ -22,9 +22,9 @@ config = Config()
 
 class KafkaMessageReceiver:
     def __init__(self):
-        logger = logging.getLogger()
-        logger.setLevel(logging.WARNING)
-        self.logger = logger
+        # logger = logging.getLogger()
+        # logger.setLevel(logging.WARNING)
+        self.logger = logging.getLogger()
 
     def initialize_receiver(self, model_id):
         self.topic = model_id
