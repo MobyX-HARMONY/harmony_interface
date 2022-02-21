@@ -53,11 +53,11 @@ class KafkaMessageSender:
             self.logger.warning('Exception in publishing message %s', str(ex))
         kp.flush()
 
-    def send_progress_and_outputs(self, scenario_id, percent, outputList):
+    def send_progress_and_outputs(self, scenarioId, percent, outputList):
         serializer = ProtobufSerializer(progress_outputs_pb2.UpdateServerWithProgressAndOutputs, schema_registry_client)
         progress_output_conf = self.__get_producer_config(serializer)
         message = progress_outputs_pb2.UpdateServerWithProgressAndOutputs(
-            scenarioId = scenario_id,
+            scenarioId = scenarioId,
             percentage = int(percent),
             outputs = outputList
         )

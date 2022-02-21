@@ -3,7 +3,7 @@ syntax = "proto2";
 package harmonyServer;
 
 message UpdateServerWithProgressAndOutputs {
-  required string scenario_id = 1;
+  required string scenarioId = 1;
   required int32 percentage = 2;
   repeated Output outputs = 3;
 
