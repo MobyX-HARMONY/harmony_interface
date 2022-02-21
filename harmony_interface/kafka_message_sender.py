@@ -54,7 +54,7 @@ class KafkaMessageSender:
         kp.flush()
 
     def send_progress_and_outputs(self, scenarioId, percent, outputList):
-        self.logger.warning('PROGRESS AND OUTPUTS: %s', outputList)
+        
         serializer = ProtobufSerializer(progress_outputs_pb2.UpdateServerWithProgressAndOutputs, schema_registry_client)
         progress_output_conf = self.__get_producer_config(serializer)
         message = progress_outputs_pb2.UpdateServerWithProgressAndOutputs(
@@ -62,6 +62,7 @@ class KafkaMessageSender:
             percentage = int(percent),
             outputs = outputList
         )
+        self.logger.warning('PROGRESS AND OUTPUTS: %s', message)
         self.__send_anything((self.topic + '_progress_output'), message, progress_output_conf)
         
     def send_output_produced(self, scenario_id, key, value):

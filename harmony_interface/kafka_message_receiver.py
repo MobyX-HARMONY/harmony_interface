@@ -44,7 +44,7 @@ class KafkaMessageReceiver:
 
     def initialize_progress_output(self, topic_name):
         self.topic = topic_name
-        self.check_for_progress_messages(topic_name + '_progress_output')
+        self.check_for_progress_output_messages(topic_name + '_progress_output')
 
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
