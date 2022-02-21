@@ -42,6 +42,10 @@ class KafkaMessageReceiver:
         self.topic = topic_name
         self.check_for_progress_messages(topic_name + '_progress')
 
+    def initialize_progress_output(self, topic_name):
+        self.topic = topic_name
+        self.check_for_progress_messages(topic_name + '_progress_output')
+
     def check_for_any_messages(self, kafka_topic, protobuf_deserializer):
         string_deserializer = StringDeserializer('utf_8')
         consumer_conf = {
@@ -93,6 +97,8 @@ class KafkaMessageReceiver:
                         self.output_produced_message_received(json_obj)
                     elif (msg.topic() == (self.topic + '_progress')):
                         self.progress_message_received(json_obj)
+                    elif (msg.topic() == (self.topic + '_progress_output')):
+                        self.progress_output_message_received(json_obj)
 
             except Exception as ex:
                 self.logger.warning(
@@ -152,6 +158,10 @@ class KafkaMessageReceiver:
 
     @staticmethod
     def progress_message_received(self, json_obj):
+        pass
+
+    @staticmethod
+    def progress_output_message_received(self, json_obj):
         pass
 
     @abstractmethod

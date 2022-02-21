@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package harmonyServer;
+package harmonyProgressOutputs;
 
 message UpdateServerWithProgressAndOutputs {
   required string scenarioId = 1;
