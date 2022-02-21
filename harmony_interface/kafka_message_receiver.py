@@ -2,6 +2,7 @@ import logging
 import time
 from abc import abstractmethod
 
+from .protos.common import progress_outputs_pb2
 from .protos.common import output_produced_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
@@ -110,6 +111,11 @@ class KafkaMessageReceiver:
     def check_for_progress_messages(self, topic_name):
         protobuf_deserializer = ProtobufDeserializer(
             progress_pb2.UpdateServerWithProgress)
+        self.check_for_any_messages(topic_name, protobuf_deserializer)
+
+    def check_for_progress_output_messages(self, topic_name):
+        protobuf_deserializer = ProtobufDeserializer(
+            progress_outputs_pb2.UpdateServerWithProgressAndOutputs)
         self.check_for_any_messages(topic_name, protobuf_deserializer)
 
     def check_for_start_messages(self):

@@ -1,5 +1,7 @@
+import imp
 import logging
 from .config import Config
+from .protos.common import progress_outputs_pb2
 from .protos.common import output_produced_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
@@ -51,6 +53,17 @@ class KafkaMessageSender:
             self.logger.warning('Exception in publishing message %s', str(ex))
         kp.flush()
 
+    def send_progress_and_outputs(self, scenario_id, percent, outputList):
+        serializer = ProtobufSerializer(progress_outputs_pb2.UpdateServerWithProgressAndOutputs, schema_registry_client)
+        progress_output_conf = self.__get_producer_config(serializer)
+        message = progress_outputs_pb2.UpdateServerWithProgressAndOutputs(
+            scenarioId = scenario_id,
+            percentage = int(percent),
+            outputs = outputList
+        )
+        self.logger.warning('PROGRESS AND OUTPUTS: %s', message)
+        self.__send_anything((self.topic + '_progress'), message, progress_output_conf)
+        
     def send_output_produced(self, scenario_id, key, value):
         serializer = ProtobufSerializer(output_produced_pb2.UpdateServerWithOutputMetaData, schema_registry_client)
         conf = self.__get_producer_config(serializer)
