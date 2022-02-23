@@ -6,6 +6,7 @@ from .protos.common import progress_outputs_pb2
 from .protos.common import output_produced_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
+from .protos.demoMultipleFiles import start_demo_multiple_files_pb2
 from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
@@ -93,6 +94,8 @@ class KafkaMessageReceiver:
                         self.start_message_received(json_obj)
                     elif msg.topic() == 'demo2':
                         self.start_message_received(json_obj)
+                    elif msg.topic() == 'demo-multiple-files-1':
+                        self.start_message_received(json_obj)
                     elif (msg.topic() == (self.topic + '_outputs')):
                         self.output_produced_message_received(json_obj)
                     elif (msg.topic() == (self.topic + '_progress')):
@@ -145,6 +148,9 @@ class KafkaMessageReceiver:
         elif self.topic == "demo2":
             protobuf_deserializer = ProtobufDeserializer(
                 start_demo2_pb2.StartDemo2Component)
+        elif self.topic == "demo-multiple-files-1":
+            protobuf_deserializer = ProtobufDeserializer(
+                start_demo_multiple_files_pb2.StartDemoMultipleFilesComponent)
 
         self.check_for_any_messages(self.topic, protobuf_deserializer)
 

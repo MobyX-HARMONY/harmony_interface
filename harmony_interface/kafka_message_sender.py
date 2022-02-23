@@ -5,6 +5,7 @@ from .protos.common import progress_outputs_pb2
 from .protos.common import output_produced_pb2
 from .protos.common import progress_pb2
 from .protos.common import stop_pb2
+from .protos.demoMultipleFiles import start_demo_multiple_files_pb2
 from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
@@ -90,6 +91,20 @@ class KafkaMessageSender:
         self.logger.warning('MESSAGE: STOP ')
         message = stop_pb2.StopModel(experiment_id=experiment_id)
         self.__send_anything(message)
+
+    def send_start_demo_multiple_files(self, params):
+        self.logger.warning('START DEMO MULTIPLE FILES')
+        self.logger.warning('params["inputs"]')
+        self.logger.warning(params["inputs"])
+        inputs = start_demo_multiple_files_pb2.StartDemoMultipleFilesComponent.Inputs(**params["inputs"])
+        outputs = start_demo_multiple_files_pb2.StartDemoMultipleFilesComponent.Outputs(**params["outputs"])
+
+        scenarioId = params["scenarioId"]
+        serializer = ProtobufSerializer(start_demo_multiple_files_pb2.StartDemoMultipleFilesComponent, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_demo_multiple_files_pb2.StartDemoMultipleFilesComponent(scenarioId=scenarioId,inputs=inputs,outputs=outputs)
+
+        self.__send_anything(self.topic, message, conf)
 
     def send_start_demo2(self, params):
         self.logger.warning('START DEMO2')

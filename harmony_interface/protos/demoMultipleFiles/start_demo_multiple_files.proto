@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartDemoMultipleFilesComponent {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string stringInput = 1;
+    required int32 numericInput = 2;
+    required string demoBaseInputFile = 3;
+    required string number1File = 4;
+    required string number2File = 5;
+    required string number3File = 6;
+    required string number4File = 7;
+  }
+
+  message Outputs {
+    required string demoBaseOutputFile = 1;
+    required string demoOutputNumber1 = 2;
+    required string demoOutputNumber2 = 3;
+  }
+}
