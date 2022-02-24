@@ -10,3 +10,13 @@ class Config:
         self.KAFKA_GROUP_ID = '200'
         self.KAFKA_OFFSET_RESET = 'earliest'
         self.KAFKA_AUTO_COMMIT_ENABLE = True
+
+
+    def get_group_id(self, topic_name):
+        if topic_name == 'demo': return 211
+        if topic_name == 'demo2': return 221
+        if topic_name == 'demo3': return 231
+        if topic_name == 'demo-multiple-files-1': return 241
+        if topic_name == 'demo-multiple-files-2': return 251
+
+        

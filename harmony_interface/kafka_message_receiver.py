@@ -55,7 +55,7 @@ class KafkaMessageReceiver:
             'bootstrap.servers': config.KAFKA_BOOTSTRAP_SERVERS,
             'key.deserializer': string_deserializer,
             'value.deserializer': protobuf_deserializer,
-            'group.id': config.KAFKA_GROUP_ID,
+            'group.id': config.get_group_id(kafka_topic), # config.KAFKA_GROUP_ID,
             'auto.offset.reset': config.KAFKA_OFFSET_RESET,
             "enable.auto.commit": config.KAFKA_AUTO_COMMIT_ENABLE
         }
