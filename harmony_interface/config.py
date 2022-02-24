@@ -1,3 +1,5 @@
+import json
+import os
 
 class Config:
     def __init__(self):
@@ -11,6 +13,12 @@ class Config:
         self.KAFKA_OFFSET_RESET = 'earliest'
         self.KAFKA_AUTO_COMMIT_ENABLE = True
 
+        path_to_json = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '_conf.py')
+
+        credential = json.load(open('../credentials.json'))
+
+        print(credential)
+
 
     def get_group_id(self, topic_name):
         if topic_name == 'demo': return 211
@@ -19,4 +27,7 @@ class Config:
         if topic_name == 'demo-multiple-files-1': return 241
         if topic_name == 'demo-multiple-files-2': return 251
 
+
         
+if __name__ == "__main__":
+    Config()
