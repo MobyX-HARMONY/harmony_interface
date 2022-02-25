@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartDemo3Component {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string stringInput = 1;
+    required int32 numericInput = 2;
+    required string demo3File1 = 3;
+    required string demo3File2 = 4;
+  }
+
+  message Outputs {
+    required string demo3Output1 = 1;
+  }
+}

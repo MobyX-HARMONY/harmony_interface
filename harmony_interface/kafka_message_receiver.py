@@ -8,6 +8,7 @@ from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.demoMultipleFiles import start_demo_multiple_files_pb2
 from .protos.demoMultipleFiles2 import start_demo_multiple_files2_pb2
+from .protos.demo3 import start_demo3_pb2
 from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
@@ -136,21 +137,30 @@ class KafkaMessageReceiver:
         if self.topic == "tfs":
             protobuf_deserializer = ProtobufDeserializer(
                 start_tfs_pb2.StartTFSModel)
+            
         elif self.topic == "ops":
             protobuf_deserializer = ProtobufDeserializer(
                 start_ops_pb2.StartOPSModel)
+            
         elif self.topic == "onm":
             protobuf_deserializer = ProtobufDeserializer(
                 start_onm_pb2.StartONMModel)
+            
         elif self.topic == "trt":
             protobuf_deserializer = ProtobufDeserializer(
                 start_trt_pb2.StartTRTModel)
+            
         elif self.topic == "demo":
             protobuf_deserializer = ProtobufDeserializer(
                 start_demo_pb2.StartDemoComponent)
+            
         elif self.topic == "demo2":
             protobuf_deserializer = ProtobufDeserializer(
                 start_demo2_pb2.StartDemo2Component)
+            
+        elif self.topic == "demo3":
+            protobuf_deserializer = ProtobufDeserializer(
+                start_demo3_pb2.StartDemo3Component)
             
         elif self.topic == "demo-multiple-files-1":
             protobuf_deserializer = ProtobufDeserializer(
