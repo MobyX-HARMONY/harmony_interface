@@ -96,6 +96,8 @@ class KafkaMessageReceiver:
                         self.start_message_received(json_obj)
                     elif msg.topic() == 'demo2':
                         self.start_message_received(json_obj)
+                    elif msg.topic() == 'demo3':
+                        self.start_message_received(json_obj)
                     elif msg.topic() == 'demo-multiple-files-1':
                         self.start_message_received(json_obj)
                     elif msg.topic() == 'demo-multiple-files-2':
