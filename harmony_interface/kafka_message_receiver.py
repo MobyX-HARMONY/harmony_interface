@@ -69,7 +69,7 @@ class KafkaMessageReceiver:
                         self.progress_output_message_received(json_obj)
                     else:
                         # For all models -> to start the specfic model
-                        if config.is_allowed_modelId(self.topic):
+                        if config.is_allowed_modelId(msg.topic()):
                             self.start_message_received(json_obj)
                         else:
                             self.logger.warning('ModelId is not allowed !!')
