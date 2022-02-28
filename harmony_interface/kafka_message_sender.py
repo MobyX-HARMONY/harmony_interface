@@ -2,8 +2,6 @@ import imp
 import logging
 from .config import Config
 from .protos.common import progress_outputs_pb2
-from .protos.common import output_produced_pb2
-from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.demoMultipleFiles import start_demo_multiple_files_pb2
 from .protos.demoMultipleFiles2 import start_demo_multiple_files2_pb2
@@ -57,7 +55,6 @@ class KafkaMessageSender:
         kp.flush()
 
     def send_progress_and_outputs(self, scenarioId, percent, outputList):
-        
         serializer = ProtobufSerializer(progress_outputs_pb2.UpdateServerWithProgressAndOutputs, schema_registry_client)
         progress_output_conf = self.__get_producer_config(serializer)
         message = progress_outputs_pb2.UpdateServerWithProgressAndOutputs(
@@ -67,29 +64,8 @@ class KafkaMessageSender:
         )
         self.logger.warning('PROGRESS AND OUTPUTS: %s', message)
         self.__send_anything((self.topic + '_progress_output'), message, progress_output_conf)
-        
-    def send_output_produced(self, scenario_id, key, value):
-        serializer = ProtobufSerializer(output_produced_pb2.UpdateServerWithOutputMetaData, schema_registry_client)
-        conf = self.__get_producer_config(serializer)
-        message = output_produced_pb2.UpdateServerWithOutputMetaData(
-            scenarioId=scenario_id,
-            key=key,
-            value=value
-        )
-
-        self.logger.warning('OUTPUT PRODUCED: %s', message)
-        self.__send_anything((self.topic + '_outputs'), message, conf)
-
-    def send_progress(self, exp_id, percent):
-        progress_serializer = ProtobufSerializer(progress_pb2.UpdateServerWithProgress, schema_registry_client)
-        progress_conf = self.__get_producer_config(progress_serializer)
-        progress_message = progress_pb2.UpdateServerWithProgress(experiment_id=exp_id, percentage=int(percent))
-
-        self.logger.warning('PROGRESS: %s', progress_message)
-        self.__send_anything((self.topic + '_progress'), progress_message, progress_conf)
 
     def send_stop(self, experiment_id):
-        # easy, just use the stop proto from the common folder
         self.logger.warning('MESSAGE: STOP ')
         message = stop_pb2.StopModel(experiment_id=experiment_id)
         self.__send_anything(message)
@@ -164,7 +140,6 @@ class KafkaMessageSender:
         self.__send_anything(self.topic, message, conf)
 
     def send_start_tfs(self, experiment_id):
-        # eventually, we should pass more parameters via this function
         self.logger.warning('START TFS')
         start_tfs_serializer = ProtobufSerializer(start_tfs_pb2.StartTFSModel, schema_registry_client)
         start_tfs_conf = self.__get_producer_config(start_tfs_serializer)

@@ -4,6 +4,18 @@ import os
 
 logger = logging.getLogger()
 
+supported_modelIds = set([
+        "demo", 
+        "demo2", 
+        "demo3",
+        "demo-multiple-files-1", 
+        "demo-multiple-files-2",
+        "tfs",
+        "ops",
+        "onm",
+        "trt"
+    ])
+
 class Config:
     def __init__(self):
         self.KAFKA_BOOTSTRAP_SERVERS = 'kafka:29092'
@@ -19,12 +31,11 @@ class Config:
         credential = json.load(open('credentials.json'))
         logger.warning('credentials: %s', credential)
 
-    def get_group_id(self, topic_name):
-        if topic_name == 'demo': return 211
-        if topic_name == 'demo2': return 221
-        if topic_name == 'demo3': return 231
-        if topic_name == 'demo-multiple-files-1': return 241
-        if topic_name == 'demo-multiple-files-2': return 251
+    def is_allowed_modelId(modelId):
+        if modelId in supported_modelIds:
+            return True
+        return False
+        
        
 # if __name__ == "__main__":
 #     Config()

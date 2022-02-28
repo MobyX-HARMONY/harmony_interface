@@ -1,8 +1,0 @@
-syntax = "proto2";
-
-package harmonyServer;
-
-message UpdateServerWithProgress {
-  required string experiment_id = 1;
-  required int32 percentage = 2;
-}

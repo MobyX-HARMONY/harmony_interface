@@ -1,10 +1,7 @@
 import logging
 import sys
 from abc import abstractmethod
-
 from .protos.common import progress_outputs_pb2
-from .protos.common import output_produced_pb2
-from .protos.common import progress_pb2
 from .protos.common import stop_pb2
 from .protos.demoMultipleFiles import start_demo_multiple_files_pb2
 from .protos.demoMultipleFiles2 import start_demo_multiple_files2_pb2
@@ -24,26 +21,14 @@ from .config import Config
 
 config = Config()
 
-
 class KafkaMessageReceiver:
     def __init__(self):
-        # logger = logging.getLogger()
-        # logger.setLevel(logging.WARNING)
         self.logger = logging.getLogger()
         self.logger.warning('KafkaMessageReceiver initialized !')
 
     def initialize_receiver(self, model_id):
         self.topic = model_id
         self.check_for_start_messages()
-        # self.check_for_stop_messages()
-
-    def initialize_outputs(self, topic_name):
-        self.topic = topic_name
-        self.check_for_output_produced_messages(topic_name + '_outputs')
-
-    def initialize_progress(self, topic_name):
-        self.topic = topic_name
-        self.check_for_progress_messages(topic_name + '_progress')
 
     def initialize_progress_output(self, topic_name):
         self.topic = topic_name
@@ -65,11 +50,9 @@ class KafkaMessageReceiver:
         try:
             consumer = DeserializingConsumer(consumer_conf)
             consumer.subscribe([kafka_topic])
-            self.logger.warning(
-                'Received: Consumer created with topic %s', kafka_topic)
+            self.logger.warning('Received: Consumer created with topic %s', kafka_topic)
         except Exception as ex:
-            self.logger.warning(
-                'Exception while connecting Kafka with Consumer: %s %s', kafka_topic, str(ex))
+            self.logger.warning('Exception while connecting Kafka with Consumer: %s %s', kafka_topic, str(ex))
 
         while True:
             try:
@@ -82,95 +65,57 @@ class KafkaMessageReceiver:
                     continue
                 else:
                     json_obj = MessageToJson(msg.value())
-                    self.logger.warning(
-                        "Topic and received Proto: %s %s", msg.topic(), json_obj)
-                    if msg.topic() == 'tfs':
-                        self.start_message_received(json_obj)
-                    elif msg.topic() == 'ops':
-                        self.start_message_received(json_obj)
-                    elif msg.topic() == 'onm':
-                        self.start_message_received(json_obj)
-                    elif msg.topic() == 'trt':
-                        self.start_message_received(json_obj)
-                    elif msg.topic() == 'demo':
-                        self.start_message_received(json_obj)
-                    elif msg.topic() == 'demo2':
-                        self.start_message_received(json_obj)
-                    elif msg.topic() == 'demo3':
-                        self.start_message_received(json_obj)
-                    elif msg.topic() == 'demo-multiple-files-1':
-                        self.start_message_received(json_obj)
-                    elif msg.topic() == 'demo-multiple-files-2':
-                        self.start_message_received(json_obj)
-                    elif (msg.topic() == (self.topic + '_outputs')):
-                        self.output_produced_message_received(json_obj)
-                    elif (msg.topic() == (self.topic + '_progress')):
-                        self.progress_message_received(json_obj)
-                    elif (msg.topic() == (self.topic + '_progress_output')):
+                    self.logger.warning("Topic and received Proto: %s %s", msg.topic(), json_obj)
+                    if (msg.topic() == (self.topic + '_progress_output')):
                         self.progress_output_message_received(json_obj)
+                    else:
+                        # For all models -> to start the specfic model
+                        if config.is_allowed_modelId(msg.topic()):
+                            self.start_message_received(json_obj)
+                        else:
+                            self.logger.warning('ModelId is not allowed !!')
 
             except Exception as ex:
                 self.logger.warning('Exception occured in receiver  {}'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__, ex)
-                # self.logger.warning('Exception occured in receiver : %s', str(ex))
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
         self.check_for_any_messages(
             (self.topic + '_stop'), protobuf_deserializer)
 
-    def check_for_output_produced_messages(self, topic_name):
-        protobuf_deserializer = ProtobufDeserializer(
-            output_produced_pb2.UpdateServerWithOutputMetaData)
-        self.check_for_any_messages(topic_name, protobuf_deserializer)
-
-    def check_for_progress_messages(self, topic_name):
-        protobuf_deserializer = ProtobufDeserializer(
-            progress_pb2.UpdateServerWithProgress)
-        self.check_for_any_messages(topic_name, protobuf_deserializer)
-
     def check_for_progress_output_messages(self, topic_name):
-        protobuf_deserializer = ProtobufDeserializer(
-            progress_outputs_pb2.UpdateServerWithProgressAndOutputs)
+        protobuf_deserializer = ProtobufDeserializer(progress_outputs_pb2.UpdateServerWithProgressAndOutputs)
         self.check_for_any_messages(topic_name, protobuf_deserializer)
 
     def check_for_start_messages(self):
         self.logger.warning('check_for_start_messages')
         protobuf_deserializer = None
         if self.topic == "tfs":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_tfs_pb2.StartTFSModel)
+            protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
             
         elif self.topic == "ops":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_ops_pb2.StartOPSModel)
+            protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOPSModel)
             
         elif self.topic == "onm":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_onm_pb2.StartONMModel)
+            protobuf_deserializer = ProtobufDeserializer(start_onm_pb2.StartONMModel)
             
         elif self.topic == "trt":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_trt_pb2.StartTRTModel)
+            protobuf_deserializer = ProtobufDeserializer(start_trt_pb2.StartTRTModel)
             
         elif self.topic == "demo":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_demo_pb2.StartDemoComponent)
+            protobuf_deserializer = ProtobufDeserializer(start_demo_pb2.StartDemoComponent)
             
         elif self.topic == "demo2":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_demo2_pb2.StartDemo2Component)
+            protobuf_deserializer = ProtobufDeserializer(start_demo2_pb2.StartDemo2Component)
             
         elif self.topic == "demo3":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_demo3_pb2.StartDemo3Component)
+            protobuf_deserializer = ProtobufDeserializer(start_demo3_pb2.StartDemo3Component)
             
         elif self.topic == "demo-multiple-files-1":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_demo_multiple_files_pb2.StartDemoMultipleFilesComponent)
+            protobuf_deserializer = ProtobufDeserializer(start_demo_multiple_files_pb2.StartDemoMultipleFilesComponent)
             
         elif self.topic == "demo-multiple-files-2":
-            protobuf_deserializer = ProtobufDeserializer(
-                start_demo_multiple_files2_pb2.StartDemoMultipleFilesComponent2)
+            protobuf_deserializer = ProtobufDeserializer(start_demo_multiple_files2_pb2.StartDemoMultipleFilesComponent2)
 
         self.check_for_any_messages(self.topic, protobuf_deserializer)
 

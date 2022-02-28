@@ -1,9 +1,0 @@
-syntax = "proto2";
-
-package harmonyServer;
-
-message UpdateServerWithOutputMetaData {
-  required string scenarioId = 1;
-  required string key = 2;
-  required string value = 3;
-}
