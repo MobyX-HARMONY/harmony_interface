@@ -31,7 +31,7 @@ class Config:
         # credential = json.load(open('credentials.json'))
         # logger.warning('credentials: %s', credential)
 
-    def is_allowed_modelId(modelId):
+    def is_allowed_modelId(self, modelId):
         if modelId in supported_modelIds:
             return True
         return False
