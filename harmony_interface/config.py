@@ -28,8 +28,8 @@ class Config:
         self.KAFKA_OFFSET_RESET = 'earliest'
         self.KAFKA_AUTO_COMMIT_ENABLE = True
 
-        credential = json.load(open('credentials.json'))
-        logger.warning('credentials: %s', credential)
+        # credential = json.load(open('credentials.json'))
+        # logger.warning('credentials: %s', credential)
 
     def is_allowed_modelId(modelId):
         if modelId in supported_modelIds:

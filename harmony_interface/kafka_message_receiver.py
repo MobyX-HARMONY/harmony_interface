@@ -88,7 +88,7 @@ class KafkaMessageReceiver:
         self.check_for_any_messages(topic_name, protobuf_deserializer)
 
     def check_for_start_messages(self):
-        self.logger.warning('check_for_start_messages')
+        self.logger.warning('check_for_start_messages modelId: %s', self.topic)
         protobuf_deserializer = None
         if self.topic == "tfs":
             protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
