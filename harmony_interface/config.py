@@ -1,5 +1,8 @@
 import json
+import logging
 import os
+
+logger = logging.getLogger()
 
 class Config:
     def __init__(self):
@@ -13,9 +16,8 @@ class Config:
         self.KAFKA_OFFSET_RESET = 'earliest'
         self.KAFKA_AUTO_COMMIT_ENABLE = True
 
-        # credential = json.load(open('../credentials.json'))
-        # print(credential)
-
+        credential = json.load(open('credentials.json'))
+        logger.warning('credentials: %s', credential)
 
     def get_group_id(self, topic_name):
         if topic_name == 'demo': return 211
@@ -23,8 +25,6 @@ class Config:
         if topic_name == 'demo3': return 231
         if topic_name == 'demo-multiple-files-1': return 241
         if topic_name == 'demo-multiple-files-2': return 251
-
-
-        
+       
 # if __name__ == "__main__":
 #     Config()
