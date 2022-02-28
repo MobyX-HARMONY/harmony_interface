@@ -60,8 +60,7 @@ class KafkaMessageReceiver:
                 if msg is None:
                     continue
                 elif msg.error():
-                    self.logger.warning(
-                        "Consumer error: {}".format(msg.error()))
+                    self.logger.warning("Consumer error: {}".format(msg.error()))
                     continue
                 else:
                     json_obj = MessageToJson(msg.value())
@@ -70,13 +69,14 @@ class KafkaMessageReceiver:
                         self.progress_output_message_received(json_obj)
                     else:
                         # For all models -> to start the specfic model
-                        if config.is_allowed_modelId(msg.topic()):
+                        if config.is_allowed_modelId(self.topic):
                             self.start_message_received(json_obj)
                         else:
                             self.logger.warning('ModelId is not allowed !!')
 
             except Exception as ex:
-                self.logger.warning('Exception occured in receiver  {}'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__, ex)
+                self.logger.warning('Exception occured in receiver: %s', ex)
+                # self.logger.warning('Exception occured in receiver:   %s %s %s'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__, ex)
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
@@ -123,13 +123,13 @@ class KafkaMessageReceiver:
     def start_message_received(self):
         pass
 
-    @staticmethod
-    def output_produced_message_received(self, json_obj):
-        pass
+    # @staticmethod
+    # def output_produced_message_received(self, json_obj):
+    #     pass
 
-    @staticmethod
-    def progress_message_received(self, json_obj):
-        pass
+    # @staticmethod
+    # def progress_message_received(self, json_obj):
+    #     pass
 
     @staticmethod
     def progress_output_message_received(self, json_obj):
