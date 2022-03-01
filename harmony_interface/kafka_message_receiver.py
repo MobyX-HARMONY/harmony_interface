@@ -1,5 +1,4 @@
 import logging
-import sys
 from abc import abstractmethod
 from .protos.common import progress_outputs_pb2
 from .protos.common import stop_pb2
@@ -123,15 +122,7 @@ class KafkaMessageReceiver:
     def start_message_received(self):
         pass
 
-    # @staticmethod
-    # def output_produced_message_received(self, json_obj):
-    #     pass
-
-    # @staticmethod
-    # def progress_message_received(self, json_obj):
-    #     pass
-
-    @staticmethod
+    @abstractmethod
     def progress_output_message_received(self, json_obj):
         pass
 
