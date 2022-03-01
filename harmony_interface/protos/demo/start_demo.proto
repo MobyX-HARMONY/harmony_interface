@@ -6,6 +6,8 @@ message StartDemoComponent {
   required string scenarioId = 1;
   required Inputs inputs = 2;
   required Outputs outputs = 3;
+  required string testValue = 4;
+  
 
   message Inputs {
     required string title = 1;
