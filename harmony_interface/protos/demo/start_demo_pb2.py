@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='start_demo.proto',
   package='harmonyServer',
   syntax='proto2',
-  serialized_pb=_b('\n\x10start_demo.proto\x12\rharmonyServer\"\xb3\x02\n\x12StartDemoComponent\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x38\n\x06inputs\x18\x02 \x02(\x0b\x32(.harmonyServer.StartDemoComponent.Inputs\x12:\n\x07outputs\x18\x03 \x02(\x0b\x32).harmonyServer.StartDemoComponent.Outputs\x12\x11\n\ttestValue\x18\x04 \x02(\t\x1a\x61\n\x06Inputs\x12\r\n\x05title\x18\x01 \x02(\t\x12\x12\n\nmultiplier\x18\x02 \x02(\x05\x12\r\n\x05\x63ount\x18\x03 \x02(\t\x12\x11\n\tfirstFile\x18\x04 \x02(\t\x12\x12\n\nsecondFile\x18\x05 \x02(\t\x1a\x1d\n\x07Outputs\x12\x12\n\noutputFile\x18\x01 \x02(\t')
+  serialized_pb=_b('\n\x10start_demo.proto\x12\rharmonyServer\"\xb3\x02\n\x12StartDemoComponent\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x11\n\ttestValue\x18\x02 \x02(\t\x12\x38\n\x06inputs\x18\x03 \x02(\x0b\x32(.harmonyServer.StartDemoComponent.Inputs\x12:\n\x07outputs\x18\x04 \x02(\x0b\x32).harmonyServer.StartDemoComponent.Outputs\x1a\x61\n\x06Inputs\x12\r\n\x05title\x18\x01 \x02(\t\x12\x12\n\nmultiplier\x18\x02 \x02(\x05\x12\r\n\x05\x63ount\x18\x03 \x02(\t\x12\x11\n\tfirstFile\x18\x04 \x02(\t\x12\x12\n\nsecondFile\x18\x05 \x02(\t\x1a\x1d\n\x07Outputs\x12\x12\n\noutputFile\x18\x01 \x02(\t')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -129,23 +129,23 @@ _STARTDEMOCOMPONENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='inputs', full_name='harmonyServer.StartDemoComponent.inputs', index=1,
-      number=2, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
+      name='testValue', full_name='harmonyServer.StartDemoComponent.testValue', index=1,
+      number=2, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='outputs', full_name='harmonyServer.StartDemoComponent.outputs', index=2,
+      name='inputs', full_name='harmonyServer.StartDemoComponent.inputs', index=2,
       number=3, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='testValue', full_name='harmonyServer.StartDemoComponent.testValue', index=3,
-      number=4, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='outputs', full_name='harmonyServer.StartDemoComponent.outputs', index=3,
+      number=4, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),

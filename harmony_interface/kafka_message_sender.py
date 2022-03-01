@@ -133,13 +133,13 @@ class KafkaMessageSender:
         outputs = start_demo_pb2.StartDemoComponent.Outputs(**params["outputs"])
 
         scenarioId = params["scenarioId"]
-        testValue = params["testValue"]
+        testVal = params["testValue"]
 
-        self.logger.warning('testValue: %s', testValue)
+        self.logger.warning('testValue: %s', testVal)
         
         serializer = ProtobufSerializer(start_demo_pb2.StartDemoComponent, schema_registry_client)
         conf = self.__get_producer_config(serializer)
-        message = start_demo_pb2.StartDemoComponent(scenarioId = scenarioId, inputs = inputs, outputs = outputs, testValue = testValue)
+        message = start_demo_pb2.StartDemoComponent(scenarioId = scenarioId,testValue = testVal, inputs = inputs, outputs = outputs)
 
         self.__send_anything(self.topic, message, conf)
 

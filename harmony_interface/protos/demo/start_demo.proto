@@ -4,11 +4,10 @@ package harmonyServer;
 
 message StartDemoComponent {
   required string scenarioId = 1;
-  required Inputs inputs = 2;
-  required Outputs outputs = 3;
-  required string testValue = 4;
+  required string testValue = 2;
+  required Inputs inputs = 3;
+  required Outputs outputs = 4;
   
-
   message Inputs {
     required string title = 1;
     required int32 multiplier = 2;
