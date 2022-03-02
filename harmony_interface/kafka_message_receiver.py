@@ -1,4 +1,5 @@
 import logging
+import sys
 from abc import abstractmethod
 from .protos.common import progress_outputs_pb2
 from .protos.common import stop_pb2
@@ -74,8 +75,8 @@ class KafkaMessageReceiver:
                             self.logger.warning('ModelId is not allowed !!')
 
             except Exception as ex:
-                self.logger.warning('Exception occured in receiver: %s', ex)
-                # self.logger.warning('Exception occured in receiver:   %s %s %s'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__, ex)
+                # self.logger.warning('Exception occured in receiver: %s', ex)
+                self.logger.warning('Exception occured in receiver:   {}'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__)
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
