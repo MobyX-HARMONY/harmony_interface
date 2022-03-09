@@ -76,7 +76,7 @@ class KafkaMessageReceiver:
 
             except Exception as ex:
                 # self.logger.warning('Exception occured in receiver: %s', ex)
-                self.logger.warning('Exception occured in receiver:   {}'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__)
+                self.logger.warning('Exception occured in receiver:   {}'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__, ex)
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
