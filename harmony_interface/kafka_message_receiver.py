@@ -1,4 +1,5 @@
 import logging
+import threading
 import sys
 from abc import abstractmethod
 from .protos.common import progress_outputs_pb2
@@ -70,7 +71,8 @@ class KafkaMessageReceiver:
                 else:
                     # For all models -> to start the specfic model
                     if config.is_allowed_modelId(msg.topic()):
-                        self.start_message_received(json_obj)
+                        threading.Thread(target=self.start_message_received, args=[json_obj]).start()
+                        # self.start_message_received(json_obj)
                     else:
                         self.logger.warning('ModelId is not allowed !!')
 
