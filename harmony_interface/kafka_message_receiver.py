@@ -55,24 +55,24 @@ class KafkaMessageReceiver:
             self.logger.warning('Exception while connecting Kafka with Consumer: %s %s', kafka_topic, str(ex))
 
         while True:
-            try:
-                msg = consumer.poll(1.0)
-                if msg is None:
-                    continue
-                elif msg.error():
-                    self.logger.warning("Consumer error: {}".format(msg.error()))
-                    continue
+            # try:
+            msg = consumer.poll(1.0)
+            if msg is None:
+                continue
+            elif msg.error():
+                self.logger.warning("Consumer error: {}".format(msg.error()))
+                continue
+            else:
+                json_obj = MessageToJson(msg.value())
+                self.logger.warning("Topic and received Proto: %s %s", msg.topic(), json_obj)
+                if (msg.topic() == (self.topic + '_progress_output')):
+                    self.progress_output_message_received(json_obj)
                 else:
-                    json_obj = MessageToJson(msg.value())
-                    self.logger.warning("Topic and received Proto: %s %s", msg.topic(), json_obj)
-                    if (msg.topic() == (self.topic + '_progress_output')):
-                        self.progress_output_message_received(json_obj)
+                    # For all models -> to start the specfic model
+                    if config.is_allowed_modelId(msg.topic()):
+                        self.start_message_received(json_obj)
                     else:
-                        # For all models -> to start the specfic model
-                        if config.is_allowed_modelId(msg.topic()):
-                            self.start_message_received(json_obj)
-                        else:
-                            self.logger.warning('ModelId is not allowed !!')
+                        self.logger.warning('ModelId is not allowed !!')
 
             # except Exception as ex:
                 # self.logger.warning('Exception occured in receiver: %s', ex)
