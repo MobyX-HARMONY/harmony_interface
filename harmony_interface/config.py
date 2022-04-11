@@ -13,7 +13,8 @@ supported_modelIds = set([
         "tfs",
         "ops",
         "onm",
-        "trt"
+        "trt",
+        "rem"
     ])
 
 class Config:

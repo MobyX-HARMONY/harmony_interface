@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartREM {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+  
+  message Inputs {
+    required string BaseJobs = 1;
+    required string betaCoeff = 2;
+    required string MacroEc = 3;
+    required string MicroEc = 4;
+    required string Pop = 5;
+    required string TechCoeff = 6;
+    required string TrendsCnst = 7;
+    required string TrendsPar = 8;
+    required string YearlyJobsGroundTruth = 9;
+    required string zoneDistribution = 10;
+    required string Income = 11;
+    required string yearOut = 12;
+  }
+
+  message Outputs {
+    required string betaCoeffCalibrated = 1;
+    required string YearlyJobs = 2;
+    required string YearlyJobs_xlsx = 3;
+    required string YearlyJobsZone = 4;
+    required string YearlyJobsZoneAggregated = 5;
+  }
+}

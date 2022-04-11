@@ -13,6 +13,7 @@ from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
 from .protos.trt import start_trt_pb2
+from .protos.rem import start_rem_pb2
 
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
@@ -117,6 +118,9 @@ class KafkaMessageReceiver:
             
         elif self.topic == "demo-multiple-files-2":
             protobuf_deserializer = ProtobufDeserializer(start_demo_multiple_files2_pb2.StartDemoMultipleFilesComponent2)
+
+        elif self.topic == "rem":
+            protobuf_deserializer = ProtobufDeserializer(start_rem_pb2.StartREM)
 
         self.check_for_any_messages(self.topic, protobuf_deserializer)
 

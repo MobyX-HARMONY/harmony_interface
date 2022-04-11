@@ -12,6 +12,7 @@ from .protos.tfs import start_tfs_pb2
 from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
 from .protos.trt import start_trt_pb2
+from .protos.trt import start_rem_pb2
 
 from uuid import uuid4
 from confluent_kafka import SerializingProducer
@@ -153,26 +154,15 @@ class KafkaMessageSender:
     def send_start_ofs(self):
         pass
 
-    def start_ops(self, experiment_id):
-        self.logger.warning('START OPS')
-        start_ops_serializer = ProtobufSerializer(start_ops_pb2.StartOPSModel, schema_registry_client)
-        start_ops_conf = self.__get_producer_config(start_ops_serializer)
-        message = start_ops_pb2.StartOPSModel(experiment_id=experiment_id)
-        self.__send_anything(self.topic, message, start_ops_conf)
+    def send_start_rem(self, params):
+        self.logger.warning('START REM params: %s', params)
+        inputs = start_rem_pb2.StartREM.Inputs(**params["inputs"])
+        outputs = start_rem_pb2.StartREM.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_rem_pb2.StartREM, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_rem_pb2.StartREM(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
 
-    def start_onm(self, experiment_id):
-        self.logger.warning('START ONM')
-        start_onm_serializer = ProtobufSerializer(start_onm_pb2.StartONMModel, schema_registry_client)
-        start_onm_conf = self.__get_producer_config(start_onm_serializer)
-        message = start_onm_pb2.StartONMModel(experiment_id=experiment_id)
-        self.__send_anything(self.topic, message, start_onm_conf)
-
-    def start_trt(self, experiment_id):
-        self.logger.warning('START TRT')
-        start_trt_serializer = ProtobufSerializer(start_trt_pb2.StartTRTModel, schema_registry_client)
-        start_trt_conf = self.__get_producer_config(start_trt_serializer)
-        message = start_trt_pb2.StartTRTModel(experiment_id=experiment_id)
-        self.__send_anything(self.topic, message, start_trt_conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
     def send_progress(self, experiment_id, percentage):
