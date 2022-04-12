@@ -72,10 +72,10 @@ class KafkaMessageReceiver(object):
                     else:
                         # For all models -> to start the specfic model
                         if config.is_allowed_modelId(msg.topic()):
-                            # self.start_message_received(json_obj)
-                            threading.Thread(target=self.start_message_received, args=[json_obj]).start()
+                            self.start_message_received(json_obj)
+                            # threading.Thread(target=self.start_message_received, args=[json_obj]).start()
                         else:
-                            self.logger.warning('ModelId is not allowed !!')
+                            self.logger.warning('ModelId is not allowed: %s', self.topic())
             except Exception as ex:
                 self.logger.warning('Exception occured in receiver: %s with topic: %s', ex, kafka_topic)
                 # self.logger.warning('Exception occurred in receiver:   {}'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__, ex)
@@ -91,6 +91,7 @@ class KafkaMessageReceiver(object):
 
     def check_for_start_messages(self):
         self.logger.warning('check_for_start_messages modelId: %s', self.topic)
+
         protobuf_deserializer = None
         if self.topic == "tfs":
             protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
