@@ -20,7 +20,7 @@ from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 schema_registry_client = SchemaRegistryClient({'url': 'http://schema-registry:8081'})
 config = Config()
 
-class KafkaMessageSender:
+class KafkaMessageSender(object):
     def __init__(self, model_id):
         logger = logging.getLogger()
         logger.setLevel(logging.WARNING)

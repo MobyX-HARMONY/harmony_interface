@@ -23,7 +23,7 @@ from .config import Config
 
 config = Config()
 
-class KafkaMessageReceiver:
+class KafkaMessageReceiver(object):
     def __init__(self):
         self.logger = logging.getLogger()
         self.logger.warning('KafkaMessageReceiver initialized !')
@@ -72,12 +72,12 @@ class KafkaMessageReceiver:
                     else:
                         # For all models -> to start the specfic model
                         if config.is_allowed_modelId(msg.topic()):
-                            self.start_message_received(json_obj)
-                            # threading.Thread(target=self.start_message_received, args=[json_obj]).start()
+                            # self.start_message_received(json_obj)
+                            threading.Thread(target=self.start_message_received, args=[json_obj]).start()
                         else:
                             self.logger.warning('ModelId is not allowed !!')
             except Exception as ex:
-                self.logger.warning('Exception occured in receiver: %s', ex)
+                self.logger.warning('Exception occured in receiver: %s with topic: %s', ex, kafka_topic)
                 # self.logger.warning('Exception occurred in receiver:   {}'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__, ex)
 
     def check_for_stop_messages(self):
@@ -122,7 +122,10 @@ class KafkaMessageReceiver:
         elif self.topic == "rem":
             protobuf_deserializer = ProtobufDeserializer(start_rem_pb2.StartREM)
 
-        self.check_for_any_messages(self.topic, protobuf_deserializer)
+        if protobuf_deserializer is None:
+            self.logger.warning('protobuf_deserializer: checking message not possible !')
+        else:
+            self.check_for_any_messages(self.topic, protobuf_deserializer)
 
     @abstractmethod
     def start_message_received(self):
