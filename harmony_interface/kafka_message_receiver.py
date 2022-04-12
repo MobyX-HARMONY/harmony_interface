@@ -72,7 +72,8 @@ class KafkaMessageReceiver:
                     else:
                         # For all models -> to start the specfic model
                         if config.is_allowed_modelId(msg.topic()):
-                            threading.Thread(target=self.start_message_received, args=[json_obj]).start()
+                            self.start_message_received(json_obj)
+                            # threading.Thread(target=self.start_message_received, args=[json_obj]).start()
                         else:
                             self.logger.warning('ModelId is not allowed !!')
             except Exception as ex:
