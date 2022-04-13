@@ -28,5 +28,6 @@ message StartREM {
     required string YearlyJobs_xlsx = 3;
     required string YearlyJobsZone = 4;
     required string YearlyJobsZoneAggregated = 5;
+    required string Income = 6;
   }
 }
