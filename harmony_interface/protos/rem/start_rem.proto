@@ -25,7 +25,7 @@ message StartREM {
   message Outputs {
     required string betaCoeffCalibrated = 1;
     required string YearlyJobs = 2;
-    required string YearlyJobs_xlsx = 3;
+    required string YearlyJobsXlsx = 3;
     required string YearlyJobsZone = 4;
     required string YearlyJobsZoneAggregated = 5;
     required string Income = 6;
