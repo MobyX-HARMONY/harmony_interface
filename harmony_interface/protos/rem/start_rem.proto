@@ -12,7 +12,7 @@ message StartREM {
     required string betaCoeff = 2;
     required string MacroEc = 3;
     required string MicroEc = 4;
-    required string Pop = 5;
+    required string TotPopByYear = 5;
     required string TechCoeff = 6;
     required string TrendsCnst = 7;
     required string TrendsPar = 8;
