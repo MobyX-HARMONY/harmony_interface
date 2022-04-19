@@ -14,7 +14,7 @@ from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
 from .protos.trt import start_trt_pb2
 from .protos.rem import start_rem_pb2
-from .protos.dfmLite import start_dfm_lite_pb2
+from .protos.dfm_lite import start_dfm_lite_pb2
 
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer

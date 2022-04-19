@@ -10,7 +10,7 @@ from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.rem import start_rem_pb2
-from .protos.dfmLite import start_dfm_lite_pb2
+from .protos.dfm_lite import start_dfm_lite_pb2
 
 from uuid import uuid4
 from confluent_kafka import SerializingProducer
