@@ -14,6 +14,7 @@ from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
 from .protos.trt import start_trt_pb2
 from .protos.rem import start_rem_pb2
+from .protos.dfm_lite import start_dfm_lite_pb2
 
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
@@ -122,6 +123,9 @@ class KafkaMessageReceiver(object):
 
         elif self.topic == "rem":
             protobuf_deserializer = ProtobufDeserializer(start_rem_pb2.StartREM)
+
+        elif self.topic == "dfm_lite":
+            protobuf_deserializer = ProtobufDeserializer(start_dfm_lite_pb2.StartDFMLite)
 
         if protobuf_deserializer is None:
             self.logger.warning('protobuf_deserializer: checking message not possible !')

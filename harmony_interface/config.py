@@ -14,7 +14,8 @@ supported_modelIds = set([
         "ops",
         "onm",
         "trt",
-        "rem"
+        "rem",
+        "dfm_lite"
     ])
 
 class Config:

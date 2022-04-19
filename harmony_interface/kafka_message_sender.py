@@ -10,6 +10,7 @@ from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.rem import start_rem_pb2
+from .protos.dfm_lite import start_dfm_lite_pb2
 
 from uuid import uuid4
 from confluent_kafka import SerializingProducer
@@ -160,6 +161,14 @@ class KafkaMessageSender(object):
         message = start_rem_pb2.StartREM(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
 
+    def send_start_dfm_lite(self, params):
+        self.logger.warning('START DFMLite params: %s', params)
+        inputs = start_dfm_lite_pb2.StartDFMLite.Inputs(**params["inputs"])
+        outputs = start_dfm_lite_pb2.StartDFMLite.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_dfm_lite_pb2.StartDFMLite, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_dfm_lite_pb2.StartDFMLite(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
     def send_progress(self, experiment_id, percentage):
