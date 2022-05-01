@@ -11,6 +11,7 @@ from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
 from .protos.rem import start_rem_pb2
 from .protos.dfm_lite import start_dfm_lite_pb2
+from .protos.luti_ath import start_luti_ath_pb2
 
 from uuid import uuid4
 from confluent_kafka import SerializingProducer
@@ -168,6 +169,15 @@ class KafkaMessageSender(object):
         serializer = ProtobufSerializer(start_dfm_lite_pb2.StartDFMLite, schema_registry_client)
         conf = self.__get_producer_config(serializer)
         message = start_dfm_lite_pb2.StartDFMLite(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
+
+    def send_start_luti_ath(self, params):
+        self.logger.warning('START LUTI ATH params: %s', params)
+        inputs = start_luti_ath_pb2.StartLutiAth.Inputs(**params["inputs"])
+        outputs = start_luti_ath_pb2.StartLutiAth.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_luti_ath_pb2.StartLutiAth, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_luti_ath_pb2.StartLutiAth(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):

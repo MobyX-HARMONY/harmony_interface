@@ -1,0 +1,70 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartLutiAth {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string ZoneCodesFile = 1;
+    required string ZoneCoordinates = 2;
+    required string IntrazoneDist = 3;
+    required string CijPrivateMinFilename = 4;
+    required string CijPublicMinFilename = 5;
+    required string DataEmployment2019 = 6;
+    required string DataEmployment2030 = 7;
+    required string DataEmployment2045 = 8;
+    required string HhFloorspace2019 = 9;
+    required string HhFloorspace2045 = 10;
+    required string DataZonesShapefile = 11;
+  }
+
+  message Outputs {
+    required string JobsAccessibility2019 = 1;
+    required string JobsAccessibility2030 = 2;
+    required string JobsAccessibility2045 = 3;
+    required string HousingAccessibility2019 = 4;
+    required string HousingAccessibility2030 = 5;
+    required string HousingAccessibility2045 = 6;
+    required string EjOi2019 = 7;
+    required string EjOi2030 = 8;
+    required string EjOi2045 = 9;
+    required string JobsProbTijPublic2019 = 10;
+    required string JobsProbTijPrivate2019 = 11;
+    required string JobsProbTijPublic2030 = 12;
+    required string JobsProbTijPrivate2030 = 13;
+    required string JobsProbTijPublic2045 = 14;
+    required string JobsProbTijPrivate2045 = 15;
+    required string JobsTijPublic2019 = 16;
+    required string JobsTijPrivate2019 = 17;
+    required string JobsTijPublic2030 = 18;
+    required string JobsTijPrivate2030 = 19;
+    required string JobsTijPublic2045 = 20;
+    required string JobsTijPrivate2045 = 21;
+    required string ArrowsFlowsPublic2019 = 22;
+    required string ArrowsFlowsPrivate2019 = 23;
+    required string ArrowsFlowsPublic2030 = 24;
+    required string ArrowsFlowsPrivate2030 = 25;
+    required string ArrowsFlowsPublic2045 = 26;
+    required string ArrowsFlowsPrivate2045 = 27;
+    required string MapPopChange20192030 = 28;
+    required string MapPopChange20302045 = 29;
+    required string MapPopChange20192045 = 30;
+    required string MapHousingAccChange20192030Public = 31;
+    required string MapHousingAccChange20192030Private = 32;
+    required string MapHousingAccChange20192045Public = 33;
+    required string MapHousingAccChange20192045Private = 34;
+    required string MapHousingAccChange20302045Public = 35;
+    required string MapHousingAccChange201302045Private = 36;
+    required string MapJobsAccChange20192030Public = 37;
+    required string MapJobsAccChange20192030Private = 38;
+    required string MapJobsAccChange20192045Public = 39;
+    required string MapJobsAccChange20192045Private = 40;
+    required string MapJobsAccChange20302045Public = 41;
+    required string MapJobsAccChange20302045Private = 42;
+    required string MapResultsShapefile = 43;
+  }
+
+}
