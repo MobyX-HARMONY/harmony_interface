@@ -2,25 +2,80 @@ syntax = "proto2";
 
 package harmonyServer;
 
-message StartTFSModel {
-  required string experiment_id = 1;
-}
+message StartTFS {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
 
-/*
-  required string LABEL = 2;
-  required int32 YEARFACTOR = 3;
-  required int32 NUTSLEVEL_INPUT = 4;
-  required int32 PARCELS_MAXLOAD = 5;
-  required int32 PARCELS_DROPTIME = 6;
-  required float PARCELS_PER_HH = 7;
-  required float PARCELS_PER_EMPL = 8;
-  required float PARCELS_SUCCESS_B2C = 9;
-  required float PARCELS_SUCCESS_B2B = 10;
-  required float PARCELS_GROWTHFREIGHT = 11;
-  required float CRW_PARCELSHARE = 12;
-  required int32 N_MULTIROUTE = 13;
-  required string CROWDSHIPPING = 14;
-  required string IMPEDANCE_SPEED_FREIGHT = 15;
-  required string IMPEDANCE_SPEED_VAN = 16;
-  required string ALL_DATA = 17;
-*/
+  message Inputs {
+    required string label = 1;
+    required string modules = 2;
+    required string dimensions = 3;
+    required string skimTime = 4;
+    required string skimDistance = 5;
+    required string links = 6;
+    required string nodes = 7;
+    required string zones = 8;
+    required string segs = 9;
+    required string superZones = 10;
+    required string commodityMatrixSFS = 11;
+    required string firmsSFS = 12;
+    required string distributionCenters = 13;
+    required string makeDistribution = 14;
+    required string useDistribution = 15;
+    required string parcelNodes = 16;
+    required string cepShares = 17;
+    required string departureTimeParcels = 18;
+    required string emissionFacsRuralEmpty = 19;
+    required string emissionFacsRuralFull = 20;
+    required string emissionFacsHighwayEmpty = 21;
+    required string emissionFacsHighwayFull = 22;
+    required string emissionFacsUrbanEmpty = 23;
+    required string emissionFacsUrbanFull = 24;
+    required string ZEZconsolidation = 25;
+    required string ZEZscenario = 26;
+    required string costPerVehType = 27;
+    required string costSourcing = 28;
+    required string paramsTimeOfDay = 29;
+    required string paramsShipSizeVehType = 30;
+    required string paramsEndTourFirst = 31;
+    required string paramsEndTourLater = 32;
+    required string paramsParcelB2C = 33;
+    required string paramsProdService = 34;
+    required string paramsDistDecayService = 35;
+    required string nstrToLogisticSegment = 36;
+    required string vehicleCapacity = 37;
+    required string logisticFlowtypes = 38;
+    required float parcelsPerEmployee = 39;
+    required int32 parcelsMaxVehicleLoad = 40;
+    required int32 parcelsDropTime = 41;
+    required float parcelsSuccessRateB2C = 42;
+    required float parcelsSuccessRateB2B = 43;
+    required float parcelsGrowthFreightFlows = 44;
+    required int32 yearFactor = 45;
+    required string impedanceSpeedFreight = 46;
+    required string impedanceSpeedVan = 47;
+    required string doCrowdshipping = 48;
+    required string doNearestDC = 49;
+  }
+
+  message Outputs {
+    required string logFile = 1;
+    required string shipments = 2;
+    required string shipmentsShape = 3;
+    required string shipmentsAfterScheduling = 4;
+    required string tours = 5;
+    required string toursShape = 6;
+    required string tripMatrix = 7;
+    required string parcelDemand = 8;
+    required string parcelDemandShape = 9;
+    required string parcelSchedule = 10;
+    required string parcelScheduleShape = 11;
+    required string tripMatrixParcels = 12;
+    required string tripsVanConstruction = 13;
+    required string tripsVanService = 14;
+    required string linksLoaded = 15;
+    required string linksLoadedShaoe = 16;
+    required string outputIndicators = 17;
+  }
+}

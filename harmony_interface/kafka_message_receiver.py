@@ -96,7 +96,7 @@ class KafkaMessageReceiver(object):
 
         protobuf_deserializer = None
         if self.topic == "tfs":
-            protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFSModel)
+            protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFS)
             
         elif self.topic == "ops":
             protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOPSModel)

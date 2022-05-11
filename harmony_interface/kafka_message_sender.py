@@ -143,12 +143,14 @@ class KafkaMessageSender(object):
 
         self.__send_anything(self.topic, message, conf)
 
-    def send_start_tfs(self, experiment_id):
-        self.logger.warning('START TFS')
-        start_tfs_serializer = ProtobufSerializer(start_tfs_pb2.StartTFSModel, schema_registry_client)
-        start_tfs_conf = self.__get_producer_config(start_tfs_serializer)
-        message = start_tfs_pb2.StartTFSModel(experiment_id=experiment_id)
-        self.__send_anything(self.topic, message, start_tfs_conf)
+    def send_start_tfs(self, params):
+        self.logger.warning('START TFS params: %s', params)
+        inputs = start_tfs_pb2.StartTFS.Inputs(**params["inputs"])
+        outputs = start_tfs_pb2.StartTFS.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_tfs_pb2.StartTFS, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_tfs_pb2.StartTFS(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
 
     def send_start_ofs(self):
         pass
