@@ -43,20 +43,23 @@ message StartTFS {
     required string paramsParcelB2C = 33;
     required string paramsProdService = 34;
     required string paramsDistDecayService = 35;
-    required string nstrToLogisticSegment = 36;
-    required string vehicleCapacity = 37;
-    required string logisticFlowtypes = 38;
-    required float parcelsPerEmployee = 39;
-    required int32 parcelsMaxVehicleLoad = 40;
-    required int32 parcelsDropTime = 41;
-    required float parcelsSuccessRateB2C = 42;
-    required float parcelsSuccessRateB2B = 43;
-    required float parcelsGrowthFreightFlows = 44;
-    required int32 yearFactor = 45;
-    required string impedanceSpeedFreight = 46;
-    required string impedanceSpeedVan = 47;
-    required string doCrowdshipping = 48;
-    required string doNearestDC = 49;
+    required string MRDHtoNUTS3 = 36;
+    required string MRDHtoCOROP = 37;
+    required string NUTS3toMRDH = 38;
+    required string nstrToLogisticSegment = 39;
+    required string vehicleCapacity = 40;
+    required string logisticFlowtypes = 41;
+    required float parcelsPerEmployee = 42;
+    required int32 parcelsMaxVehicleLoad = 43;
+    required int32 parcelsDropTime = 44;
+    required float parcelsSuccessRateB2C = 45;
+    required float parcelsSuccessRateB2B = 46;
+    required float parcelsGrowthFreightFlows = 47;
+    required int32 yearFactor = 48;
+    required string impedanceSpeedFreight = 49;
+    required string impedanceSpeedVan = 50;
+    required string doCrowdshipping = 51;
+    required string doNearestDC = 52;
   }
 
   message Outputs {
@@ -75,7 +78,7 @@ message StartTFS {
     required string tripsVanConstruction = 13;
     required string tripsVanService = 14;
     required string linksLoaded = 15;
-    required string linksLoadedShaoe = 16;
+    required string linksLoadedShape = 16;
     required string outputIndicators = 17;
   }
 }
