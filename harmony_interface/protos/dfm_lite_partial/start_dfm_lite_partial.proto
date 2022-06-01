@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartDFMLitePartial {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+  
+  message Inputs {
+    required string Population = 1;
+    required string PopulationRate = 2;
+    required string MacroZone = 3;
+    required string Years = 4;
+    required string YearsToExport = 5;
+  }
+
+  message Outputs {
+    required string PopResultsCsv = 1;
+    required string PopYearTot = 2;
+    required string PopDistrY0 = 3;
+    required string PopDistrY1 = 4;
+    required string PupilsY0 = 5;
+    required string PupilsY1 = 6;
+  }
+}
