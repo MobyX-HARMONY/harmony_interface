@@ -15,6 +15,7 @@ from .protos.onm import start_onm_pb2
 from .protos.trt import start_trt_pb2
 from .protos.rem import start_rem_pb2
 from .protos.dfm_lite import start_dfm_lite_pb2
+from .protos.dfm_lite_partial import start_dfm_lite_partial_pb2
 from .protos.luti_ath import start_luti_ath_pb2
 
 from confluent_kafka import DeserializingConsumer
@@ -127,6 +128,9 @@ class KafkaMessageReceiver(object):
 
         elif self.topic == "dfm_lite":
             protobuf_deserializer = ProtobufDeserializer(start_dfm_lite_pb2.StartDFMLite)
+
+        elif self.topic == "dfm_lite_partial":
+            protobuf_deserializer = ProtobufDeserializer(start_dfm_lite_partial_pb2.StartDFMLitePartial)
 
         elif self.topic == "luti_ath":
             protobuf_deserializer = ProtobufDeserializer(start_luti_ath_pb2.StartLutiAth)

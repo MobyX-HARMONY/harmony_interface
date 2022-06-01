@@ -16,6 +16,7 @@ supported_modelIds = set([
         "trt",
         "rem",
         "dfm_lite",
+        "dfm_lite_partial",
         "luti_ath"
     ])
 
