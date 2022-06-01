@@ -16,18 +16,16 @@ message StartREM {
     required string TechCoeff = 6;
     required string TrendsCnst = 7;
     required string TrendsPar = 8;
-    required string YearlyJobsGroundTruth = 9;
-    required string zoneDistribution = 10;
-    required string Income = 11;
-    required string yearOut = 12;
+    required string zoneDistribution = 9;
+    required string Income = 10;
+    required string yearOut = 11;
   }
 
   message Outputs {
-    required string betaCoeffCalibrated = 1;
-    required string YearlyJobs = 2;
-    required string YearlyJobsXlsx = 3;
-    required string YearlyJobsZone = 4;
-    required string YearlyJobsZoneAggregated = 5;
-    required string Income = 6;
+    required string YearlyJobs = 1;
+    required string YearlyJobsXlsx = 2;
+    required string YearlyJobsZone = 3;
+    required string YearlyJobsZoneAggregated = 4;
+    required string Income = 5;
   }
 }
