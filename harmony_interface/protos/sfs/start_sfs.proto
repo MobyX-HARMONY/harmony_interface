@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartSFS {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string label = 1;
+    required string modules = 2;
+    required string dimensions = 3;
+    required string zones = 4;
+    required string segs = 5;
+    required string commodityMatrix = 6;
+    required string distributionCenters = 7;
+    required string DCoppNUTS3 = 8;
+    required string paramsProdSIF = 9;
+    required string paramsAttrSIF = 10;
+    required string MRDHtoNUTS3 = 11;
+    required string NUTS3toMRDH = 12;
+    required string SBItoSegs = 13;
+    required string firmSize = 14;
+    required int32 nutsLevelInput = 15;
+  }
+
+  message Outputs {
+    required string firms = 1;
+    required string commodityMatrixNUTS3 = 2;
+  }
+}

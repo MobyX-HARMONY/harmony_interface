@@ -11,6 +11,7 @@ supported_modelIds = set([
         "demo-multiple-files-1", 
         "demo-multiple-files-2",
         "tfs",
+        "sfs",
         "ops",
         "onm",
         "trt",

@@ -10,6 +10,7 @@ from .protos.demo3 import start_demo3_pb2
 from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
+from .protos.sfs import start_sfs_pb2
 from .protos.ops import start_ops_pb2
 from .protos.onm import start_onm_pb2
 from .protos.trt import start_trt_pb2
@@ -98,7 +99,10 @@ class KafkaMessageReceiver(object):
         protobuf_deserializer = None
         if self.topic == "tfs":
             protobuf_deserializer = ProtobufDeserializer(start_tfs_pb2.StartTFS)
-            
+
+        elif self.topic == "sfs":
+            protobuf_deserializer = ProtobufDeserializer(start_sfs_pb2.StartSFS)
+
         elif self.topic == "ops":
             protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOPSModel)
             

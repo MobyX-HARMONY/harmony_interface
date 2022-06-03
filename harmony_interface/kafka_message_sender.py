@@ -9,6 +9,7 @@ from .protos.demo3 import start_demo3_pb2
 from .protos.demo2 import start_demo2_pb2
 from .protos.demo import start_demo_pb2
 from .protos.tfs import start_tfs_pb2
+from .protos.sfs import start_sfs_pb2
 from .protos.rem import start_rem_pb2
 from .protos.dfm_lite import start_dfm_lite_pb2
 from .protos.dfm_lite_partial import start_dfm_lite_partial_pb2
@@ -151,6 +152,15 @@ class KafkaMessageSender(object):
         serializer = ProtobufSerializer(start_tfs_pb2.StartTFS, schema_registry_client)
         conf = self.__get_producer_config(serializer)
         message = start_tfs_pb2.StartTFS(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
+
+    def send_start_sfs(self, params):
+        self.logger.warning('START SFS params: %s', params)
+        inputs = start_sfs_pb2.StartSFS.Inputs(**params["inputs"])
+        outputs = start_sfs_pb2.StartSFS.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_sfs_pb2.StartSFS, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_sfs_pb2.StartSFS(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
 
     def send_start_ofs(self):
