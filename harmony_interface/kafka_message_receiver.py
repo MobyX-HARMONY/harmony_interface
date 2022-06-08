@@ -71,15 +71,12 @@ class KafkaMessageReceiver(object):
             else:
                 json_obj = MessageToJson(msg.value())
                 self.logger.warning("Topic and received Proto: %s %s", msg.topic(), json_obj)
-                if (msg.topic() == (self.topic + '_progress_output')):
+                if str(msg.topic()) == (self.topic + '_progress_output'):
+                    self.logger.warning("Progress message received: %s", msg.topic())
                     self.progress_output_message_received(json_obj)
                 else:
-                    # For all models -> to start the specfic model
-                    if config.is_allowed_modelId(msg.topic()):
-                        # self.start_message_received(json_obj)
-                        threading.Thread(target=self.start_message_received, args=[json_obj]).start()
-                    else:
-                        self.logger.warning('ModelId is not allowed: %s', self.topic())
+                    self.logger.warning("Start message received: %s", msg.topic())
+                    threading.Thread(target=self.start_message_received, args=[json_obj]).start()
             # except Exception as ex:
             #     self.logger.warning('Exception occured in receiver: %s with topic: %s', ex, kafka_topic)
 

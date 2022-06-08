@@ -4,22 +4,6 @@ import os
 
 logger = logging.getLogger()
 
-supported_modelIds = set([
-        "demo", 
-        "demo2", 
-        "demo3",
-        "demo-multiple-files-1", 
-        "demo-multiple-files-2",
-        "tfs",
-        "sfs",
-        "ops",
-        "onm",
-        "trt",
-        "rem",
-        "dfm_lite",
-        "dfm_lite_partial",
-        "luti_ath"
-    ])
 
 class Config:
     def __init__(self):
@@ -35,11 +19,6 @@ class Config:
 
         # credential = json.load(open('credentials.json'))
         # logger.warning('credentials: %s', credential)
-
-    def is_allowed_modelId(self, modelId):
-        if modelId in supported_modelIds:
-            return True
-        return False
         
        
 # if __name__ == "__main__":
