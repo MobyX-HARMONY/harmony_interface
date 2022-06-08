@@ -71,7 +71,7 @@ class KafkaMessageReceiver(object):
             else:
                 json_obj = MessageToJson(msg.value())
                 self.logger.warning("Topic and received Proto: %s %s", msg.topic(), json_obj)
-                if str(msg.topic()) == (self.topic + '_progress_output'):
+                if str(msg.topic()).endswith('_progress_output'):
                     self.logger.warning("Progress message received: %s", msg.topic())
                     self.progress_output_message_received(json_obj)
                 else:
