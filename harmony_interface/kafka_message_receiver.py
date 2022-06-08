@@ -75,7 +75,7 @@ class KafkaMessageReceiver(object):
                     self.logger.warning("Progress message received: %s", msg.topic())
                     self.progress_output_message_received(json_obj)
                 else:
-                    self.logger.warning("Start message received: %s", msg.topic())
+                    self.logger.warning("Start message received. msg.topic(): %s | self.topic: %s", msg.topic(), self.topic)
                     threading.Thread(target=self.start_message_received, args=[json_obj]).start()
             # except Exception as ex:
             #     self.logger.warning('Exception occured in receiver: %s with topic: %s', ex, kafka_topic)
