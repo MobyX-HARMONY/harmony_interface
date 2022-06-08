@@ -61,28 +61,27 @@ class KafkaMessageReceiver(object):
             self.logger.warning('Exception while connecting Kafka with Consumer: %s %s', kafka_topic, str(ex))
 
         while True:
-            try:
-                msg = consumer.poll(1.0)
-                if msg is None:
-                    continue
-                elif msg.error():
-                    self.logger.warning("Consumer error: {}".format(msg.error()))
-                    continue
+            # try:
+            msg = consumer.poll(1.0)
+            if msg is None:
+                continue
+            elif msg.error():
+                self.logger.warning("Consumer error: {}".format(msg.error()))
+                continue
+            else:
+                json_obj = MessageToJson(msg.value())
+                self.logger.warning("Topic and received Proto: %s %s", msg.topic(), json_obj)
+                if (msg.topic() == (self.topic + '_progress_output')):
+                    self.progress_output_message_received(json_obj)
                 else:
-                    json_obj = MessageToJson(msg.value())
-                    self.logger.warning("Topic and received Proto: %s %s", msg.topic(), json_obj)
-                    if (msg.topic() == (self.topic + '_progress_output')):
-                        self.progress_output_message_received(json_obj)
+                    # For all models -> to start the specfic model
+                    if config.is_allowed_modelId(msg.topic()):
+                        # self.start_message_received(json_obj)
+                        threading.Thread(target=self.start_message_received, args=[json_obj]).start()
                     else:
-                        # For all models -> to start the specfic model
-                        if config.is_allowed_modelId(msg.topic()):
-                            # self.start_message_received(json_obj)
-                            threading.Thread(target=self.start_message_received, args=[json_obj]).start()
-                        else:
-                            self.logger.warning('ModelId is not allowed: %s', self.topic())
-            except Exception as ex:
-                self.logger.warning('Exception occured in receiver: %s with topic: %s', ex, kafka_topic)
-                # self.logger.warning('Exception occurred in receiver:   {}'.format(sys.exc_info()[-1].tb_lineno), type(ex).__name__, ex)
+                        self.logger.warning('ModelId is not allowed: %s', self.topic())
+            # except Exception as ex:
+            #     self.logger.warning('Exception occured in receiver: %s with topic: %s', ex, kafka_topic)
 
     def check_for_stop_messages(self):
         protobuf_deserializer = ProtobufDeserializer(stop_pb2.StopModel)
