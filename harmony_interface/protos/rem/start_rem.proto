@@ -17,7 +17,7 @@ message StartREM {
     required string TrendsCnst = 7;
     required string TrendsPar = 8;
     required string zoneDistribution = 9;
-    required string Income = 10;
+    required string BaseIncome = 10;
     required string yearOut = 11;
   }
 
@@ -27,5 +27,7 @@ message StartREM {
     required string YearlyJobsZone = 3;
     required string YearlyJobsZoneAggregated = 4;
     required string Income = 5;
+    required string YearlyJobsZoneAggrY0 = 6;
+    required string YearlyJobsZoneAggrY1 = 7;
   }
 }
