@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0fstart_rem.proto\x12\rharmonyServer\"\xde\x03\n\x08StartREM\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12.\n\x06inputs\x18\x02 \x02(\x0b\x32\x1e.harmonyServer.StartREM.Inputs\x12\x30\n\x07outputs\x18\x03 \x02(\x0b\x32\x1f.harmonyServer.StartREM.Outputs\x1a\xda\x01\n\x06Inputs\x12\x10\n\x08\x42\x61seJobs\x18\x01 \x02(\t\x12\x11\n\tbetaCoeff\x18\x02 \x02(\t\x12\x0f\n\x07MacroEc\x18\x03 \x02(\t\x12\x0f\n\x07MicroEc\x18\x04 \x02(\t\x12\x14\n\x0cTotPopByYear\x18\x05 \x02(\t\x12\x11\n\tTechCoeff\x18\x06 \x02(\t\x12\x12\n\nTrendsCnst\x18\x07 \x02(\t\x12\x11\n\tTrendsPar\x18\x08 \x02(\t\x12\x18\n\x10zoneDistribution\x18\t \x02(\t\x12\x0e\n\x06Income\x18\n \x02(\t\x12\x0f\n\x07yearOut\x18\x0b \x02(\t\x1a\x7f\n\x07Outputs\x12\x12\n\nYearlyJobs\x18\x01 \x02(\t\x12\x16\n\x0eYearlyJobsXlsx\x18\x02 \x02(\t\x12\x16\n\x0eYearlyJobsZone\x18\x03 \x02(\t\x12 \n\x18YearlyJobsZoneAggregated\x18\x04 \x02(\t\x12\x0e\n\x06Income\x18\x05 \x02(\t')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0fstart_rem.proto\x12\rharmonyServer\"\x9f\x04\n\x08StartREM\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12.\n\x06inputs\x18\x02 \x02(\x0b\x32\x1e.harmonyServer.StartREM.Inputs\x12\x30\n\x07outputs\x18\x03 \x02(\x0b\x32\x1f.harmonyServer.StartREM.Outputs\x1a\xde\x01\n\x06Inputs\x12\x10\n\x08\x42\x61seJobs\x18\x01 \x02(\t\x12\x11\n\tbetaCoeff\x18\x02 \x02(\t\x12\x0f\n\x07MacroEc\x18\x03 \x02(\t\x12\x0f\n\x07MicroEc\x18\x04 \x02(\t\x12\x14\n\x0cTotPopByYear\x18\x05 \x02(\t\x12\x11\n\tTechCoeff\x18\x06 \x02(\t\x12\x12\n\nTrendsCnst\x18\x07 \x02(\t\x12\x11\n\tTrendsPar\x18\x08 \x02(\t\x12\x18\n\x10zoneDistribution\x18\t \x02(\t\x12\x12\n\nBaseIncome\x18\n \x02(\t\x12\x0f\n\x07yearOut\x18\x0b \x02(\t\x1a\xbb\x01\n\x07Outputs\x12\x12\n\nYearlyJobs\x18\x01 \x02(\t\x12\x16\n\x0eYearlyJobsXlsx\x18\x02 \x02(\t\x12\x16\n\x0eYearlyJobsZone\x18\x03 \x02(\t\x12 \n\x18YearlyJobsZoneAggregated\x18\x04 \x02(\t\x12\x0e\n\x06Income\x18\x05 \x02(\t\x12\x1c\n\x14YearlyJobsZoneAggrY0\x18\x06 \x02(\t\x12\x1c\n\x14YearlyJobsZoneAggrY1\x18\x07 \x02(\t')
 
 
 
@@ -48,9 +48,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _STARTREM._serialized_start=35
-  _STARTREM._serialized_end=513
+  _STARTREM._serialized_end=578
   _STARTREM_INPUTS._serialized_start=166
-  _STARTREM_INPUTS._serialized_end=384
-  _STARTREM_OUTPUTS._serialized_start=386
-  _STARTREM_OUTPUTS._serialized_end=513
+  _STARTREM_INPUTS._serialized_end=388
+  _STARTREM_OUTPUTS._serialized_start=391
+  _STARTREM_OUTPUTS._serialized_end=578
 # @@protoc_insertion_point(module_scope)
