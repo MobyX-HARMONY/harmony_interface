@@ -18,6 +18,7 @@ from .protos.rem import start_rem_pb2
 from .protos.dfm_lite import start_dfm_lite_pb2
 from .protos.dfm_lite_partial import start_dfm_lite_partial_pb2
 from .protos.luti_ath import start_luti_ath_pb2
+from .protos.luti_tur import start_luti_tur_pb2
 
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
@@ -134,6 +135,9 @@ class KafkaMessageReceiver(object):
 
         elif self.topic == "luti_ath":
             protobuf_deserializer = ProtobufDeserializer(start_luti_ath_pb2.StartLutiAth)
+
+        elif self.topic == "luti_ath":
+            protobuf_deserializer = ProtobufDeserializer(start_luti_tur_pb2.StartLutiTur)
 
         if protobuf_deserializer is None:
             self.logger.warning('protobuf_deserializer: checking message not possible !')

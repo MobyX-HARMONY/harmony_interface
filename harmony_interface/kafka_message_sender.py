@@ -14,6 +14,7 @@ from .protos.rem import start_rem_pb2
 from .protos.dfm_lite import start_dfm_lite_pb2
 from .protos.dfm_lite_partial import start_dfm_lite_partial_pb2
 from .protos.luti_ath import start_luti_ath_pb2
+from .protos.luti_tur import start_luti_tur_pb2
 
 from uuid import uuid4
 from confluent_kafka import SerializingProducer
@@ -201,6 +202,16 @@ class KafkaMessageSender(object):
         conf = self.__get_producer_config(serializer)
         message = start_luti_ath_pb2.StartLutiAth(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
+
+    def send_start_luti_tur(self, params):
+        self.logger.warning('START LUTI TUR params: %s', params)
+        inputs = start_luti_tur_pb2.StartLutiTur.Inputs(**params["inputs"])
+        outputs = start_luti_tur_pb2.StartLutiTur.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_luti_tur_pb2.StartLutiTur, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_luti_tur_pb2.StartLutiTur(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
+
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
     def send_progress(self, experiment_id, percentage):
