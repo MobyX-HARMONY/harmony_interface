@@ -136,7 +136,7 @@ class KafkaMessageReceiver(object):
         elif self.topic == "luti_ath":
             protobuf_deserializer = ProtobufDeserializer(start_luti_ath_pb2.StartLutiAth)
 
-        elif self.topic == "luti_ath":
+        elif self.topic == "luti_tur":
             protobuf_deserializer = ProtobufDeserializer(start_luti_tur_pb2.StartLutiTur)
 
         if protobuf_deserializer is None:
