@@ -19,6 +19,8 @@ message StartLutiAth {
     required string HhFloorspace2019 = 9;
     required string HhFloorspace2045 = 10;
     required string DataZonesShapefile = 11;
+    required string ZoneCentroidsShapefile = 12;
+    required string RoadNetworkShapefile = 13;
   }
 
   message Outputs {
@@ -65,6 +67,12 @@ message StartLutiAth {
     required string MapJobsAccChange20302045Public = 41;
     required string MapJobsAccChange20302045Private = 42;
     required string MapResultsShapefile = 43;
+    required string JobsTijPublic2019FlowMap = 44;
+    required string JobsTijPrivate2019FlowMap = 45;
+    required string JobsTijPublic2030FlowMap = 46;
+    required string JobsTijPrivate2030FlowMap = 47;
+    required string JobsTijPublic2045FlowMap = 48;
+    required string JobsTijPrivate2045FlowMap = 49;
   }
 
 }
