@@ -29,12 +29,12 @@ message StartLdmAth {
   }
 
   message Outputs {
-    required string Scenario1LD_19 = 1;
-    required string Scenario1LD_45 = 2;
+    required string Scenario1LD19 = 1;
+    required string Scenario1LD45 = 2;
     required string Scenario1LS = 3;
     required string Sc1Diff1945 = 4;
-    required string Scenario2LD_19 = 5;
-    required string Scenario2LD_45 = 6;
+    required string Scenario2LD19 = 5;
+    required string Scenario2LD45 = 6;
     required string Scenario2LS = 7;
     required string Sc2Diff1945 = 8;
   }
