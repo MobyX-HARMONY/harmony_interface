@@ -1,4 +1,4 @@
-import imp
+# noinspection PyUnresolvedReferences
 import logging
 from .config import Config
 from .protos.common import progress_outputs_pb2
@@ -15,11 +15,17 @@ from .protos.dfm_lite import start_dfm_lite_pb2
 from .protos.dfm_lite_partial import start_dfm_lite_partial_pb2
 from .protos.luti_ath import start_luti_ath_pb2
 from .protos.luti_tur import start_luti_tur_pb2
+from .protos.ldm_ath import start_ldm_ath_pb2
 
+# noinspection PyUnresolvedReferences
 from uuid import uuid4
+# noinspection PyUnresolvedReferences
 from confluent_kafka import SerializingProducer
+# noinspection PyUnresolvedReferences
 from confluent_kafka.serialization import StringSerializer
+# noinspection PyUnresolvedReferences
 from confluent_kafka.schema_registry import SchemaRegistryClient
+# noinspection PyUnresolvedReferences
 from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 
 schema_registry_client = SchemaRegistryClient({'url': 'http://schema-registry:8081'})
@@ -210,6 +216,15 @@ class KafkaMessageSender(object):
         serializer = ProtobufSerializer(start_luti_tur_pb2.StartLutiTur, schema_registry_client)
         conf = self.__get_producer_config(serializer)
         message = start_luti_tur_pb2.StartLutiTur(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
+
+    def send_start_ldm_ath(self, params):
+        self.logger.warning('START LDM ATH params: %s', params)
+        inputs = start_ldm_ath_pb2.StartLdmAth.Inputs(**params["inputs"])
+        outputs = start_ldm_ath_pb2.StartLdmAth.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_ldm_ath_pb2.StartLdmAth, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_ldm_ath_pb2.StartLdmAth(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
 
 

@@ -1,0 +1,41 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartLdmAth {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+  
+  message Inputs {
+    required string HRFloodzones = 1;
+    required string AthensBoundary = 2;
+    required string SurfaceWater = 3;
+    required string Highways = 4;
+    required string ProtectedAreas = 5;
+    required string NATURA2000 = 6;
+    required string ParksAndGardens = 7;
+    required string Slope = 8;
+    required string PopulationDensity = 9;
+    required string GS2500 = 10;
+    required string JobAccessibilitypr19 = 11;
+    required string JobAccessibilitypr45 = 12;
+    required string JobAccessibilitypu19 = 13;
+    required string JobAccessibilitypu45 = 14;
+    required string HousingAccessibilitypr19 = 15;
+    required string HousingAccessibilitypr45 = 16;
+    required string HousingAccessibilitypu19 = 17;
+    required string HousingAccessibilitypu45 = 18;
+  }
+
+  message Outputs {
+    required string Scenario1LD_19 = 1;
+    required string Scenario1LD_45 = 2;
+    required string Scenario1LS = 3;
+    required string Sc1Diff1945 = 4;
+    required string Scenario2LD_19 = 5;
+    required string Scenario2LD_45 = 6;
+    required string Scenario2LS = 7;
+    required string Sc2Diff1945 = 8;
+  }
+}

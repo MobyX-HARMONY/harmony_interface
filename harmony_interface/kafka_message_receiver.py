@@ -1,6 +1,8 @@
+# noinspection PyUnresolvedReferences
 import logging
+# noinspection PyUnresolvedReferences
 import threading
-import sys
+# noinspection PyUnresolvedReferences
 from abc import abstractmethod
 from .protos.common import progress_outputs_pb2
 from .protos.common import stop_pb2
@@ -19,10 +21,14 @@ from .protos.dfm_lite import start_dfm_lite_pb2
 from .protos.dfm_lite_partial import start_dfm_lite_partial_pb2
 from .protos.luti_ath import start_luti_ath_pb2
 from .protos.luti_tur import start_luti_tur_pb2
-
+from .protos.ldm_ath import start_ldm_ath_pb2
+# noinspection PyUnresolvedReferences
 from confluent_kafka import DeserializingConsumer
+# noinspection PyUnresolvedReferences
 from confluent_kafka.schema_registry.protobuf import ProtobufDeserializer
+# noinspection PyUnresolvedReferences
 from confluent_kafka.serialization import StringDeserializer
+# noinspection PyUnresolvedReferences
 from google.protobuf.json_format import MessageToJson
 from .config import Config
 
@@ -138,6 +144,9 @@ class KafkaMessageReceiver(object):
 
         elif self.topic == "luti_tur":
             protobuf_deserializer = ProtobufDeserializer(start_luti_tur_pb2.StartLutiTur)
+
+        elif self.topic == "ldm_ath":
+            protobuf_deserializer = ProtobufDeserializer(start_ldm_ath_pb2.StartLdmAth)
 
         if protobuf_deserializer is None:
             self.logger.warning('protobuf_deserializer: checking message not possible !')
