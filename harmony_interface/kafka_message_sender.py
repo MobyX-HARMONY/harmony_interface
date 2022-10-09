@@ -1,6 +1,7 @@
 # noinspection PyUnresolvedReferences
 import logging
 from .config import Config
+from .protos.ldm_tur import start_ldm_tur_pb2
 from .protos.common import progress_outputs_pb2
 from .protos.common import stop_pb2
 from .protos.demoMultipleFiles import start_demo_multiple_files_pb2
@@ -227,6 +228,14 @@ class KafkaMessageSender(object):
         message = start_ldm_ath_pb2.StartLdmAth(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
 
+    def send_start_ldm_tur(self, params):
+        self.logger.warning('START ldm_tur params: %s', params)
+        inputs = start_ldm_tur_pb2.StartLdmTur.Inputs(**params["inputs"])
+        outputs = start_ldm_tur_pb2.StartLdmTur.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_ldm_tur_pb2.StartLdmTur, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_ldm_tur_pb2.StartLdmTur(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
     def send_progress(self, experiment_id, percentage):
