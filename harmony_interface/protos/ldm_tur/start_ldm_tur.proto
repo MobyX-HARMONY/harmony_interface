@@ -1,0 +1,53 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartLdmTur {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+  
+  message Inputs {
+    required string TurinFUA = 1;
+    required string BDTRErailcover = 2;
+    required string BDTREroadcover = 3;
+    required string BDTREwatercover = 4;
+    required string DEMslope = 5;
+    required string JobAccessCar19 = 6;
+    required string JobAccessBus19 = 7;
+    required string JobAccessRail19 = 8;
+    required string JobAccessCar30 = 9;
+    required string JobAccessBus30 = 10;
+    required string JobAccessRail30 = 11;
+    required string HousingAccessCar19 = 12;
+    required string HousingAccessBus19 = 13;
+    required string HousingAccessRail19 = 14;
+    required string HousingAccessCar30 = 15;
+    required string HousingAccessBus30 = 16;
+    required string HousingAccessRail30 = 17;
+    required string PAIfloodzone = 18;
+    required string PPRconservationarea = 19;
+    required string PTCforestcover = 20;
+    required string PTCunesco = 21;
+    required string PTCurbangreen = 22;
+    required string PRGcemetery = 23;
+    required string PRGeducation = 24;
+    required string PRGhealthcare = 25;
+    required string PRGindustry = 26;
+    required string PRGparksandgardens = 27;
+    required string TurLutiGpkg = 28;
+  }
+
+  message Outputs {
+    required string Scenario1 = 1;
+    required string Scenario2 = 2;
+    required string Scenario3 = 3;
+    required string Scenario4 = 4;
+    required string Scenario5 = 5;
+    required string Scenario6 = 6;
+    required string Scenario7 = 7;
+    required string Scenario8 = 8;
+    required string Scenario9 = 9;
+    required string Diff1930 = 10;
+  }
+}
