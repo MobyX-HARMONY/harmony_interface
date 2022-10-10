@@ -31,6 +31,7 @@ from confluent_kafka.serialization import StringDeserializer
 # noinspection PyUnresolvedReferences
 from google.protobuf.json_format import MessageToJson
 from .protos.ldm_tur import start_ldm_tur_pb2
+from .protos.ldm_oxf import start_ldm_oxf_pb2
 from .config import Config
 
 config = Config()
@@ -151,6 +152,9 @@ class KafkaMessageReceiver(object):
 
         elif self.topic == "ldm_tur":
             protobuf_deserializer = ProtobufDeserializer(start_ldm_tur_pb2.StartLdmTur)
+
+        elif self.topic == "ldm_oxf":
+            protobuf_deserializer = ProtobufDeserializer(start_ldm_oxf_pb2.StartLdmOxf)
 
         if protobuf_deserializer is None:
             self.logger.warning('protobuf_deserializer: checking message not possible !')

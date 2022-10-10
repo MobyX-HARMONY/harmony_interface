@@ -1,0 +1,57 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartLdmOxf {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string Greenbelt = 1;
+    required string Floodzone100 = 2;
+    required string OxfordBoundary = 3;
+    required string SurfaceWater = 4;
+    required string HistoricalConservation = 5;
+    required string ConservationArea = 6;
+    required string ParksAndGardens = 7;
+    required string AONB = 8;
+    required string Highways = 9;
+    required string SSSI = 10;
+    required string NNR = 11;
+    required string Slope = 12;
+    required string Population = 13;
+    required string GS2500 = 14;
+    required string JobAccessibilityRoads = 15;
+    required string JobAccessibilityRoads2030 = 16;
+    required string JobAccessibilityBus = 17;
+    required string JobAccessibilityBus2030 = 18;
+    required string JobAccessibilityRail = 19;
+    required string JobAccessibilityRail2030 = 20;
+    required string HousingAccessibilityRoads = 21;
+    required string HousingAccessibilityRoads2030 = 22;
+    required string HousingAccessibilityBus = 23;
+    required string HousingAccessibilityBus2030 = 24;
+    required string HousingAccessibilityRail = 25;
+    required string HousingAccessibilityRail2030 = 26;
+  }
+
+  message Outputs {
+    required string Scenario1LD_19 = 1;
+    required string Scenario1LD_30 = 2;
+    required string Scenario1LS = 3;
+    required string Sc1Diff1930 = 4;
+    required string Scenario2LD_19 = 5;
+    required string Scenario2LD_30 = 6;
+    required string Scenario2LS = 7;
+    required string Sc2Diff1930 = 8;
+    required string Scenario3LD_19 = 9;
+    required string Scenario3LD_30 = 10;
+    required string Scenario3LS = 11;
+    required string Sc3Diff1930 = 12;
+    required string Scenario4LD_19 = 13;
+    required string Scenario4LD_30 = 14;
+    required string Scenario4LS = 15;
+    required string Sc4Diff1930 = 16;
+  }
+}
