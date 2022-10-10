@@ -37,20 +37,20 @@ message StartLdmOxf {
   }
 
   message Outputs {
-    required string Scenario1LD_19 = 1;
-    required string Scenario1LD_30 = 2;
+    required string Scenario1LD19 = 1;
+    required string Scenario1LD30 = 2;
     required string Scenario1LS = 3;
     required string Sc1Diff1930 = 4;
-    required string Scenario2LD_19 = 5;
-    required string Scenario2LD_30 = 6;
+    required string Scenario2LD19 = 5;
+    required string Scenario2LD30 = 6;
     required string Scenario2LS = 7;
     required string Sc2Diff1930 = 8;
-    required string Scenario3LD_19 = 9;
-    required string Scenario3LD_30 = 10;
+    required string Scenario3LD19 = 9;
+    required string Scenario3LD30 = 10;
     required string Scenario3LS = 11;
     required string Sc3Diff1930 = 12;
-    required string Scenario4LD_19 = 13;
-    required string Scenario4LD_30 = 14;
+    required string Scenario4LD19 = 13;
+    required string Scenario4LD30 = 14;
     required string Scenario4LS = 15;
     required string Sc4Diff1930 = 16;
   }
