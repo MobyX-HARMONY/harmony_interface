@@ -32,11 +32,17 @@ def check_equivalence_of_config_and_json():
     for input in inputs:
         try:
             assert input in config_inputs_keys
+            if "_" in input:
+                print("input in config.py {} has an underscore, this should be removed. Aborting.".format(input))
+                exit(0)
         except AssertionError:
             print("input '{}' is in config.py but on in json file".format(input))
     for output in outputs:
         try:
             assert output in config_outputs_keys
+            if "_" in output:
+                print("output in config.py {} has an underscore, this should be removed. Aborting.".format(output))
+                exit(0)
         except AssertionError:
             print("output '{}' is in config.py but on in json file".format(output))
 
@@ -44,11 +50,17 @@ def check_equivalence_of_config_and_json():
     for input in config_inputs_keys:
         try:
             assert input in inputs
+            if "_" in input:
+                print("input in component.json {} has an underscore, this should be removed. Aborting.".format(input))
+                exit(0)
         except AssertionError:
             print("input '{}' is in json file but not in config.py".format(input))
     for output in config_outputs_keys:
         try:
             assert output in outputs
+            if "_" in output:
+                print("output in component.json {} has an underscore, this should be removed. Aborting.".format(output))
+                exit(0)
         except AssertionError:
             print("output '{}' is in json file but not in config.py".format(output))
     print("All checks passed.")
