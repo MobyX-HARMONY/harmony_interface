@@ -32,6 +32,7 @@ from confluent_kafka.serialization import StringDeserializer
 from google.protobuf.json_format import MessageToJson
 from .protos.ldm_tur import start_ldm_tur_pb2
 from .protos.ldm_oxf import start_ldm_oxf_pb2
+from .protos.luti_oxf import start_luti_oxf_pb2
 from .config import Config
 
 config = Config()
@@ -155,6 +156,9 @@ class KafkaMessageReceiver(object):
 
         elif self.topic == "ldm_oxf":
             protobuf_deserializer = ProtobufDeserializer(start_ldm_oxf_pb2.StartLdmOxf)
+
+        elif self.topic == "luti_oxf":
+            protobuf_deserializer = ProtobufDeserializer(start_luti_oxf_pb2.StartLutiOxf)
 
         if protobuf_deserializer is None:
             self.logger.warning('protobuf_deserializer: checking message not possible !')

@@ -3,6 +3,7 @@ import logging
 from .config import Config
 from .protos.ldm_tur import start_ldm_tur_pb2
 from .protos.ldm_oxf import start_ldm_oxf_pb2
+from .protos.luti_oxf import start_luti_oxf_pb2
 from .protos.common import progress_outputs_pb2
 from .protos.common import stop_pb2
 from .protos.demoMultipleFiles import start_demo_multiple_files_pb2
@@ -245,6 +246,15 @@ class KafkaMessageSender(object):
         serializer = ProtobufSerializer(start_ldm_oxf_pb2.StartLdmOxf, schema_registry_client)
         conf = self.__get_producer_config(serializer)
         message = start_ldm_oxf_pb2.StartLdmOxf(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
+
+    def send_start_luti_oxf(self, params):
+        self.logger.warning('START luti_oxf params: %s', params)
+        inputs = start_luti_oxf_pb2.StartLutiOxf.Inputs(**params["inputs"])
+        outputs = start_luti_oxf_pb2.StartLutiOxf.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_luti_oxf_pb2.StartLutiOxf, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_luti_oxf_pb2.StartLutiOxf(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
