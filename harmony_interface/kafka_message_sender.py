@@ -178,7 +178,7 @@ class KafkaMessageSender(object):
         pass
 
     def send_start_rem(self, params):
-        self.logger.warning('START REM params:')
+        self.logger.warning('START REM params!:')
         pprint.pprint(params)
         inputs = start_rem_pb2.StartREM.Inputs(**params["inputs"])
         outputs = start_rem_pb2.StartREM.Outputs(**params["outputs"])
