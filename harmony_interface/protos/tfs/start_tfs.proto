@@ -58,8 +58,10 @@ message StartTFS {
     required int32 yearFactor = 48;
     required string impedanceSpeedFreight = 49;
     required string impedanceSpeedVan = 50;
-    required string doCrowdshipping = 51;
-    required string doNearestDC = 52;
+    required int32 tourNumCPU = 51;
+    required int32 trafNumCPU = 52;
+    required string doCrowdshipping = 53;
+    required string doNearestDC = 54;
   }
 
   message Outputs {
