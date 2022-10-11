@@ -30,7 +30,9 @@ message StartREM {
     required string Income = 5;
     required string YearlyJobsZoneAggrY0 = 6;
     required string YearlyJobsZoneAggrY1 = 7;
-    required string MapJobsY1 = 8;
-    required string MapJobsY2 = 9;
+    required string YearlyJobsZoneAggrY2 = 8;
+    required string MapJobsY1 = 9;
+    required string MapJobsY2 = 10;
+    required string MapJobsY3 = 11;
   }
 }
