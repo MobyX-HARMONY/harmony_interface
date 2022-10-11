@@ -1,5 +1,6 @@
 # noinspection PyUnresolvedReferences
 import logging
+import pprint
 from .config import Config
 from .protos.ldm_tur import start_ldm_tur_pb2
 from .protos.ldm_oxf import start_ldm_oxf_pb2
@@ -177,7 +178,8 @@ class KafkaMessageSender(object):
         pass
 
     def send_start_rem(self, params):
-        self.logger.warning('START REM params: %s', params)
+        self.logger.warning('START REM params:')
+        print(pprint.pprint(params))
         inputs = start_rem_pb2.StartREM.Inputs(**params["inputs"])
         outputs = start_rem_pb2.StartREM.Outputs(**params["outputs"])
         serializer = ProtobufSerializer(start_rem_pb2.StartREM, schema_registry_client)
