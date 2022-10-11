@@ -179,7 +179,7 @@ class KafkaMessageSender(object):
 
     def send_start_rem(self, params):
         self.logger.warning('START REM params:')
-        print(pprint.pprint(params))
+        pprint.pprint(params)
         inputs = start_rem_pb2.StartREM.Inputs(**params["inputs"])
         outputs = start_rem_pb2.StartREM.Outputs(**params["outputs"])
         serializer = ProtobufSerializer(start_rem_pb2.StartREM, schema_registry_client)
