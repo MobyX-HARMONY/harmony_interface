@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14start_dfm_lite.proto\x12\rharmonyServer\"\x89\x04\n\x0cStartDFMLite\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x32\n\x06inputs\x18\x02 \x02(\x0b\x32\".harmonyServer.StartDFMLite.Inputs\x12\x34\n\x07outputs\x18\x03 \x02(\x0b\x32#.harmonyServer.StartDFMLite.Outputs\x1a\xc1\x01\n\x06Inputs\x12\x12\n\nHouseholds\x18\x01 \x02(\t\x12\x16\n\x0eHouseholdsRate\x18\x02 \x02(\t\x12\x12\n\nPopulation\x18\x03 \x02(\t\x12\x16\n\x0ePopulationRate\x18\x04 \x02(\t\x12\x11\n\tMacroZone\x18\x05 \x02(\t\x12\r\n\x05Years\x18\x06 \x02(\t\x12\x13\n\x0bUnivHousing\x18\x07 \x02(\t\x12\x11\n\tUnivShare\x18\x08 \x02(\t\x12\x15\n\rYearsToExport\x18\t \x02(\t\x1a\xb6\x01\n\x07Outputs\x12\x14\n\x0cHhResultsCsv\x18\x01 \x02(\t\x12\x15\n\rPopResultsCsv\x18\x02 \x02(\t\x12\x12\n\nPopYearTot\x18\x03 \x02(\t\x12\x12\n\nPopDistrY0\x18\x04 \x02(\t\x12\x12\n\nPopDistrY1\x18\x05 \x02(\t\x12\x10\n\x08PupilsY0\x18\x06 \x02(\t\x12\x10\n\x08PupilsY1\x18\x07 \x02(\t\x12\x0e\n\x06UnivY0\x18\x08 \x02(\t\x12\x0e\n\x06UnivY1\x18\t \x02(\t')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14start_dfm_lite.proto\x12\rharmonyServer\"\xa1\x04\n\x0cStartDFMLite\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x32\n\x06inputs\x18\x02 \x02(\x0b\x32\".harmonyServer.StartDFMLite.Inputs\x12\x34\n\x07outputs\x18\x03 \x02(\x0b\x32#.harmonyServer.StartDFMLite.Outputs\x1a\xc1\x01\n\x06Inputs\x12\x12\n\nHouseholds\x18\x01 \x02(\t\x12\x16\n\x0eHouseholdsRate\x18\x02 \x02(\t\x12\x12\n\nPopulation\x18\x03 \x02(\t\x12\x16\n\x0ePopulationRate\x18\x04 \x02(\t\x12\x11\n\tMacroZone\x18\x05 \x02(\t\x12\r\n\x05Years\x18\x06 \x02(\t\x12\x13\n\x0bUnivHousing\x18\x07 \x02(\t\x12\x11\n\tUnivShare\x18\x08 \x02(\t\x12\x15\n\rYearsToExport\x18\t \x02(\t\x1a\xce\x01\n\x07Outputs\x12\x14\n\x0cHhResultsCsv\x18\x01 \x02(\t\x12\x15\n\rPopResultsCsv\x18\x02 \x02(\t\x12\x12\n\nPopYearTot\x18\x03 \x02(\t\x12\x12\n\nPopDistrY0\x18\x04 \x02(\t\x12\x12\n\nPopDistrY1\x18\x05 \x02(\t\x12\x10\n\x08PupilsY0\x18\x06 \x02(\t\x12\x10\n\x08PupilsY1\x18\x07 \x02(\t\x12\x0e\n\x06UnivY0\x18\x08 \x02(\t\x12\x0e\n\x06UnivY1\x18\t \x02(\t\x12\x16\n\x0ePopDemoPyramid\x18\n \x02(\t')
 
 
 
@@ -48,9 +48,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _STARTDFMLITE._serialized_start=40
-  _STARTDFMLITE._serialized_end=561
+  _STARTDFMLITE._serialized_end=585
   _STARTDFMLITE_INPUTS._serialized_start=183
   _STARTDFMLITE_INPUTS._serialized_end=376
   _STARTDFMLITE_OUTPUTS._serialized_start=379
-  _STARTDFMLITE_OUTPUTS._serialized_end=561
+  _STARTDFMLITE_OUTPUTS._serialized_end=585
 # @@protoc_insertion_point(module_scope)

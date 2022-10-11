@@ -29,5 +29,6 @@ message StartDFMLite {
     required string PupilsY1 = 7;
     required string UnivY0 = 8;
     required string UnivY1 = 9;
+    required string PopDemoPyramid = 10;
   }
 }

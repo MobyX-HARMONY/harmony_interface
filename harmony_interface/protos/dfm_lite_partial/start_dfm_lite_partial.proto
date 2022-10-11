@@ -22,5 +22,6 @@ message StartDFMLitePartial {
     required string PopDistrY1 = 4;
     required string PupilsY0 = 5;
     required string PupilsY1 = 6;
+    required string PopDemoPyramid = 7;
   }
 }
