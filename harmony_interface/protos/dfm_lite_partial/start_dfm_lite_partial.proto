@@ -20,8 +20,10 @@ message StartDFMLitePartial {
     required string PopYearTot = 2;
     required string PopDistrY0 = 3;
     required string PopDistrY1 = 4;
-    required string PupilsY0 = 5;
-    required string PupilsY1 = 6;
-    required string PopDemoPyramid = 7;
+    required string PopDistrY2 = 5;
+    required string PupilsY0 = 6;
+    required string PupilsY1 = 7;
+    required string PupilsY2 = 8;
+    required string PopDemoPyramid = 9;
   }
 }

@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1cstart_dfm_lite_partial.proto\x12\rharmonyServer\"\xab\x03\n\x13StartDFMLitePartial\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x39\n\x06inputs\x18\x02 \x02(\x0b\x32).harmonyServer.StartDFMLitePartial.Inputs\x12;\n\x07outputs\x18\x03 \x02(\x0b\x32*.harmonyServer.StartDFMLitePartial.Outputs\x1am\n\x06Inputs\x12\x12\n\nPopulation\x18\x01 \x02(\t\x12\x16\n\x0ePopulationRate\x18\x02 \x02(\t\x12\x11\n\tMacroZone\x18\x03 \x02(\t\x12\r\n\x05Years\x18\x04 \x02(\t\x12\x15\n\rYearsToExport\x18\x05 \x02(\t\x1a\x98\x01\n\x07Outputs\x12\x15\n\rPopResultsCsv\x18\x01 \x02(\t\x12\x12\n\nPopYearTot\x18\x02 \x02(\t\x12\x12\n\nPopDistrY0\x18\x03 \x02(\t\x12\x12\n\nPopDistrY1\x18\x04 \x02(\t\x12\x10\n\x08PupilsY0\x18\x05 \x02(\t\x12\x10\n\x08PupilsY1\x18\x06 \x02(\t\x12\x16\n\x0ePopDemoPyramid\x18\x07 \x02(\t')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1cstart_dfm_lite_partial.proto\x12\rharmonyServer\"\xd1\x03\n\x13StartDFMLitePartial\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x39\n\x06inputs\x18\x02 \x02(\x0b\x32).harmonyServer.StartDFMLitePartial.Inputs\x12;\n\x07outputs\x18\x03 \x02(\x0b\x32*.harmonyServer.StartDFMLitePartial.Outputs\x1am\n\x06Inputs\x12\x12\n\nPopulation\x18\x01 \x02(\t\x12\x16\n\x0ePopulationRate\x18\x02 \x02(\t\x12\x11\n\tMacroZone\x18\x03 \x02(\t\x12\r\n\x05Years\x18\x04 \x02(\t\x12\x15\n\rYearsToExport\x18\x05 \x02(\t\x1a\xbe\x01\n\x07Outputs\x12\x15\n\rPopResultsCsv\x18\x01 \x02(\t\x12\x12\n\nPopYearTot\x18\x02 \x02(\t\x12\x12\n\nPopDistrY0\x18\x03 \x02(\t\x12\x12\n\nPopDistrY1\x18\x04 \x02(\t\x12\x12\n\nPopDistrY2\x18\x05 \x02(\t\x12\x10\n\x08PupilsY0\x18\x06 \x02(\t\x12\x10\n\x08PupilsY1\x18\x07 \x02(\t\x12\x10\n\x08PupilsY2\x18\x08 \x02(\t\x12\x16\n\x0ePopDemoPyramid\x18\t \x02(\t')
 
 
 
@@ -48,9 +48,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _STARTDFMLITEPARTIAL._serialized_start=48
-  _STARTDFMLITEPARTIAL._serialized_end=475
+  _STARTDFMLITEPARTIAL._serialized_end=513
   _STARTDFMLITEPARTIAL_INPUTS._serialized_start=211
   _STARTDFMLITEPARTIAL_INPUTS._serialized_end=320
   _STARTDFMLITEPARTIAL_OUTPUTS._serialized_start=323
-  _STARTDFMLITEPARTIAL_OUTPUTS._serialized_end=475
+  _STARTDFMLITEPARTIAL_OUTPUTS._serialized_end=513
 # @@protoc_insertion_point(module_scope)

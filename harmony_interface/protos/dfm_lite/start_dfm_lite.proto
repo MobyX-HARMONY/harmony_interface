@@ -25,10 +25,13 @@ message StartDFMLite {
     required string PopYearTot = 3;
     required string PopDistrY0 = 4;
     required string PopDistrY1 = 5;
-    required string PupilsY0 = 6;
-    required string PupilsY1 = 7;
-    required string UnivY0 = 8;
-    required string UnivY1 = 9;
-    required string PopDemoPyramid = 10;
+    required string PopDistrY2 = 6;
+    required string PupilsY0 = 7;
+    required string PupilsY1 = 8;
+    required string PupilsY2 = 9;
+    required string UnivY0 = 10;
+    required string UnivY1 = 11;
+    required string UnivY2 = 12;
+    required string PopDemoPyramid = 13;
   }
 }
