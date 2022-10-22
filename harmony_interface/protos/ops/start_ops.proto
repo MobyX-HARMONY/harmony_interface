@@ -2,6 +2,16 @@ syntax = "proto2";
 
 package harmonyServer;
 
-message StartOPSModel {
-  required string experiment_id = 1;
+message StartOps {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string ANGFile = 1;
+  }
+
+  message Outputs {
+    required string Sample = 1;
+  }
 }

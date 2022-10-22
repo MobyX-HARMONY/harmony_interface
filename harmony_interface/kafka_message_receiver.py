@@ -33,6 +33,7 @@ from google.protobuf.json_format import MessageToJson
 from .protos.ldm_tur import start_ldm_tur_pb2
 from .protos.ldm_oxf import start_ldm_oxf_pb2
 from .protos.luti_oxf import start_luti_oxf_pb2
+from .protos.ops import start_ops_pb2
 from .config import Config
 
 config = Config()
@@ -109,9 +110,6 @@ class KafkaMessageReceiver(object):
         elif self.topic == "sfs":
             protobuf_deserializer = ProtobufDeserializer(start_sfs_pb2.StartSFS)
 
-        elif self.topic == "ops":
-            protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOPSModel)
-            
         elif self.topic == "onm":
             protobuf_deserializer = ProtobufDeserializer(start_onm_pb2.StartONMModel)
             
@@ -159,6 +157,9 @@ class KafkaMessageReceiver(object):
 
         elif self.topic == "luti_oxf":
             protobuf_deserializer = ProtobufDeserializer(start_luti_oxf_pb2.StartLutiOxf)
+
+        elif self.topic == "ops":
+            protobuf_deserializer = ProtobufDeserializer(start_ops_pb2.StartOps)
 
         if protobuf_deserializer is None:
             self.logger.warning('protobuf_deserializer: checking message not possible !')
