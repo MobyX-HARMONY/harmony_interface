@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartOFS {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string UseCase = 1;
+    required string SettingsFile = 2;
+    required string AimsunModelFile = 3;
+    required string PathAssignmentFile = 4;
+  }
+
+  message Outputs {
+    required string VehicleStats = 1;
+    required string SectionsStats = 2;
+  }
+}

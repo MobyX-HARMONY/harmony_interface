@@ -21,6 +21,8 @@ from .protos.dfm_lite_partial import start_dfm_lite_partial_pb2
 from .protos.luti_ath import start_luti_ath_pb2
 from .protos.luti_tur import start_luti_tur_pb2
 from .protos.ldm_ath import start_ldm_ath_pb2
+from .protos.tfs_ofs_data_transform import start_tfs_ofs_data_transform_pb2
+from .protos.ofs import start_ofs_pb2
 
 # noinspection PyUnresolvedReferences
 from uuid import uuid4
@@ -267,6 +269,24 @@ class KafkaMessageSender(object):
         serializer = ProtobufSerializer(start_ops_pb2.StartOps, schema_registry_client)
         conf = self.__get_producer_config(serializer)
         message = start_ops_pb2.StartOps(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
+
+    def send_start_tfs_ofs_data_transform(self, params):
+        self.logger.warning('START TFS_OFS_DATA_TRANSFORM: %s', params)
+        inputs = start_tfs_ofs_data_transform_pb2.StartTFSOFSDataTransform.Inputs(**params["inputs"])
+        outputs = start_tfs_ofs_data_transform_pb2.StartTFSOFSDataTransform.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_tfs_ofs_data_transform_pb2.StartTFSOFSDataTransform, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_tfs_ofs_data_transform_pb2.StartTFSOFSDataTransform(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
+
+    def send_start_ofs(self, params):
+        self.logger.warning('START OFS: %s', params)
+        inputs = start_ofs_pb2.StartOFS.Inputs(**params["inputs"])
+        outputs = start_ofs_pb2.StartOFS.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_ofs_pb2.StartOFS, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_ofs_pb2.StartOFS(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):
