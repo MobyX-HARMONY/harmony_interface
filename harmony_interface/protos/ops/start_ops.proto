@@ -13,6 +13,9 @@ message StartOps {
   }
 
   message Outputs {
-    required string VehicleTrips = 1;
+    required string Output1 = 1;
+    required string Output2 = 2;
+    required string Output3 = 3;
+    required string Output4 = 4;
   }
 }
