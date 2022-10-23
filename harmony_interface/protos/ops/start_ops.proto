@@ -8,10 +8,11 @@ message StartOps {
   required Outputs outputs = 3;
 
   message Inputs {
-    required string ANGFile = 1;
+    required int32 VehicleNumber = 1;
+    required string Trips = 2;
   }
 
   message Outputs {
-    required string Sample = 1;
+    required string VehicleTrips = 1;
   }
 }

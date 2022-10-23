@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0fstart_ops.proto\x12\rharmonyServer\"\xb6\x01\n\x08StartOps\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12.\n\x06inputs\x18\x02 \x02(\x0b\x32\x1e.harmonyServer.StartOps.Inputs\x12\x30\n\x07outputs\x18\x03 \x02(\x0b\x32\x1f.harmonyServer.StartOps.Outputs\x1a\x19\n\x06Inputs\x12\x0f\n\x07\x41NGFile\x18\x01 \x02(\t\x1a\x19\n\x07Outputs\x12\x0e\n\x06Sample\x18\x01 \x02(\t')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0fstart_ops.proto\x12\rharmonyServer\"\xd1\x01\n\x08StartOps\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12.\n\x06inputs\x18\x02 \x02(\x0b\x32\x1e.harmonyServer.StartOps.Inputs\x12\x30\n\x07outputs\x18\x03 \x02(\x0b\x32\x1f.harmonyServer.StartOps.Outputs\x1a.\n\x06Inputs\x12\x15\n\rVehicleNumber\x18\x01 \x02(\x05\x12\r\n\x05Trips\x18\x02 \x02(\t\x1a\x1f\n\x07Outputs\x12\x14\n\x0cVehicleTrips\x18\x01 \x02(\t')
 
 
 
@@ -48,9 +48,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _STARTOPS._serialized_start=35
-  _STARTOPS._serialized_end=217
+  _STARTOPS._serialized_end=244
   _STARTOPS_INPUTS._serialized_start=165
-  _STARTOPS_INPUTS._serialized_end=190
-  _STARTOPS_OUTPUTS._serialized_start=192
-  _STARTOPS_OUTPUTS._serialized_end=217
+  _STARTOPS_INPUTS._serialized_end=211
+  _STARTOPS_OUTPUTS._serialized_start=213
+  _STARTOPS_OUTPUTS._serialized_end=244
 # @@protoc_insertion_point(module_scope)
