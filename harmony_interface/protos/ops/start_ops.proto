@@ -13,9 +13,7 @@ message StartOps {
   }
 
   message Outputs {
-    required string Output1 = 1;
-    required string Output2 = 2;
-    required string Output3 = 3;
-    required string Output4 = 4;
+    required string AverageRoadSectionData = 1;
+    required string Emissions = 2;
   }
 }
