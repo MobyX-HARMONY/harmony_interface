@@ -48,8 +48,6 @@ message StartTFSOFSDataTransform {
 	required bool ReadShipmentsDemand = 38;
 	required bool ReadShipmentsTours = 39;
 	required bool ReadParcelTours = 40;
-	required bool ReadTravelTimesZones = 41;
-	required bool ReadDistancesZones = 42;
   }
   
   message Outputs {
