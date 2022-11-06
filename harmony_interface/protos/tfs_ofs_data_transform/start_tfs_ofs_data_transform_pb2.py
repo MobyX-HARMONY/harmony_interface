@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\"start_tfs_ofs_data_transform.proto\x12\rharmonyServer\"\xf3\x05\n\x18StartTFSOFSDataTransform\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12>\n\x06inputs\x18\x02 \x02(\x0b\x32..harmonyServer.StartTFSOFSDataTransform.Inputs\x12@\n\x07outputs\x18\x03 \x02(\x0b\x32/.harmonyServer.StartTFSOFSDataTransform.Outputs\x1a\x98\x04\n\x06Inputs\x12\x11\n\tNodesFile\x18\x01 \x02(\t\x12\x11\n\tLinksFile\x18\x02 \x02(\t\x12\x11\n\tZonesFile\x18\x03 \x02(\t\x12 \n\x18\x43onsolidationCentresFile\x18\x04 \x02(\t\x12\x15\n\rMicroHubsFile\x18\x05 \x02(\t\x12\x18\n\x10ParcelDemandFile\x18\x06 \x02(\t\x12\x1a\n\x12ShipmentDemandFile\x18\x07 \x02(\t\x12\x19\n\x11ShipmentToursFile\x18\x08 \x02(\t\x12\x17\n\x0fParcelToursFile\x18\t \x02(\t\x12\x1b\n\x13TravelTimesSkimFile\x18\n \x02(\t\x12\x19\n\x11\x44istancesSkimFile\x18\x0b \x02(\t\x12\x11\n\tReadNodes\x18\x0c \x02(\x08\x12\x11\n\tReadLinks\x18\r \x02(\x08\x12\x11\n\tReadZones\x18\x0e \x02(\x08\x12 \n\x18ReadConsolidationCentres\x18\x0f \x02(\x08\x12\x15\n\rReadMicrohubs\x18\x10 \x02(\x08\x12\x18\n\x10ReadParcelDemand\x18\x11 \x02(\x08\x12\x1b\n\x13ReadShipmentsDemand\x18\x12 \x02(\x08\x12\x1a\n\x12ReadShipmentsTours\x18\x13 \x02(\x08\x12\x17\n\x0fReadParcelTours\x18\x14 \x02(\x08\x12\x1c\n\x14ReadTravelTimesZones\x18\x15 \x02(\x08\x1a&\n\x07Outputs\x12\x1b\n\x13\x44\x61taTranformResults\x18\x01 \x02(\t')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\"start_tfs_ofs_data_transform.proto\x12\rharmonyServer\"\x8a\x06\n\x18StartTFSOFSDataTransform\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12>\n\x06inputs\x18\x02 \x02(\x0b\x32..harmonyServer.StartTFSOFSDataTransform.Inputs\x12@\n\x07outputs\x18\x03 \x02(\x0b\x32/.harmonyServer.StartTFSOFSDataTransform.Outputs\x1a\xaf\x04\n\x06Inputs\x12\x15\n\rModellingArea\x18\x01 \x02(\t\x12\x11\n\tNodesFile\x18\x02 \x02(\t\x12\x11\n\tLinksFile\x18\x03 \x02(\t\x12\x11\n\tZonesFile\x18\x04 \x02(\t\x12 \n\x18\x43onsolidationCentresFile\x18\x05 \x02(\t\x12\x15\n\rMicroHubsFile\x18\x06 \x02(\t\x12\x18\n\x10ParcelDemandFile\x18\x07 \x02(\t\x12\x1a\n\x12ShipmentDemandFile\x18\x08 \x02(\t\x12\x19\n\x11ShipmentToursFile\x18\t \x02(\t\x12\x17\n\x0fParcelToursFile\x18\n \x02(\t\x12\x1b\n\x13TravelTimesSkimFile\x18\x0b \x02(\t\x12\x19\n\x11\x44istancesSkimFile\x18\x0c \x02(\t\x12\x11\n\tReadNodes\x18\r \x02(\x08\x12\x11\n\tReadLinks\x18\x0e \x02(\x08\x12\x11\n\tReadZones\x18\x0f \x02(\x08\x12 \n\x18ReadConsolidationCentres\x18\x10 \x02(\x08\x12\x15\n\rReadMicrohubs\x18\x11 \x02(\x08\x12\x18\n\x10ReadParcelDemand\x18\x12 \x02(\x08\x12\x1b\n\x13ReadShipmentsDemand\x18\x13 \x02(\x08\x12\x1a\n\x12ReadShipmentsTours\x18\x14 \x02(\x08\x12\x17\n\x0fReadParcelTours\x18\x15 \x02(\x08\x12\x1c\n\x14ReadTravelTimesZones\x18\x16 \x02(\x08\x1a&\n\x07Outputs\x12\x1b\n\x13\x44\x61taTranformResults\x18\x01 \x02(\t')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'start_tfs_ofs_data_transform_pb2', globals())
@@ -21,9 +21,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _STARTTFSOFSDATATRANSFORM._serialized_start=54
-  _STARTTFSOFSDATATRANSFORM._serialized_end=809
+  _STARTTFSOFSDATATRANSFORM._serialized_end=832
   _STARTTFSOFSDATATRANSFORM_INPUTS._serialized_start=233
-  _STARTTFSOFSDATATRANSFORM_INPUTS._serialized_end=769
-  _STARTTFSOFSDATATRANSFORM_OUTPUTS._serialized_start=771
-  _STARTTFSOFSDATATRANSFORM_OUTPUTS._serialized_end=809
+  _STARTTFSOFSDATATRANSFORM_INPUTS._serialized_end=792
+  _STARTTFSOFSDATATRANSFORM_OUTPUTS._serialized_start=794
+  _STARTTFSOFSDATATRANSFORM_OUTPUTS._serialized_end=832
 # @@protoc_insertion_point(module_scope)

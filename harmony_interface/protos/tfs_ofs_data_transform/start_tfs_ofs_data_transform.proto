@@ -8,27 +8,28 @@ message StartTFSOFSDataTransform {
   required Outputs outputs = 3;
 
   message Inputs {
-	required string NodesFile = 1;
-	required string LinksFile = 2;
-	required string ZonesFile = 3;
-	required string ConsolidationCentresFile = 4;
-	required string MicroHubsFile = 5;
-	required string ParcelDemandFile = 6;
-	required string ShipmentDemandFile = 7;
-	required string ShipmentToursFile = 8;
-	required string ParcelToursFile = 9;
-	required string TravelTimesSkimFile = 10;
-	required string DistancesSkimFile = 11;
-	required bool ReadNodes = 12;
-	required bool ReadLinks = 13;
-	required bool ReadZones = 14;
-	required bool ReadConsolidationCentres = 15;
-	required bool ReadMicrohubs = 16;
-	required bool ReadParcelDemand = 17;
-	required bool ReadShipmentsDemand = 18;
-	required bool ReadShipmentsTours = 19;
-	required bool ReadParcelTours = 20;
-	required bool ReadTravelTimesZones = 21;
+	required string ModellingArea = 1;
+	required string NodesFile = 2;
+	required string LinksFile = 3;
+	required string ZonesFile = 4;
+	required string ConsolidationCentresFile = 5;
+	required string MicroHubsFile = 6;
+	required string ParcelDemandFile = 7;
+	required string ShipmentDemandFile = 8;
+	required string ShipmentToursFile = 9;
+	required string ParcelToursFile = 10;
+	required string TravelTimesSkimFile = 11;
+	required string DistancesSkimFile = 12;
+	required bool ReadNodes = 13;
+	required bool ReadLinks = 14;
+	required bool ReadZones = 15;
+	required bool ReadConsolidationCentres = 16;
+	required bool ReadMicrohubs = 17;
+	required bool ReadParcelDemand = 18;
+	required bool ReadShipmentsDemand = 19;
+	required bool ReadShipmentsTours = 20;
+	required bool ReadParcelTours = 21;
+	required bool ReadTravelTimesZones = 22;
   }
   
   message Outputs {
