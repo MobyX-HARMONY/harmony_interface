@@ -8,17 +8,17 @@ message StartTFSOFSDataTransform {
   required Outputs outputs = 3;
 
   message Inputs {
-	optional string NodesFile = 1;
-	optional string LinksFile = 2;
-	optional string ZonesFile = 3;
+	required string NodesFile = 1;
+	required string LinksFile = 2;
+	required string ZonesFile = 3;
 	required string ConsolidationCentresFile = 4;
 	required string MicroHubsFile = 5;
 	required string ParcelDemandFile = 6;
-	optional string ShipmentDemandFile =7;
-	optional string ShipmentToursFile = 8;
-	optional string ParcelToursFile = 9;
-	optional string TravelTimesSkimFile = 10;
-	optional string DistancesSkimFile = 11;
+	required string ShipmentDemandFile = 7;
+	required string ShipmentToursFile = 8;
+	required string ParcelToursFile = 9;
+	required string TravelTimesSkimFile = 10;
+	required string DistancesSkimFile = 11;
 	required bool ReadNodes = 12;
 	required bool ReadLinks = 13;
 	required bool ReadZones = 14;
