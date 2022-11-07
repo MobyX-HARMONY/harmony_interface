@@ -30,6 +30,7 @@ message StartTFSOFSDataTransform {
 	required bool ReadShipmentsTours = 20;
 	required bool ReadParcelTours = 21;
 	required bool ReadTravelTimesZones = 22;
+	required bool ReadDistancesZones = 23;
   }
   
   message Outputs {

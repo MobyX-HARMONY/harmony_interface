@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\"start_tfs_ofs_data_transform.proto\x12\rharmonyServer\"\x8a\x06\n\x18StartTFSOFSDataTransform\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12>\n\x06inputs\x18\x02 \x02(\x0b\x32..harmonyServer.StartTFSOFSDataTransform.Inputs\x12@\n\x07outputs\x18\x03 \x02(\x0b\x32/.harmonyServer.StartTFSOFSDataTransform.Outputs\x1a\xaf\x04\n\x06Inputs\x12\x15\n\rModellingArea\x18\x01 \x02(\t\x12\x11\n\tNodesFile\x18\x02 \x02(\t\x12\x11\n\tLinksFile\x18\x03 \x02(\t\x12\x11\n\tZonesFile\x18\x04 \x02(\t\x12 \n\x18\x43onsolidationCentresFile\x18\x05 \x02(\t\x12\x15\n\rMicroHubsFile\x18\x06 \x02(\t\x12\x18\n\x10ParcelDemandFile\x18\x07 \x02(\t\x12\x1a\n\x12ShipmentDemandFile\x18\x08 \x02(\t\x12\x19\n\x11ShipmentToursFile\x18\t \x02(\t\x12\x17\n\x0fParcelToursFile\x18\n \x02(\t\x12\x1b\n\x13TravelTimesSkimFile\x18\x0b \x02(\t\x12\x19\n\x11\x44istancesSkimFile\x18\x0c \x02(\t\x12\x11\n\tReadNodes\x18\r \x02(\x08\x12\x11\n\tReadLinks\x18\x0e \x02(\x08\x12\x11\n\tReadZones\x18\x0f \x02(\x08\x12 \n\x18ReadConsolidationCentres\x18\x10 \x02(\x08\x12\x15\n\rReadMicrohubs\x18\x11 \x02(\x08\x12\x18\n\x10ReadParcelDemand\x18\x12 \x02(\x08\x12\x1b\n\x13ReadShipmentsDemand\x18\x13 \x02(\x08\x12\x1a\n\x12ReadShipmentsTours\x18\x14 \x02(\x08\x12\x17\n\x0fReadParcelTours\x18\x15 \x02(\x08\x12\x1c\n\x14ReadTravelTimesZones\x18\x16 \x02(\x08\x1a&\n\x07Outputs\x12\x1b\n\x13\x44\x61taTranformResults\x18\x01 \x02(\t'
+  serialized_pb=b'\n\"start_tfs_ofs_data_transform.proto\x12\rharmonyServer\"\xa6\x06\n\x18StartTFSOFSDataTransform\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12>\n\x06inputs\x18\x02 \x02(\x0b\x32..harmonyServer.StartTFSOFSDataTransform.Inputs\x12@\n\x07outputs\x18\x03 \x02(\x0b\x32/.harmonyServer.StartTFSOFSDataTransform.Outputs\x1a\xcb\x04\n\x06Inputs\x12\x15\n\rModellingArea\x18\x01 \x02(\t\x12\x11\n\tNodesFile\x18\x02 \x02(\t\x12\x11\n\tLinksFile\x18\x03 \x02(\t\x12\x11\n\tZonesFile\x18\x04 \x02(\t\x12 \n\x18\x43onsolidationCentresFile\x18\x05 \x02(\t\x12\x15\n\rMicroHubsFile\x18\x06 \x02(\t\x12\x18\n\x10ParcelDemandFile\x18\x07 \x02(\t\x12\x1a\n\x12ShipmentDemandFile\x18\x08 \x02(\t\x12\x19\n\x11ShipmentToursFile\x18\t \x02(\t\x12\x17\n\x0fParcelToursFile\x18\n \x02(\t\x12\x1b\n\x13TravelTimesSkimFile\x18\x0b \x02(\t\x12\x19\n\x11\x44istancesSkimFile\x18\x0c \x02(\t\x12\x11\n\tReadNodes\x18\r \x02(\x08\x12\x11\n\tReadLinks\x18\x0e \x02(\x08\x12\x11\n\tReadZones\x18\x0f \x02(\x08\x12 \n\x18ReadConsolidationCentres\x18\x10 \x02(\x08\x12\x15\n\rReadMicrohubs\x18\x11 \x02(\x08\x12\x18\n\x10ReadParcelDemand\x18\x12 \x02(\x08\x12\x1b\n\x13ReadShipmentsDemand\x18\x13 \x02(\x08\x12\x1a\n\x12ReadShipmentsTours\x18\x14 \x02(\x08\x12\x17\n\x0fReadParcelTours\x18\x15 \x02(\x08\x12\x1c\n\x14ReadTravelTimesZones\x18\x16 \x02(\x08\x12\x1a\n\x12ReadDistancesZones\x18\x17 \x02(\x08\x1a&\n\x07Outputs\x12\x1b\n\x13\x44\x61taTranformResults\x18\x01 \x02(\t'
 )
 
 
@@ -187,6 +187,13 @@ _STARTTFSOFSDATATRANSFORM_INPUTS = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ReadDistancesZones', full_name='harmonyServer.StartTFSOFSDataTransform.Inputs.ReadDistancesZones', index=22,
+      number=23, type=8, cpp_type=7, label=2,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -200,7 +207,7 @@ _STARTTFSOFSDATATRANSFORM_INPUTS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=233,
-  serialized_end=792,
+  serialized_end=820,
 )
 
 _STARTTFSOFSDATATRANSFORM_OUTPUTS = _descriptor.Descriptor(
@@ -230,8 +237,8 @@ _STARTTFSOFSDATATRANSFORM_OUTPUTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=794,
-  serialized_end=832,
+  serialized_start=822,
+  serialized_end=860,
 )
 
 _STARTTFSOFSDATATRANSFORM = _descriptor.Descriptor(
@@ -276,7 +283,7 @@ _STARTTFSOFSDATATRANSFORM = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=54,
-  serialized_end=832,
+  serialized_end=860,
 )
 
 _STARTTFSOFSDATATRANSFORM_INPUTS.containing_type = _STARTTFSOFSDATATRANSFORM
