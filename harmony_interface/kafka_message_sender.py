@@ -6,6 +6,7 @@ from .protos.ldm_tur import start_ldm_tur_pb2
 from .protos.ldm_oxf import start_ldm_oxf_pb2
 from .protos.luti_oxf import start_luti_oxf_pb2
 from .protos.ops import start_ops_pb2
+from .protos.abmd import start_abmd_pb2
 from .protos.common import progress_outputs_pb2
 from .protos.common import stop_pb2
 from .protos.demoMultipleFiles import start_demo_multiple_files_pb2
@@ -287,6 +288,15 @@ class KafkaMessageSender(object):
         serializer = ProtobufSerializer(start_ofs_pb2.StartOFS, schema_registry_client)
         conf = self.__get_producer_config(serializer)
         message = start_ofs_pb2.StartOFS(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
+        self.__send_anything(self.topic, message, conf)
+
+    def send_start_abmd(self, params):
+        self.logger.warning('START abmd params: %s', params)
+        inputs = start_abmd_pb2.StartAbmd.Inputs(**params["inputs"])
+        outputs = start_abmd_pb2.StartAbmd.Outputs(**params["outputs"])
+        serializer = ProtobufSerializer(start_abmd_pb2.StartAbmd, schema_registry_client)
+        conf = self.__get_producer_config(serializer)
+        message = start_abmd_pb2.StartAbmd(scenarioId = params["scenarioId"], inputs = inputs, outputs = outputs)
         self.__send_anything(self.topic, message, conf)
 
 class ComponentKafkaMessageSender(KafkaMessageSender):

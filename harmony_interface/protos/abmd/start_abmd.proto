@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartAbmd {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string RWFORAPOLLO = 1;
+  }
+
+  message Outputs {
+    required string MNLSPestimates = 1;
+  }
+}

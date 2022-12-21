@@ -36,6 +36,7 @@ from .protos.luti_oxf import start_luti_oxf_pb2
 from .protos.ops import start_ops_pb2
 from .protos.tfs_ofs_data_transform import start_tfs_ofs_data_transform_pb2
 from .protos.ofs import start_ofs_pb2
+from .protos.abmd import start_abmd_pb2
 from .config import Config
 
 config = Config()
@@ -168,6 +169,9 @@ class KafkaMessageReceiver(object):
 
         elif self.topic == "ofs":
             protobuf_deserializer = ProtobufDeserializer(start_ofs_pb2.StartOFS)
+
+        elif self.topic == "abmd":
+            protobuf_deserializer = ProtobufDeserializer(start_abmd_pb2.StartAbmd)
 
         if protobuf_deserializer is None:
             self.logger.warning('protobuf_deserializer: checking message not possible !')
