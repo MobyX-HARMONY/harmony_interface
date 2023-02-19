@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package harmonyServer;
+
+message StartAbmv1 {
+  required string scenarioId = 1;
+  required Inputs inputs = 2;
+  required Outputs outputs = 3;
+
+  message Inputs {
+    required string workFirstTimediffThreshold = 1;
+    required string CleanTripsTUR = 2;
+    required string TURPersonSyntheticFinal1ActivitiesWork = 3;
+  }
+
+  message Outputs {
+    required string syntheticTURSecondaryStartTimesInt2 = 1;
+    required string syntheticTURFordestpredict = 2;
+  }
+}
