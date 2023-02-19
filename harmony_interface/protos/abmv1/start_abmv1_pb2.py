@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11start_abmv1.proto\x12\rharmonyServer\"\xd7\x02\n\nStartAbmv1\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x30\n\x06inputs\x18\x02 \x02(\x0b\x32 .harmonyServer.StartAbmv1.Inputs\x12\x32\n\x07outputs\x18\x03 \x02(\x0b\x32!.harmonyServer.StartAbmv1.Outputs\x1as\n\x06Inputs\x12\"\n\x1aworkFirstTimediffThreshold\x18\x01 \x02(\t\x12\x15\n\rCleanTripsTUR\x18\x02 \x02(\t\x12.\n&TURPersonSyntheticFinal1ActivitiesWork\x18\x03 \x02(\t\x1aZ\n\x07Outputs\x12+\n#syntheticTURSecondaryStartTimesInt2\x18\x01 \x02(\t\x12\"\n\x1asyntheticTURFordestpredict\x18\x02 \x02(\t')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11start_abmv1.proto\x12\rharmonyServer\"\xd7\x02\n\nStartAbmv1\x12\x12\n\nscenarioId\x18\x01 \x02(\t\x12\x30\n\x06inputs\x18\x02 \x02(\x0b\x32 .harmonyServer.StartAbmv1.Inputs\x12\x32\n\x07outputs\x18\x03 \x02(\x0b\x32!.harmonyServer.StartAbmv1.Outputs\x1as\n\x06Inputs\x12\"\n\x1aworkFirstTimediffThreshold\x18\x01 \x02(\x05\x12\x15\n\rCleanTripsTUR\x18\x02 \x02(\t\x12.\n&TURPersonSyntheticFinal1ActivitiesWork\x18\x03 \x02(\t\x1aZ\n\x07Outputs\x12+\n#syntheticTURSecondaryStartTimesInt2\x18\x01 \x02(\t\x12\"\n\x1asyntheticTURFordestpredict\x18\x02 \x02(\t')
 
 
 

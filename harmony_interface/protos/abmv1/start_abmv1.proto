@@ -8,7 +8,7 @@ message StartAbmv1 {
   required Outputs outputs = 3;
 
   message Inputs {
-    required string workFirstTimediffThreshold = 1;
+    required int32 workFirstTimediffThreshold = 1;
     required string CleanTripsTUR = 2;
     required string TURPersonSyntheticFinal1ActivitiesWork = 3;
   }
